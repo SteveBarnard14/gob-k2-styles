@@ -1,0 +1,1108 @@
+/*
+===============================================================================
+Government of The Bahamas - Nintex K2 SmartForms Style Profile CSS
+Version: 1.0.0
+Target: Nintex K2 Five 5.8 / 5.9
+Scope: Runtime SmartForms using a Style Profile
+Authoring principle: All selectors are scoped beneath .theme-entry
+===============================================================================
+
+INSTALLATION
+1. Host this file on an HTTPS endpoint reachable by all K2 Runtime users.
+2. In the K2 Style Profile, open Developer > External Files.
+3. Add this CSS file after any shared/base K2 CSS references.
+4. Ensure "Use Legacy Theme" is disabled on the target Form.
+5. Avoid control-level formatting unless required for a documented exception.
+
+OPTIONAL CONTROL NAMING CONVENTION
+Use the K2 control Name property as stable hooks:
+GOB_Button_Primary
+GOB_Button_Secondary
+GOB_Button_Danger
+GOB_Form_Title
+GOB_Section_Intro
+GOB_Status_Success
+GOB_Status_Warning
+GOB_Status_Error
+===============================================================================
+*/
+
+/* ---------------------------------------------------------------------------
+   1. DESIGN TOKENS
+--------------------------------------------------------------------------- */
+
+.theme-entry {
+    /* Official Bahamas-inspired palette */
+    --gob-aquamarine-900: #003f4f;
+    --gob-aquamarine-800: #00566a;
+    --gob-aquamarine-700: #006b7f;
+    --gob-aquamarine-600: #007f95;
+    --gob-aquamarine-500: #0097a7;
+    --gob-aquamarine-100: #dff4f6;
+    --gob-aquamarine-050: #f2fbfc;
+
+    --gob-gold-700: #b78600;
+    --gob-gold-600: #d19b00;
+    --gob-gold-500: #f4c430;
+    --gob-gold-200: #fbe7a3;
+    --gob-gold-100: #fff4ca;
+
+    --gob-black: #111111;
+    --gob-ink-900: #17212b;
+    --gob-ink-800: #253341;
+    --gob-ink-700: #384858;
+    --gob-ink-600: #526170;
+    --gob-ink-500: #6b7785;
+    --gob-ink-300: #b6c0c9;
+    --gob-ink-200: #d6dde3;
+    --gob-ink-100: #e9edf1;
+    --gob-ink-050: #f6f8fa;
+
+    --gob-white: #ffffff;
+    --gob-success-700: #146c43;
+    --gob-success-100: #e8f5ee;
+    --gob-warning-700: #8a5a00;
+    --gob-warning-100: #fff5d6;
+    --gob-danger-700: #a12622;
+    --gob-danger-100: #fdecea;
+    --gob-info-700: #145f82;
+    --gob-info-100: #e8f4f8;
+
+    --gob-font-sans: "Segoe UI", Arial, Helvetica, sans-serif;
+    --gob-font-serif: Georgia, "Times New Roman", serif;
+
+    --gob-space-1: 0.25rem;
+    --gob-space-2: 0.5rem;
+    --gob-space-3: 0.75rem;
+    --gob-space-4: 1rem;
+    --gob-space-5: 1.25rem;
+    --gob-space-6: 1.5rem;
+    --gob-space-8: 2rem;
+    --gob-space-10: 2.5rem;
+    --gob-space-12: 3rem;
+
+    --gob-radius-sm: 0.25rem;
+    --gob-radius-md: 0.5rem;
+    --gob-radius-lg: 0.75rem;
+
+    --gob-shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.08);
+    --gob-shadow-md: 0 4px 14px rgba(17, 17, 17, 0.10);
+    --gob-shadow-focus: 0 0 0 3px rgba(0, 151, 167, 0.25);
+
+    --gob-control-height: 2.75rem;
+    --gob-content-width: 90rem;
+
+    /* K2 Style Profile variables commonly respected by modern themes */
+    --page-background-color: var(--gob-ink-050);
+    --panel-background-color: var(--gob-white);
+    --main-text-color: var(--gob-ink-900);
+    --secondary-text-color: var(--gob-ink-600);
+    --border-color: var(--gob-ink-200);
+    --primary-color: var(--gob-aquamarine-700);
+    --primary-hover-color: var(--gob-aquamarine-800);
+    --primary-active-color: var(--gob-aquamarine-900);
+
+    box-sizing: border-box;
+    color: var(--gob-ink-900);
+    font-family: var(--gob-font-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    background: var(--gob-ink-050);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.theme-entry *,
+.theme-entry *::before,
+.theme-entry *::after {
+    box-sizing: inherit;
+}
+
+/* ---------------------------------------------------------------------------
+   2. PAGE AND FORM SHELL
+--------------------------------------------------------------------------- */
+
+.theme-entry .form,
+.theme-entry .runtime-form,
+.theme-entry .form-container,
+.theme-entry .formpanel,
+.theme-entry .form-wrapper {
+    width: min(100%, var(--gob-content-width));
+    margin-inline: auto;
+}
+
+.theme-entry .form,
+.theme-entry .runtime-form {
+    padding: clamp(0.75rem, 2vw, 2rem);
+}
+
+.theme-entry .form > .row,
+.theme-entry .runtime-form > .row {
+    margin-bottom: var(--gob-space-4);
+}
+
+/* A subtle government-brand band at the top of the K2 form area */
+.theme-entry .form::before,
+.theme-entry .runtime-form::before {
+    content: "";
+    display: block;
+    height: 0.375rem;
+    margin-bottom: var(--gob-space-5);
+    border-radius: var(--gob-radius-sm);
+    background:
+        linear-gradient(
+            90deg,
+            var(--gob-aquamarine-600) 0 42%,
+            var(--gob-gold-500) 42% 58%,
+            var(--gob-black) 58% 66%,
+            var(--gob-aquamarine-600) 66% 100%
+        );
+}
+
+/* ---------------------------------------------------------------------------
+   3. TYPOGRAPHY
+--------------------------------------------------------------------------- */
+
+.theme-entry,
+.theme-entry input,
+.theme-entry select,
+.theme-entry textarea,
+.theme-entry button {
+    font-family: var(--gob-font-sans);
+}
+
+.theme-entry h1,
+.theme-entry h2,
+.theme-entry h3,
+.theme-entry h4,
+.theme-entry h5,
+.theme-entry h6,
+.theme-entry .form-title,
+.theme-entry .view-title,
+.theme-entry .panel-title,
+.theme-entry .title {
+    margin-top: 0;
+    color: var(--gob-ink-900);
+    font-family: var(--gob-font-sans);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+}
+
+.theme-entry h1,
+.theme-entry .form-title {
+    margin-bottom: var(--gob-space-5);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.theme-entry h2,
+.theme-entry .view-title,
+.theme-entry .panel-title {
+    margin-bottom: var(--gob-space-4);
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+
+.theme-entry h3 {
+    font-size: 1.2rem;
+}
+
+.theme-entry p {
+    margin-top: 0;
+    margin-bottom: var(--gob-space-4);
+    color: var(--gob-ink-700);
+}
+
+.theme-entry a {
+    color: var(--gob-aquamarine-800);
+    font-weight: 600;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.15em;
+}
+
+.theme-entry a:hover {
+    color: var(--gob-aquamarine-900);
+}
+
+.theme-entry .description,
+.theme-entry .helper-text,
+.theme-entry .form-field-description,
+.theme-entry .input-control-watermark {
+    color: var(--gob-ink-600);
+    font-size: 0.875rem;
+}
+
+/* Optional stable hooks based on K2 control Name */
+.theme-entry [name="GOB_Form_Title"] {
+    display: block;
+    margin-bottom: var(--gob-space-2);
+    color: var(--gob-ink-900);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 750;
+    line-height: 1.15;
+}
+
+.theme-entry [name="GOB_Section_Intro"] {
+    display: block;
+    max-width: 70ch;
+    margin-bottom: var(--gob-space-6);
+    color: var(--gob-ink-700);
+    font-size: 1.0625rem;
+}
+
+/* ---------------------------------------------------------------------------
+   4. VIEWS, PANELS, SECTIONS
+--------------------------------------------------------------------------- */
+
+.theme-entry .view,
+.theme-entry .panel,
+.theme-entry .grid,
+.theme-entry .view-canvas,
+.theme-entry .view-container,
+.theme-entry .panel-body,
+.theme-entry .content-panel {
+    border-color: var(--gob-ink-200);
+}
+
+.theme-entry .view,
+.theme-entry .panel,
+.theme-entry .view-canvas,
+.theme-entry .view-container,
+.theme-entry .content-panel {
+    overflow: hidden;
+    margin-bottom: var(--gob-space-6);
+    border: 1px solid var(--gob-ink-200);
+    border-radius: var(--gob-radius-lg);
+    background: var(--gob-white);
+    box-shadow: var(--gob-shadow-sm);
+}
+
+.theme-entry .view-header,
+.theme-entry .panel-header,
+.theme-entry .grid-header,
+.theme-entry .view-titlebar,
+.theme-entry .panel-heading {
+    min-height: 3.25rem;
+    padding: var(--gob-space-3) var(--gob-space-5);
+    border-bottom: 1px solid var(--gob-ink-200);
+    background:
+        linear-gradient(90deg, var(--gob-aquamarine-050), var(--gob-white));
+    color: var(--gob-ink-900);
+}
+
+.theme-entry .view-header::before,
+.theme-entry .panel-header::before,
+.theme-entry .view-titlebar::before {
+    content: "";
+    display: inline-block;
+    width: 0.25rem;
+    height: 1.5rem;
+    margin-right: var(--gob-space-3);
+    vertical-align: middle;
+    border-radius: 999px;
+    background: var(--gob-gold-500);
+}
+
+.theme-entry .view-content,
+.theme-entry .panel-body,
+.theme-entry .view-body,
+.theme-entry .content {
+    padding: clamp(0.875rem, 2vw, 1.5rem);
+}
+
+/* ---------------------------------------------------------------------------
+   5. LABELS AND FIELD LAYOUT
+--------------------------------------------------------------------------- */
+
+.theme-entry label,
+.theme-entry .input-control-label,
+.theme-entry .form-field-label,
+.theme-entry .field-label,
+.theme-entry .control-label {
+    display: inline-block;
+    margin-bottom: var(--gob-space-2);
+    color: var(--gob-ink-800);
+    font-size: 0.9375rem;
+    font-weight: 650;
+    line-height: 1.35;
+}
+
+.theme-entry .required,
+.theme-entry .mandatory,
+.theme-entry .input-control-label .required {
+    color: var(--gob-danger-700);
+    font-weight: 700;
+}
+
+.theme-entry .form-field,
+.theme-entry .field,
+.theme-entry .editor-cell,
+.theme-entry .input-control {
+    min-width: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   6. INPUTS, TEXTAREAS, DROPDOWNS, PICKERS
+--------------------------------------------------------------------------- */
+
+.theme-entry input[type="text"],
+.theme-entry input[type="password"],
+.theme-entry input[type="email"],
+.theme-entry input[type="number"],
+.theme-entry input[type="tel"],
+.theme-entry input[type="url"],
+.theme-entry input[type="search"],
+.theme-entry input[type="date"],
+.theme-entry input[type="datetime-local"],
+.theme-entry textarea,
+.theme-entry select,
+.theme-entry .input-control input,
+.theme-entry .input-control textarea,
+.theme-entry .input-control select,
+.theme-entry .dropdown-box,
+.theme-entry .picker-input,
+.theme-entry .lookup-input {
+    width: 100%;
+    min-height: var(--gob-control-height);
+    border: 1px solid var(--gob-ink-300);
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-white);
+    color: var(--gob-ink-900);
+    font-size: 1rem;
+    line-height: 1.4;
+    transition:
+        border-color 140ms ease,
+        box-shadow 140ms ease,
+        background-color 140ms ease;
+}
+
+.theme-entry input[type="text"],
+.theme-entry input[type="password"],
+.theme-entry input[type="email"],
+.theme-entry input[type="number"],
+.theme-entry input[type="tel"],
+.theme-entry input[type="url"],
+.theme-entry input[type="search"],
+.theme-entry input[type="date"],
+.theme-entry input[type="datetime-local"],
+.theme-entry textarea,
+.theme-entry select,
+.theme-entry .input-control input,
+.theme-entry .input-control textarea,
+.theme-entry .input-control select {
+    padding: 0.625rem 0.75rem;
+}
+
+.theme-entry textarea,
+.theme-entry .input-control textarea {
+    min-height: 7rem;
+    resize: vertical;
+}
+
+.theme-entry input:hover,
+.theme-entry textarea:hover,
+.theme-entry select:hover,
+.theme-entry .dropdown-box:hover,
+.theme-entry .picker-input:hover,
+.theme-entry .lookup-input:hover {
+    border-color: var(--gob-aquamarine-600);
+}
+
+.theme-entry input:focus,
+.theme-entry textarea:focus,
+.theme-entry select:focus,
+.theme-entry .dropdown-box:focus-within,
+.theme-entry .picker-input:focus-within,
+.theme-entry .lookup-input:focus-within {
+    outline: none;
+    border-color: var(--gob-aquamarine-700);
+    box-shadow: var(--gob-shadow-focus);
+}
+
+.theme-entry input::placeholder,
+.theme-entry textarea::placeholder {
+    color: var(--gob-ink-500);
+    opacity: 1;
+}
+
+/* Read-only is still readable; disabled is visually distinct */
+.theme-entry input[readonly],
+.theme-entry textarea[readonly],
+.theme-entry select[readonly],
+.theme-entry .read-only input,
+.theme-entry .read-only textarea,
+.theme-entry .readonly input,
+.theme-entry .readonly textarea {
+    border-color: var(--gob-ink-200);
+    background: var(--gob-ink-050);
+    color: var(--gob-ink-800);
+}
+
+.theme-entry input:disabled,
+.theme-entry textarea:disabled,
+.theme-entry select:disabled,
+.theme-entry button:disabled,
+.theme-entry .disabled input,
+.theme-entry .disabled textarea,
+.theme-entry .disabled select {
+    cursor: not-allowed;
+    border-color: var(--gob-ink-200);
+    background: var(--gob-ink-100);
+    color: var(--gob-ink-500);
+    opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   7. BUTTONS
+--------------------------------------------------------------------------- */
+
+.theme-entry button,
+.theme-entry input[type="button"],
+.theme-entry input[type="submit"],
+.theme-entry .button,
+.theme-entry .toolbar-button,
+.theme-entry a.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gob-space-2);
+    min-height: var(--gob-control-height);
+    padding: 0.625rem 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-aquamarine-700);
+    color: var(--gob-white);
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: var(--gob-shadow-sm);
+    transition:
+        transform 100ms ease,
+        background-color 140ms ease,
+        border-color 140ms ease,
+        box-shadow 140ms ease;
+}
+
+.theme-entry button:hover,
+.theme-entry input[type="button"]:hover,
+.theme-entry input[type="submit"]:hover,
+.theme-entry .button:hover,
+.theme-entry .toolbar-button:hover,
+.theme-entry a.button:hover {
+    background: var(--gob-aquamarine-800);
+    color: var(--gob-white);
+    box-shadow: var(--gob-shadow-md);
+}
+
+.theme-entry button:active,
+.theme-entry input[type="button"]:active,
+.theme-entry input[type="submit"]:active,
+.theme-entry .button:active,
+.theme-entry .toolbar-button:active {
+    transform: translateY(1px);
+    background: var(--gob-aquamarine-900);
+}
+
+.theme-entry button:focus-visible,
+.theme-entry input[type="button"]:focus-visible,
+.theme-entry input[type="submit"]:focus-visible,
+.theme-entry .button:focus-visible,
+.theme-entry .toolbar-button:focus-visible,
+.theme-entry a:focus-visible {
+    outline: 3px solid var(--gob-gold-500);
+    outline-offset: 2px;
+}
+
+/* Secondary button */
+.theme-entry [name="GOB_Button_Secondary"],
+.theme-entry .button.secondary,
+.theme-entry .button-secondary {
+    border-color: var(--gob-aquamarine-700);
+    background: var(--gob-white);
+    color: var(--gob-aquamarine-800);
+    box-shadow: none;
+}
+
+.theme-entry [name="GOB_Button_Secondary"]:hover,
+.theme-entry .button.secondary:hover,
+.theme-entry .button-secondary:hover {
+    background: var(--gob-aquamarine-050);
+    color: var(--gob-aquamarine-900);
+}
+
+/* Gold accent action */
+.theme-entry [name="GOB_Button_Accent"],
+.theme-entry .button.accent,
+.theme-entry .button-accent {
+    border-color: var(--gob-gold-600);
+    background: var(--gob-gold-500);
+    color: var(--gob-black);
+}
+
+.theme-entry [name="GOB_Button_Accent"]:hover,
+.theme-entry .button.accent:hover,
+.theme-entry .button-accent:hover {
+    background: var(--gob-gold-600);
+    color: var(--gob-black);
+}
+
+/* Destructive action */
+.theme-entry [name="GOB_Button_Danger"],
+.theme-entry .button.danger,
+.theme-entry .button-danger {
+    background: var(--gob-danger-700);
+    color: var(--gob-white);
+}
+
+/* Toolbar spacing */
+.theme-entry .toolbar,
+.theme-entry .view-toolbar,
+.theme-entry .panel-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gob-space-2);
+    align-items: center;
+    padding: var(--gob-space-3) var(--gob-space-4);
+    border-bottom: 1px solid var(--gob-ink-200);
+    background: var(--gob-ink-050);
+}
+
+/* ---------------------------------------------------------------------------
+   8. CHECKBOXES AND RADIO BUTTONS
+--------------------------------------------------------------------------- */
+
+.theme-entry input[type="checkbox"],
+.theme-entry input[type="radio"] {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: 0 var(--gob-space-2) 0 0;
+    accent-color: var(--gob-aquamarine-700);
+    vertical-align: middle;
+}
+
+.theme-entry input[type="checkbox"]:focus-visible,
+.theme-entry input[type="radio"]:focus-visible {
+    outline: 3px solid var(--gob-gold-500);
+    outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------------
+   9. LIST VIEWS AND TABLES
+--------------------------------------------------------------------------- */
+
+.theme-entry table,
+.theme-entry .grid table,
+.theme-entry .list-view table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--gob-ink-800);
+}
+
+.theme-entry table th,
+.theme-entry .grid-header-cell,
+.theme-entry .list-view th {
+    padding: 0.75rem;
+    border-bottom: 2px solid var(--gob-aquamarine-700);
+    background: var(--gob-aquamarine-050);
+    color: var(--gob-ink-900);
+    font-size: 0.8125rem;
+    font-weight: 750;
+    letter-spacing: 0.025em;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.theme-entry table td,
+.theme-entry .grid-content-cell,
+.theme-entry .list-view td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--gob-ink-200);
+    background: var(--gob-white);
+    vertical-align: top;
+}
+
+.theme-entry table tbody tr:hover td,
+.theme-entry .grid-content-row:hover .grid-content-cell,
+.theme-entry .list-view tbody tr:hover td {
+    background: var(--gob-aquamarine-050);
+}
+
+.theme-entry table tbody tr.selected td,
+.theme-entry .grid-content-row.selected .grid-content-cell,
+.theme-entry .list-view tbody tr.selected td {
+    background: var(--gob-gold-100);
+}
+
+/* Horizontal scroll is safer than compressing data into unusable columns */
+.theme-entry .grid,
+.theme-entry .list-view,
+.theme-entry .grid-content,
+.theme-entry .list-view-content {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ---------------------------------------------------------------------------
+   10. VALIDATION, ALERTS, AND STATUS MESSAGES
+--------------------------------------------------------------------------- */
+
+.theme-entry .validation-error,
+.theme-entry .invalid,
+.theme-entry .error,
+.theme-entry .error-message,
+.theme-entry .field-validation-error {
+    color: var(--gob-danger-700);
+}
+
+.theme-entry input.invalid,
+.theme-entry textarea.invalid,
+.theme-entry select.invalid,
+.theme-entry .invalid input,
+.theme-entry .invalid textarea,
+.theme-entry .invalid select {
+    border-color: var(--gob-danger-700);
+    background: var(--gob-danger-100);
+}
+
+.theme-entry input.invalid:focus,
+.theme-entry textarea.invalid:focus,
+.theme-entry select.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(161, 38, 34, 0.18);
+}
+
+.theme-entry .message-box,
+.theme-entry .notification,
+.theme-entry .alert,
+.theme-entry [name="GOB_Status_Success"],
+.theme-entry [name="GOB_Status_Warning"],
+.theme-entry [name="GOB_Status_Error"],
+.theme-entry [name="GOB_Status_Info"] {
+    display: block;
+    margin-bottom: var(--gob-space-4);
+    padding: var(--gob-space-4);
+    border: 1px solid var(--gob-ink-200);
+    border-left-width: 0.35rem;
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-white);
+}
+
+.theme-entry [name="GOB_Status_Success"],
+.theme-entry .alert.success,
+.theme-entry .notification.success {
+    border-color: var(--gob-success-700);
+    background: var(--gob-success-100);
+    color: var(--gob-success-700);
+}
+
+.theme-entry [name="GOB_Status_Warning"],
+.theme-entry .alert.warning,
+.theme-entry .notification.warning {
+    border-color: var(--gob-gold-600);
+    background: var(--gob-warning-100);
+    color: var(--gob-warning-700);
+}
+
+.theme-entry [name="GOB_Status_Error"],
+.theme-entry .alert.error,
+.theme-entry .notification.error {
+    border-color: var(--gob-danger-700);
+    background: var(--gob-danger-100);
+    color: var(--gob-danger-700);
+}
+
+.theme-entry [name="GOB_Status_Info"],
+.theme-entry .alert.info,
+.theme-entry .notification.info {
+    border-color: var(--gob-info-700);
+    background: var(--gob-info-100);
+    color: var(--gob-info-700);
+}
+
+/* ---------------------------------------------------------------------------
+   11. TABS, ACCORDIONS, MENUS
+--------------------------------------------------------------------------- */
+
+.theme-entry .tab-box,
+.theme-entry .tabs,
+.theme-entry .tab-container {
+    border-bottom: 1px solid var(--gob-ink-200);
+}
+
+.theme-entry .tab,
+.theme-entry .tab-item,
+.theme-entry .tab-box-tab {
+    min-height: 2.75rem;
+    padding: 0.625rem 1rem;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: var(--gob-ink-700);
+    font-weight: 650;
+}
+
+.theme-entry .tab:hover,
+.theme-entry .tab-item:hover,
+.theme-entry .tab-box-tab:hover {
+    background: var(--gob-aquamarine-050);
+    color: var(--gob-aquamarine-900);
+}
+
+.theme-entry .tab.selected,
+.theme-entry .tab.active,
+.theme-entry .tab-item.selected,
+.theme-entry .tab-box-tab.selected {
+    border-bottom-color: var(--gob-gold-500);
+    color: var(--gob-aquamarine-900);
+}
+
+.theme-entry .menu,
+.theme-entry .popup-menu,
+.theme-entry .context-menu,
+.theme-entry .dropdown-menu {
+    overflow: hidden;
+    border: 1px solid var(--gob-ink-200);
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-white);
+    box-shadow: var(--gob-shadow-md);
+}
+
+.theme-entry .menu-item,
+.theme-entry .popup-menu-item,
+.theme-entry .context-menu-item,
+.theme-entry .dropdown-menu-item {
+    min-height: 2.5rem;
+    padding: 0.625rem 0.875rem;
+    color: var(--gob-ink-800);
+}
+
+.theme-entry .menu-item:hover,
+.theme-entry .popup-menu-item:hover,
+.theme-entry .context-menu-item:hover,
+.theme-entry .dropdown-menu-item:hover {
+    background: var(--gob-aquamarine-050);
+    color: var(--gob-aquamarine-900);
+}
+
+/* ---------------------------------------------------------------------------
+   12. SUBVIEWS, DIALOGS, MODALS
+--------------------------------------------------------------------------- */
+
+.theme-entry .popup,
+.theme-entry .dialog,
+.theme-entry .modal,
+.theme-entry .subview,
+.theme-entry .popup-content {
+    border: 1px solid var(--gob-ink-200);
+    border-radius: var(--gob-radius-lg);
+    background: var(--gob-white);
+    box-shadow: 0 18px 50px rgba(17, 17, 17, 0.24);
+}
+
+.theme-entry .popup-header,
+.theme-entry .dialog-header,
+.theme-entry .modal-header,
+.theme-entry .subview-header {
+    padding: var(--gob-space-4) var(--gob-space-5);
+    border-bottom: 1px solid var(--gob-ink-200);
+    background: var(--gob-aquamarine-050);
+    color: var(--gob-ink-900);
+    font-weight: 750;
+}
+
+.theme-entry .popup-footer,
+.theme-entry .dialog-footer,
+.theme-entry .modal-footer,
+.theme-entry .subview-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--gob-space-2);
+    padding: var(--gob-space-4) var(--gob-space-5);
+    border-top: 1px solid var(--gob-ink-200);
+    background: var(--gob-ink-050);
+}
+
+/* ---------------------------------------------------------------------------
+   13. FILE ATTACHMENT AND UPLOAD CONTROLS
+--------------------------------------------------------------------------- */
+
+.theme-entry .file-upload,
+.theme-entry .file-attachment,
+.theme-entry .upload-control,
+.theme-entry .drop-zone {
+    padding: var(--gob-space-5);
+    border: 2px dashed var(--gob-ink-300);
+    border-radius: var(--gob-radius-lg);
+    background: var(--gob-ink-050);
+    text-align: center;
+}
+
+.theme-entry .file-upload:hover,
+.theme-entry .file-attachment:hover,
+.theme-entry .upload-control:hover,
+.theme-entry .drop-zone:hover {
+    border-color: var(--gob-aquamarine-600);
+    background: var(--gob-aquamarine-050);
+}
+
+/* ---------------------------------------------------------------------------
+   14. PAGERS
+--------------------------------------------------------------------------- */
+
+.theme-entry .pager,
+.theme-entry .grid-pager,
+.theme-entry .pagination {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--gob-space-2);
+    padding: var(--gob-space-3) var(--gob-space-4);
+    border-top: 1px solid var(--gob-ink-200);
+    background: var(--gob-ink-050);
+}
+
+.theme-entry .pager a,
+.theme-entry .pagination a,
+.theme-entry .pager button {
+    min-width: 2.5rem;
+    min-height: 2.5rem;
+    padding: 0.5rem;
+    border: 1px solid var(--gob-ink-300);
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-white);
+    color: var(--gob-aquamarine-800);
+}
+
+.theme-entry .pager .selected,
+.theme-entry .pagination .active,
+.theme-entry .pager .current {
+    border-color: var(--gob-aquamarine-700);
+    background: var(--gob-aquamarine-700);
+    color: var(--gob-white);
+}
+
+/* ---------------------------------------------------------------------------
+   15. LOADING STATES
+--------------------------------------------------------------------------- */
+
+.theme-entry .loading,
+.theme-entry .loading-mask,
+.theme-entry .spinner-overlay,
+.theme-entry .busy-indicator {
+    background-color: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(2px);
+}
+
+.theme-entry .spinner,
+.theme-entry .loading-spinner,
+.theme-entry .busy-indicator::before {
+    border-color: var(--gob-ink-200);
+    border-top-color: var(--gob-aquamarine-700);
+}
+
+/* ---------------------------------------------------------------------------
+   16. UTILITY CLASSES
+   These can be assigned through K2 wrapper controls or HTML controls where
+   permitted, without changing global K2 behavior.
+--------------------------------------------------------------------------- */
+
+.theme-entry .gob-surface {
+    padding: var(--gob-space-5);
+    border: 1px solid var(--gob-ink-200);
+    border-radius: var(--gob-radius-lg);
+    background: var(--gob-white);
+    box-shadow: var(--gob-shadow-sm);
+}
+
+.theme-entry .gob-callout {
+    padding: var(--gob-space-4);
+    border-left: 0.35rem solid var(--gob-gold-500);
+    border-radius: var(--gob-radius-sm);
+    background: var(--gob-gold-100);
+    color: var(--gob-ink-800);
+}
+
+.theme-entry .gob-muted {
+    color: var(--gob-ink-600);
+}
+
+.theme-entry .gob-divider {
+    height: 1px;
+    margin-block: var(--gob-space-6);
+    border: 0;
+    background: var(--gob-ink-200);
+}
+
+.theme-entry .gob-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: var(--gob-space-3);
+    margin-top: var(--gob-space-6);
+}
+
+/* ---------------------------------------------------------------------------
+   17. RESPONSIVE BEHAVIOR
+--------------------------------------------------------------------------- */
+
+@media (max-width: 64rem) {
+    .theme-entry {
+        --gob-control-height: 2.875rem;
+    }
+
+    .theme-entry .form,
+    .theme-entry .runtime-form {
+        padding: 1rem;
+    }
+
+    .theme-entry .view-content,
+    .theme-entry .panel-body,
+    .theme-entry .view-body,
+    .theme-entry .content {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 48rem) {
+    .theme-entry {
+        font-size: 15px;
+    }
+
+    .theme-entry .form,
+    .theme-entry .runtime-form {
+        padding: 0.75rem;
+    }
+
+    .theme-entry .view,
+    .theme-entry .panel,
+    .theme-entry .view-canvas,
+    .theme-entry .view-container,
+    .theme-entry .content-panel {
+        margin-bottom: 1rem;
+        border-radius: var(--gob-radius-md);
+    }
+
+    .theme-entry .toolbar,
+    .theme-entry .view-toolbar,
+    .theme-entry .panel-toolbar,
+    .theme-entry .popup-footer,
+    .theme-entry .dialog-footer,
+    .theme-entry .modal-footer,
+    .theme-entry .subview-footer,
+    .theme-entry .gob-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .theme-entry button,
+    .theme-entry input[type="button"],
+    .theme-entry input[type="submit"],
+    .theme-entry .button,
+    .theme-entry .toolbar-button,
+    .theme-entry a.button {
+        width: 100%;
+    }
+
+    .theme-entry table th,
+    .theme-entry table td,
+    .theme-entry .grid-header-cell,
+    .theme-entry .grid-content-cell {
+        padding: 0.625rem;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 30rem) {
+    .theme-entry h1,
+    .theme-entry .form-title,
+    .theme-entry [name="GOB_Form_Title"] {
+        font-size: 1.65rem;
+    }
+
+    .theme-entry .view-header,
+    .theme-entry .panel-header,
+    .theme-entry .grid-header,
+    .theme-entry .view-titlebar,
+    .theme-entry .panel-heading {
+        padding-inline: 0.875rem;
+    }
+
+    .theme-entry .view-content,
+    .theme-entry .panel-body,
+    .theme-entry .view-body,
+    .theme-entry .content {
+        padding: 0.875rem;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   18. ACCESSIBILITY PREFERENCES
+--------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+    .theme-entry *,
+    .theme-entry *::before,
+    .theme-entry *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+@media (forced-colors: active) {
+    .theme-entry button,
+    .theme-entry input,
+    .theme-entry textarea,
+    .theme-entry select,
+    .theme-entry .button,
+    .theme-entry .view,
+    .theme-entry .panel {
+        border: 1px solid CanvasText;
+    }
+
+    .theme-entry button:focus-visible,
+    .theme-entry input:focus-visible,
+    .theme-entry textarea:focus-visible,
+    .theme-entry select:focus-visible,
+    .theme-entry a:focus-visible {
+        outline: 2px solid Highlight;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+   19. PRINT
+--------------------------------------------------------------------------- */
+
+@media print {
+    .theme-entry {
+        background: var(--gob-white);
+        color: var(--gob-black);
+    }
+
+    .theme-entry .toolbar,
+    .theme-entry .view-toolbar,
+    .theme-entry .panel-toolbar,
+    .theme-entry button,
+    .theme-entry input[type="button"],
+    .theme-entry input[type="submit"],
+    .theme-entry .pager,
+    .theme-entry .pagination {
+        display: none !important;
+    }
+
+    .theme-entry .view,
+    .theme-entry .panel,
+    .theme-entry .view-canvas,
+    .theme-entry .view-container,
+    .theme-entry .content-panel {
+        break-inside: avoid;
+        border-color: #888;
+        box-shadow: none;
+    }
+}
