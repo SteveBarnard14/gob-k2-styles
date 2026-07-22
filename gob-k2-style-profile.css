@@ -1,75 +1,108 @@
-/*
+from pathlib import Path
+
+css = r'''/*
 ===============================================================================
-Government of The Bahamas - Nintex K2 SmartForms Style Profile CSS
-Version: 1.0.0
-Target: Nintex K2 Five 5.8 / 5.9
-Scope: Runtime SmartForms using a Style Profile
-Authoring principle: All selectors are scoped beneath .theme-entry
+GOVERNMENT OF THE COMMONWEALTH OF THE BAHAMAS
+NINTEX K2 SMARTFORMS STYLE PROFILE
+===============================================================================
+File:       gob-k2-style-profile-v2.css
+Version:    2.0.0
+Target:     Nintex K2 Five / Automation On-Prem 5.8 and 5.9
+Purpose:    Modern responsive government application theme
+Scope:      All rules are scoped beneath html .theme-entry
 ===============================================================================
 
-INSTALLATION
-1. Host this file on an HTTPS endpoint reachable by all K2 Runtime users.
-2. In the K2 Style Profile, open Developer > External Files.
-3. Add this CSS file after any shared/base K2 CSS references.
-4. Ensure "Use Legacy Theme" is disabled on the target Form.
-5. Avoid control-level formatting unless required for a documented exception.
+DESIGN PRINCIPLES
+- Bahamas-inspired aquamarine, gold, black and white visual identity
+- Clean public-service application experience rather than a marketing website
+- Strong hierarchy, restrained decoration and accessible interaction states
+- Progressive enhancement: K2 remains usable if a selector is not matched
+- Minimal reliance on generated IDs or positional selectors
+- Responsive layouts without attempting to rewrite K2 business behavior
 
-OPTIONAL CONTROL NAMING CONVENTION
-Use the K2 control Name property as stable hooks:
-GOB_Button_Primary
-GOB_Button_Secondary
-GOB_Button_Danger
-GOB_Form_Title
-GOB_Section_Intro
-GOB_Status_Success
-GOB_Status_Warning
-GOB_Status_Error
+K2 IMPLEMENTATION NOTES
+1. Link this file in Style Profile > Developer > External Files.
+2. Place it last in the CSS file list.
+3. Disable "Use Legacy Theme" on the form.
+4. Avoid extensive control-level Format settings because inline formatting can
+   override this stylesheet.
+5. Use the optional GOB_* control names documented near the end of this file.
 ===============================================================================
 */
 
-/* ---------------------------------------------------------------------------
-   1. DESIGN TOKENS
---------------------------------------------------------------------------- */
 
-.theme-entry {
-    /* Official Bahamas-inspired palette */
-    --gob-aquamarine-900: #003f4f;
-    --gob-aquamarine-800: #00566a;
-    --gob-aquamarine-700: #006b7f;
-    --gob-aquamarine-600: #007f95;
-    --gob-aquamarine-500: #0097a7;
-    --gob-aquamarine-100: #dff4f6;
-    --gob-aquamarine-050: #f2fbfc;
+/* ==========================================================================
+   01. DESIGN TOKENS AND K2 STYLE PROFILE VARIABLES
+   ========================================================================== */
 
-    --gob-gold-700: #b78600;
-    --gob-gold-600: #d19b00;
+html .theme-entry {
+    /* Bahamas brand */
+    --gob-aqua-950: #00343d;
+    --gob-aqua-900: #004651;
+    --gob-aqua-800: #005f6b;
+    --gob-aqua-700: #007681;
+    --gob-aqua-600: #008c95;
+    --gob-aqua-500: #00a3ad;
+    --gob-aqua-200: #9ee1e4;
+    --gob-aqua-100: #d9f3f4;
+    --gob-aqua-050: #f1fbfb;
+
+    --gob-gold-800: #7d5900;
+    --gob-gold-700: #a47400;
+    --gob-gold-600: #c99600;
     --gob-gold-500: #f4c430;
-    --gob-gold-200: #fbe7a3;
-    --gob-gold-100: #fff4ca;
+    --gob-gold-300: #f8da75;
+    --gob-gold-100: #fff3c4;
+    --gob-gold-050: #fffaf0;
 
     --gob-black: #111111;
-    --gob-ink-900: #17212b;
-    --gob-ink-800: #253341;
-    --gob-ink-700: #384858;
-    --gob-ink-600: #526170;
-    --gob-ink-500: #6b7785;
-    --gob-ink-300: #b6c0c9;
-    --gob-ink-200: #d6dde3;
-    --gob-ink-100: #e9edf1;
-    --gob-ink-050: #f6f8fa;
-
+    --gob-slate-950: #141b22;
+    --gob-slate-900: #1d2731;
+    --gob-slate-800: #293744;
+    --gob-slate-700: #3c4b58;
+    --gob-slate-600: #566572;
+    --gob-slate-500: #71808c;
+    --gob-slate-400: #94a1ac;
+    --gob-slate-300: #b8c2ca;
+    --gob-slate-200: #d5dce2;
+    --gob-slate-150: #e1e6ea;
+    --gob-slate-100: #ebeff2;
+    --gob-slate-075: #f2f5f7;
+    --gob-slate-050: #f7f9fa;
     --gob-white: #ffffff;
-    --gob-success-700: #146c43;
-    --gob-success-100: #e8f5ee;
-    --gob-warning-700: #8a5a00;
-    --gob-warning-100: #fff5d6;
-    --gob-danger-700: #a12622;
-    --gob-danger-100: #fdecea;
-    --gob-info-700: #145f82;
-    --gob-info-100: #e8f4f8;
 
-    --gob-font-sans: "Segoe UI", Arial, Helvetica, sans-serif;
-    --gob-font-serif: Georgia, "Times New Roman", serif;
+    --gob-success-800: #0d5b39;
+    --gob-success-700: #137347;
+    --gob-success-100: #e6f5ed;
+    --gob-info-800: #124e71;
+    --gob-info-700: #17688f;
+    --gob-info-100: #e8f4f9;
+    --gob-warning-800: #765000;
+    --gob-warning-700: #916300;
+    --gob-warning-100: #fff4d1;
+    --gob-danger-800: #84201c;
+    --gob-danger-700: #a62a24;
+    --gob-danger-100: #fdebea;
+
+    --gob-font-sans:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    --gob-font-serif:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    --gob-text-xs: 0.75rem;
+    --gob-text-sm: 0.875rem;
+    --gob-text-md: 1rem;
+    --gob-text-lg: 1.125rem;
+    --gob-text-xl: 1.375rem;
+    --gob-text-2xl: 1.75rem;
+    --gob-text-3xl: 2.25rem;
 
     --gob-space-1: 0.25rem;
     --gob-space-2: 0.5rem;
@@ -81,973 +114,1183 @@ GOB_Status_Error
     --gob-space-10: 2.5rem;
     --gob-space-12: 3rem;
 
-    --gob-radius-sm: 0.25rem;
+    --gob-radius-xs: 0.1875rem;
+    --gob-radius-sm: 0.3125rem;
     --gob-radius-md: 0.5rem;
     --gob-radius-lg: 0.75rem;
+    --gob-radius-pill: 999rem;
 
-    --gob-shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.08);
-    --gob-shadow-md: 0 4px 14px rgba(17, 17, 17, 0.10);
-    --gob-shadow-focus: 0 0 0 3px rgba(0, 151, 167, 0.25);
+    --gob-shadow-xs: 0 1px 2px rgba(17, 17, 17, 0.06);
+    --gob-shadow-sm:
+        0 1px 2px rgba(17, 17, 17, 0.06),
+        0 2px 8px rgba(17, 17, 17, 0.05);
+    --gob-shadow-md:
+        0 4px 12px rgba(17, 17, 17, 0.08),
+        0 12px 28px rgba(17, 17, 17, 0.06);
+    --gob-shadow-dialog:
+        0 20px 50px rgba(17, 17, 17, 0.24);
+
+    --gob-focus-ring: 0 0 0 3px rgba(0, 140, 149, 0.24);
+    --gob-danger-ring: 0 0 0 3px rgba(166, 42, 36, 0.18);
 
     --gob-control-height: 2.75rem;
+    --gob-control-height-sm: 2.375rem;
     --gob-content-width: 90rem;
+    --gob-readable-width: 72ch;
 
-    /* K2 Style Profile variables commonly respected by modern themes */
-    --page-background-color: var(--gob-ink-050);
+    /* K2 dynamic-theme variables */
+    --page-background-color: var(--gob-slate-075);
     --panel-background-color: var(--gob-white);
-    --main-text-color: var(--gob-ink-900);
-    --secondary-text-color: var(--gob-ink-600);
-    --border-color: var(--gob-ink-200);
-    --primary-color: var(--gob-aquamarine-700);
-    --primary-hover-color: var(--gob-aquamarine-800);
-    --primary-active-color: var(--gob-aquamarine-900);
+    --main-text-color: var(--gob-slate-900);
+    --secondary-text-color: var(--gob-slate-600);
+    --border-color: var(--gob-slate-200);
+    --primary-color: var(--gob-aqua-700);
+    --primary-hover-color: var(--gob-aqua-800);
+    --primary-active-color: var(--gob-aqua-900);
 
     box-sizing: border-box;
-    color: var(--gob-ink-900);
+    color: var(--gob-slate-900);
     font-family: var(--gob-font-sans);
     font-size: 16px;
     line-height: 1.5;
-    background: var(--gob-ink-050);
+    background-color: var(--gob-slate-075);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
 }
 
-.theme-entry *,
-.theme-entry *::before,
-.theme-entry *::after {
+html .theme-entry *,
+html .theme-entry *::before,
+html .theme-entry *::after {
     box-sizing: inherit;
 }
 
-/* ---------------------------------------------------------------------------
-   2. PAGE AND FORM SHELL
---------------------------------------------------------------------------- */
 
-.theme-entry .form,
-.theme-entry .runtime-form,
-.theme-entry .form-container,
-.theme-entry .formpanel,
-.theme-entry .form-wrapper {
-    width: min(100%, var(--gob-content-width));
-    margin-inline: auto;
+/* ==========================================================================
+   02. PAGE CANVAS AND FORM SHELL
+   ========================================================================== */
+
+html .theme-entry .form,
+html .theme-entry .runtime-form,
+html .theme-entry .form-container,
+html .theme-entry .formpanel,
+html .theme-entry .form-wrapper,
+html .theme-entry .runtime-content {
+    width: 100%;
+    max-width: var(--gob-content-width);
+    margin-right: auto;
+    margin-left: auto;
 }
 
-.theme-entry .form,
-.theme-entry .runtime-form {
-    padding: clamp(0.75rem, 2vw, 2rem);
+html .theme-entry .form,
+html .theme-entry .runtime-form,
+html .theme-entry .runtime-content {
+    padding: clamp(0.75rem, 1.6vw, 1.75rem);
 }
 
-.theme-entry .form > .row,
-.theme-entry .runtime-form > .row {
-    margin-bottom: var(--gob-space-4);
-}
-
-/* A subtle government-brand band at the top of the K2 form area */
-.theme-entry .form::before,
-.theme-entry .runtime-form::before {
+/* Bahamas identity bar */
+html .theme-entry .form::before,
+html .theme-entry .runtime-form::before {
     content: "";
     display: block;
+    width: 100%;
     height: 0.375rem;
     margin-bottom: var(--gob-space-5);
-    border-radius: var(--gob-radius-sm);
+    border-radius: var(--gob-radius-xs);
     background:
         linear-gradient(
             90deg,
-            var(--gob-aquamarine-600) 0 42%,
-            var(--gob-gold-500) 42% 58%,
-            var(--gob-black) 58% 66%,
-            var(--gob-aquamarine-600) 66% 100%
+            var(--gob-aqua-500) 0 44%,
+            var(--gob-gold-500) 44% 57%,
+            var(--gob-black) 57% 65%,
+            var(--gob-aqua-500) 65% 100%
         );
 }
 
-/* ---------------------------------------------------------------------------
-   3. TYPOGRAPHY
---------------------------------------------------------------------------- */
+/* Keep wide fixed K2 layouts within the viewport */
+html .theme-entry .form,
+html .theme-entry .runtime-form,
+html .theme-entry .runtime-content,
+html .theme-entry .view,
+html .theme-entry .grid,
+html .theme-entry .panel,
+html .theme-entry .view-canvas,
+html .theme-entry .view-container {
+    min-width: 0;
+}
 
-.theme-entry,
-.theme-entry input,
-.theme-entry select,
-.theme-entry textarea,
-.theme-entry button {
+
+/* ==========================================================================
+   03. TYPOGRAPHY
+   ========================================================================== */
+
+html .theme-entry,
+html .theme-entry input,
+html .theme-entry textarea,
+html .theme-entry select,
+html .theme-entry button {
     font-family: var(--gob-font-sans);
 }
 
-.theme-entry h1,
-.theme-entry h2,
-.theme-entry h3,
-.theme-entry h4,
-.theme-entry h5,
-.theme-entry h6,
-.theme-entry .form-title,
-.theme-entry .view-title,
-.theme-entry .panel-title,
-.theme-entry .title {
+html .theme-entry h1,
+html .theme-entry h2,
+html .theme-entry h3,
+html .theme-entry h4,
+html .theme-entry h5,
+html .theme-entry h6,
+html .theme-entry .form-title,
+html .theme-entry .view-title,
+html .theme-entry .panel-title,
+html .theme-entry .title {
     margin-top: 0;
-    color: var(--gob-ink-900);
-    font-family: var(--gob-font-sans);
+    color: var(--gob-slate-950);
     font-weight: 700;
     line-height: 1.2;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.012em;
 }
 
-.theme-entry h1,
-.theme-entry .form-title {
+html .theme-entry h1,
+html .theme-entry .form-title {
     margin-bottom: var(--gob-space-5);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-size: clamp(1.75rem, 3vw, var(--gob-text-3xl));
 }
 
-.theme-entry h2,
-.theme-entry .view-title,
-.theme-entry .panel-title {
+html .theme-entry h2,
+html .theme-entry .view-title,
+html .theme-entry .panel-title {
     margin-bottom: var(--gob-space-4);
-    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    font-size: clamp(1.25rem, 2vw, var(--gob-text-2xl));
 }
 
-.theme-entry h3 {
-    font-size: 1.2rem;
+html .theme-entry h3 {
+    margin-bottom: var(--gob-space-3);
+    font-size: var(--gob-text-xl);
 }
 
-.theme-entry p {
+html .theme-entry h4,
+html .theme-entry h5,
+html .theme-entry h6 {
+    margin-bottom: var(--gob-space-2);
+    font-size: var(--gob-text-lg);
+}
+
+html .theme-entry p {
+    max-width: var(--gob-readable-width);
     margin-top: 0;
     margin-bottom: var(--gob-space-4);
-    color: var(--gob-ink-700);
+    color: var(--gob-slate-700);
 }
 
-.theme-entry a {
-    color: var(--gob-aquamarine-800);
-    font-weight: 600;
+html .theme-entry strong,
+html .theme-entry b {
+    color: var(--gob-slate-900);
+    font-weight: 700;
+}
+
+html .theme-entry small,
+html .theme-entry .description,
+html .theme-entry .helper-text,
+html .theme-entry .form-field-description,
+html .theme-entry .input-control-watermark {
+    color: var(--gob-slate-600);
+    font-size: var(--gob-text-sm);
+    line-height: 1.45;
+}
+
+html .theme-entry a {
+    color: var(--gob-aqua-800);
+    font-weight: 650;
+    text-decoration-line: underline;
+    text-decoration-color: rgba(0, 95, 107, 0.45);
     text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.15em;
+    text-underline-offset: 0.16em;
 }
 
-.theme-entry a:hover {
-    color: var(--gob-aquamarine-900);
+html .theme-entry a:hover {
+    color: var(--gob-aqua-950);
+    text-decoration-color: currentColor;
 }
 
-.theme-entry .description,
-.theme-entry .helper-text,
-.theme-entry .form-field-description,
-.theme-entry .input-control-watermark {
-    color: var(--gob-ink-600);
-    font-size: 0.875rem;
-}
 
-/* Optional stable hooks based on K2 control Name */
-.theme-entry [name="GOB_Form_Title"] {
-    display: block;
-    margin-bottom: var(--gob-space-2);
-    color: var(--gob-ink-900);
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    font-weight: 750;
-    line-height: 1.15;
-}
+/* ==========================================================================
+   04. VIEWS, PANELS AND SECTIONS
+   ========================================================================== */
 
-.theme-entry [name="GOB_Section_Intro"] {
-    display: block;
-    max-width: 70ch;
-    margin-bottom: var(--gob-space-6);
-    color: var(--gob-ink-700);
-    font-size: 1.0625rem;
-}
-
-/* ---------------------------------------------------------------------------
-   4. VIEWS, PANELS, SECTIONS
---------------------------------------------------------------------------- */
-
-.theme-entry .view,
-.theme-entry .panel,
-.theme-entry .grid,
-.theme-entry .view-canvas,
-.theme-entry .view-container,
-.theme-entry .panel-body,
-.theme-entry .content-panel {
-    border-color: var(--gob-ink-200);
-}
-
-.theme-entry .view,
-.theme-entry .panel,
-.theme-entry .view-canvas,
-.theme-entry .view-container,
-.theme-entry .content-panel {
+html .theme-entry .view,
+html .theme-entry .panel,
+html .theme-entry .view-canvas,
+html .theme-entry .view-container,
+html .theme-entry .content-panel {
     overflow: hidden;
     margin-bottom: var(--gob-space-6);
-    border: 1px solid var(--gob-ink-200);
+    border: 1px solid var(--gob-slate-200);
     border-radius: var(--gob-radius-lg);
-    background: var(--gob-white);
+    background-color: var(--gob-white);
     box-shadow: var(--gob-shadow-sm);
 }
 
-.theme-entry .view-header,
-.theme-entry .panel-header,
-.theme-entry .grid-header,
-.theme-entry .view-titlebar,
-.theme-entry .panel-heading {
+html .theme-entry .view-header,
+html .theme-entry .panel-header,
+html .theme-entry .grid-header,
+html .theme-entry .view-titlebar,
+html .theme-entry .panel-heading,
+html .theme-entry .view .header {
+    position: relative;
     min-height: 3.25rem;
-    padding: var(--gob-space-3) var(--gob-space-5);
-    border-bottom: 1px solid var(--gob-ink-200);
+    padding: 0.8125rem var(--gob-space-5);
+    border-bottom: 1px solid var(--gob-slate-200);
     background:
-        linear-gradient(90deg, var(--gob-aquamarine-050), var(--gob-white));
-    color: var(--gob-ink-900);
+        linear-gradient(
+            90deg,
+            var(--gob-aqua-050) 0%,
+            var(--gob-white) 72%
+        );
+    color: var(--gob-slate-950);
 }
 
-.theme-entry .view-header::before,
-.theme-entry .panel-header::before,
-.theme-entry .view-titlebar::before {
+/* Gold section marker */
+html .theme-entry .view-header::before,
+html .theme-entry .panel-header::before,
+html .theme-entry .view-titlebar::before,
+html .theme-entry .panel-heading::before {
     content: "";
-    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 0;
     width: 0.25rem;
-    height: 1.5rem;
-    margin-right: var(--gob-space-3);
-    vertical-align: middle;
-    border-radius: 999px;
-    background: var(--gob-gold-500);
+    height: 1.75rem;
+    border-radius: 0 var(--gob-radius-pill) var(--gob-radius-pill) 0;
+    background-color: var(--gob-gold-500);
+    transform: translateY(-50%);
 }
 
-.theme-entry .view-content,
-.theme-entry .panel-body,
-.theme-entry .view-body,
-.theme-entry .content {
-    padding: clamp(0.875rem, 2vw, 1.5rem);
+html .theme-entry .view-content,
+html .theme-entry .panel-body,
+html .theme-entry .view-body,
+html .theme-entry .content {
+    padding: clamp(0.875rem, 1.8vw, 1.5rem);
+    background-color: var(--gob-white);
 }
 
-/* ---------------------------------------------------------------------------
-   5. LABELS AND FIELD LAYOUT
---------------------------------------------------------------------------- */
+/* Avoid double-card styling inside popups and deeply nested K2 containers */
+html .theme-entry .view .view,
+html .theme-entry .panel .panel,
+html .theme-entry .popup .view,
+html .theme-entry .dialog .view {
+    box-shadow: none;
+}
 
-.theme-entry label,
-.theme-entry .input-control-label,
-.theme-entry .form-field-label,
-.theme-entry .field-label,
-.theme-entry .control-label {
+
+/* ==========================================================================
+   05. LABELS, REQUIRED MARKERS AND FIELD SPACING
+   ========================================================================== */
+
+html .theme-entry label,
+html .theme-entry .input-control-label,
+html .theme-entry .form-field-label,
+html .theme-entry .field-label,
+html .theme-entry .control-label {
     display: inline-block;
     margin-bottom: var(--gob-space-2);
-    color: var(--gob-ink-800);
+    color: var(--gob-slate-800);
     font-size: 0.9375rem;
     font-weight: 650;
     line-height: 1.35;
 }
 
-.theme-entry .required,
-.theme-entry .mandatory,
-.theme-entry .input-control-label .required {
+html .theme-entry .required,
+html .theme-entry .mandatory,
+html .theme-entry .input-control-label .required,
+html .theme-entry .form-field-label .required {
     color: var(--gob-danger-700);
-    font-weight: 700;
+    font-weight: 800;
 }
 
-.theme-entry .form-field,
-.theme-entry .field,
-.theme-entry .editor-cell,
-.theme-entry .input-control {
+html .theme-entry .form-field,
+html .theme-entry .field,
+html .theme-entry .editor-cell,
+html .theme-entry .input-control {
     min-width: 0;
 }
 
-/* ---------------------------------------------------------------------------
-   6. INPUTS, TEXTAREAS, DROPDOWNS, PICKERS
---------------------------------------------------------------------------- */
+html .theme-entry .editor-cell,
+html .theme-entry .form-field,
+html .theme-entry .field {
+    padding-top: var(--gob-space-2);
+    padding-bottom: var(--gob-space-2);
+}
 
-.theme-entry input[type="text"],
-.theme-entry input[type="password"],
-.theme-entry input[type="email"],
-.theme-entry input[type="number"],
-.theme-entry input[type="tel"],
-.theme-entry input[type="url"],
-.theme-entry input[type="search"],
-.theme-entry input[type="date"],
-.theme-entry input[type="datetime-local"],
-.theme-entry textarea,
-.theme-entry select,
-.theme-entry .input-control input,
-.theme-entry .input-control textarea,
-.theme-entry .input-control select,
-.theme-entry .dropdown-box,
-.theme-entry .picker-input,
-.theme-entry .lookup-input {
-    width: 100%;
+
+/* ==========================================================================
+   06. TEXT INPUTS, TEXTAREAS, DROPDOWNS, PICKERS AND LOOKUPS
+   ========================================================================== */
+
+html .theme-entry input[type="text"],
+html .theme-entry input[type="password"],
+html .theme-entry input[type="email"],
+html .theme-entry input[type="number"],
+html .theme-entry input[type="tel"],
+html .theme-entry input[type="url"],
+html .theme-entry input[type="search"],
+html .theme-entry input[type="date"],
+html .theme-entry input[type="datetime-local"],
+html .theme-entry textarea,
+html .theme-entry select,
+html .theme-entry .input-control input,
+html .theme-entry .input-control textarea,
+html .theme-entry .input-control select,
+html .theme-entry .dropdown-box,
+html .theme-entry .picker-input,
+html .theme-entry .lookup-input,
+html .theme-entry .input-control-m-c,
+html .theme-entry .input-control-m-c > input {
+    max-width: 100%;
     min-height: var(--gob-control-height);
-    border: 1px solid var(--gob-ink-300);
+    border: 1px solid var(--gob-slate-300);
     border-radius: var(--gob-radius-md);
-    background: var(--gob-white);
-    color: var(--gob-ink-900);
-    font-size: 1rem;
+    background-color: var(--gob-white);
+    color: var(--gob-slate-950);
+    font-size: var(--gob-text-md);
     line-height: 1.4;
+    box-shadow: none;
     transition:
         border-color 140ms ease,
         box-shadow 140ms ease,
         background-color 140ms ease;
 }
 
-.theme-entry input[type="text"],
-.theme-entry input[type="password"],
-.theme-entry input[type="email"],
-.theme-entry input[type="number"],
-.theme-entry input[type="tel"],
-.theme-entry input[type="url"],
-.theme-entry input[type="search"],
-.theme-entry input[type="date"],
-.theme-entry input[type="datetime-local"],
-.theme-entry textarea,
-.theme-entry select,
-.theme-entry .input-control input,
-.theme-entry .input-control textarea,
-.theme-entry .input-control select {
+html .theme-entry input[type="text"],
+html .theme-entry input[type="password"],
+html .theme-entry input[type="email"],
+html .theme-entry input[type="number"],
+html .theme-entry input[type="tel"],
+html .theme-entry input[type="url"],
+html .theme-entry input[type="search"],
+html .theme-entry input[type="date"],
+html .theme-entry input[type="datetime-local"],
+html .theme-entry textarea,
+html .theme-entry select,
+html .theme-entry .input-control input,
+html .theme-entry .input-control textarea,
+html .theme-entry .input-control select {
     padding: 0.625rem 0.75rem;
 }
 
-.theme-entry textarea,
-.theme-entry .input-control textarea {
+html .theme-entry textarea,
+html .theme-entry .input-control textarea {
     min-height: 7rem;
     resize: vertical;
 }
 
-.theme-entry input:hover,
-.theme-entry textarea:hover,
-.theme-entry select:hover,
-.theme-entry .dropdown-box:hover,
-.theme-entry .picker-input:hover,
-.theme-entry .lookup-input:hover {
-    border-color: var(--gob-aquamarine-600);
+html .theme-entry input:hover,
+html .theme-entry textarea:hover,
+html .theme-entry select:hover,
+html .theme-entry .dropdown-box:hover,
+html .theme-entry .picker-input:hover,
+html .theme-entry .lookup-input:hover {
+    border-color: var(--gob-aqua-600);
 }
 
-.theme-entry input:focus,
-.theme-entry textarea:focus,
-.theme-entry select:focus,
-.theme-entry .dropdown-box:focus-within,
-.theme-entry .picker-input:focus-within,
-.theme-entry .lookup-input:focus-within {
+html .theme-entry input:focus,
+html .theme-entry textarea:focus,
+html .theme-entry select:focus,
+html .theme-entry .dropdown-box:focus-within,
+html .theme-entry .picker-input:focus-within,
+html .theme-entry .lookup-input:focus-within,
+html .theme-entry .input-control-m-c:focus-within {
     outline: none;
-    border-color: var(--gob-aquamarine-700);
-    box-shadow: var(--gob-shadow-focus);
+    border-color: var(--gob-aqua-700);
+    box-shadow: var(--gob-focus-ring);
 }
 
-.theme-entry input::placeholder,
-.theme-entry textarea::placeholder {
-    color: var(--gob-ink-500);
+html .theme-entry input::placeholder,
+html .theme-entry textarea::placeholder {
+    color: var(--gob-slate-500);
     opacity: 1;
 }
 
-/* Read-only is still readable; disabled is visually distinct */
-.theme-entry input[readonly],
-.theme-entry textarea[readonly],
-.theme-entry select[readonly],
-.theme-entry .read-only input,
-.theme-entry .read-only textarea,
-.theme-entry .readonly input,
-.theme-entry .readonly textarea {
-    border-color: var(--gob-ink-200);
-    background: var(--gob-ink-050);
-    color: var(--gob-ink-800);
+/* Read-only must remain legible */
+html .theme-entry input[readonly],
+html .theme-entry textarea[readonly],
+html .theme-entry select[readonly],
+html .theme-entry .read-only input,
+html .theme-entry .read-only textarea,
+html .theme-entry .readonly input,
+html .theme-entry .readonly textarea {
+    border-color: var(--gob-slate-200);
+    background-color: var(--gob-slate-050);
+    color: var(--gob-slate-800);
 }
 
-.theme-entry input:disabled,
-.theme-entry textarea:disabled,
-.theme-entry select:disabled,
-.theme-entry button:disabled,
-.theme-entry .disabled input,
-.theme-entry .disabled textarea,
-.theme-entry .disabled select {
+/* Disabled controls */
+html .theme-entry input:disabled,
+html .theme-entry textarea:disabled,
+html .theme-entry select:disabled,
+html .theme-entry .disabled input,
+html .theme-entry .disabled textarea,
+html .theme-entry .disabled select {
     cursor: not-allowed;
-    border-color: var(--gob-ink-200);
-    background: var(--gob-ink-100);
-    color: var(--gob-ink-500);
+    border-color: var(--gob-slate-200);
+    background-color: var(--gob-slate-100);
+    color: var(--gob-slate-500);
     opacity: 1;
 }
 
-/* ---------------------------------------------------------------------------
-   7. BUTTONS
---------------------------------------------------------------------------- */
 
-.theme-entry button,
-.theme-entry input[type="button"],
-.theme-entry input[type="submit"],
-.theme-entry .button,
-.theme-entry .toolbar-button,
-.theme-entry a.button {
+/* ==========================================================================
+   07. BUTTONS AND ACTIONS
+   ========================================================================== */
+
+html .theme-entry button,
+html .theme-entry input[type="button"],
+html .theme-entry input[type="submit"],
+html .theme-entry .button,
+html .theme-entry .toolbar-button,
+html .theme-entry a.button,
+html .theme-entry .SourceCode-Forms-Controls-Web-Button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: var(--gob-space-2);
     min-height: var(--gob-control-height);
-    padding: 0.625rem 1rem;
+    padding: 0.625rem 1.125rem;
     border: 1px solid transparent;
     border-radius: var(--gob-radius-md);
-    background: var(--gob-aquamarine-700);
+    background-color: var(--gob-aqua-700);
     color: var(--gob-white);
     font-size: 0.9375rem;
     font-weight: 700;
     line-height: 1.2;
     text-align: center;
     text-decoration: none;
+    white-space: normal;
     cursor: pointer;
-    box-shadow: var(--gob-shadow-sm);
+    box-shadow: var(--gob-shadow-xs);
     transition:
         transform 100ms ease,
         background-color 140ms ease,
         border-color 140ms ease,
+        color 140ms ease,
         box-shadow 140ms ease;
 }
 
-.theme-entry button:hover,
-.theme-entry input[type="button"]:hover,
-.theme-entry input[type="submit"]:hover,
-.theme-entry .button:hover,
-.theme-entry .toolbar-button:hover,
-.theme-entry a.button:hover {
-    background: var(--gob-aquamarine-800);
+html .theme-entry button:hover,
+html .theme-entry input[type="button"]:hover,
+html .theme-entry input[type="submit"]:hover,
+html .theme-entry .button:hover,
+html .theme-entry .toolbar-button:hover,
+html .theme-entry a.button:hover,
+html .theme-entry .SourceCode-Forms-Controls-Web-Button:hover {
+    background-color: var(--gob-aqua-800);
     color: var(--gob-white);
-    box-shadow: var(--gob-shadow-md);
+    box-shadow: var(--gob-shadow-sm);
 }
 
-.theme-entry button:active,
-.theme-entry input[type="button"]:active,
-.theme-entry input[type="submit"]:active,
-.theme-entry .button:active,
-.theme-entry .toolbar-button:active {
+html .theme-entry button:active,
+html .theme-entry input[type="button"]:active,
+html .theme-entry input[type="submit"]:active,
+html .theme-entry .button:active,
+html .theme-entry .toolbar-button:active,
+html .theme-entry .SourceCode-Forms-Controls-Web-Button:active {
     transform: translateY(1px);
-    background: var(--gob-aquamarine-900);
+    background-color: var(--gob-aqua-900);
 }
 
-.theme-entry button:focus-visible,
-.theme-entry input[type="button"]:focus-visible,
-.theme-entry input[type="submit"]:focus-visible,
-.theme-entry .button:focus-visible,
-.theme-entry .toolbar-button:focus-visible,
-.theme-entry a:focus-visible {
-    outline: 3px solid var(--gob-gold-500);
-    outline-offset: 2px;
+html .theme-entry button:disabled,
+html .theme-entry input[type="button"]:disabled,
+html .theme-entry input[type="submit"]:disabled,
+html .theme-entry .button.disabled,
+html .theme-entry .toolbar-button.disabled {
+    cursor: not-allowed;
+    border-color: var(--gob-slate-200);
+    background-color: var(--gob-slate-200);
+    color: var(--gob-slate-500);
+    box-shadow: none;
+    transform: none;
 }
 
-/* Secondary button */
-.theme-entry [name="GOB_Button_Secondary"],
-.theme-entry .button.secondary,
-.theme-entry .button-secondary {
-    border-color: var(--gob-aquamarine-700);
-    background: var(--gob-white);
-    color: var(--gob-aquamarine-800);
+/* Secondary */
+html .theme-entry [name="GOB_Button_Secondary"],
+html .theme-entry .gob-button-secondary {
+    border-color: var(--gob-aqua-700);
+    background-color: var(--gob-white);
+    color: var(--gob-aqua-800);
     box-shadow: none;
 }
 
-.theme-entry [name="GOB_Button_Secondary"]:hover,
-.theme-entry .button.secondary:hover,
-.theme-entry .button-secondary:hover {
-    background: var(--gob-aquamarine-050);
-    color: var(--gob-aquamarine-900);
+html .theme-entry [name="GOB_Button_Secondary"]:hover,
+html .theme-entry .gob-button-secondary:hover {
+    border-color: var(--gob-aqua-800);
+    background-color: var(--gob-aqua-050);
+    color: var(--gob-aqua-950);
 }
 
-/* Gold accent action */
-.theme-entry [name="GOB_Button_Accent"],
-.theme-entry .button.accent,
-.theme-entry .button-accent {
+/* Gold accent */
+html .theme-entry [name="GOB_Button_Accent"],
+html .theme-entry .gob-button-accent {
     border-color: var(--gob-gold-600);
-    background: var(--gob-gold-500);
+    background-color: var(--gob-gold-500);
     color: var(--gob-black);
 }
 
-.theme-entry [name="GOB_Button_Accent"]:hover,
-.theme-entry .button.accent:hover,
-.theme-entry .button-accent:hover {
-    background: var(--gob-gold-600);
+html .theme-entry [name="GOB_Button_Accent"]:hover,
+html .theme-entry .gob-button-accent:hover {
+    border-color: var(--gob-gold-700);
+    background-color: var(--gob-gold-600);
     color: var(--gob-black);
 }
 
-/* Destructive action */
-.theme-entry [name="GOB_Button_Danger"],
-.theme-entry .button.danger,
-.theme-entry .button-danger {
-    background: var(--gob-danger-700);
+/* Destructive */
+html .theme-entry [name="GOB_Button_Danger"],
+html .theme-entry .gob-button-danger {
+    border-color: var(--gob-danger-700);
+    background-color: var(--gob-danger-700);
     color: var(--gob-white);
 }
 
-/* Toolbar spacing */
-.theme-entry .toolbar,
-.theme-entry .view-toolbar,
-.theme-entry .panel-toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--gob-space-2);
-    align-items: center;
-    padding: var(--gob-space-3) var(--gob-space-4);
-    border-bottom: 1px solid var(--gob-ink-200);
-    background: var(--gob-ink-050);
+html .theme-entry [name="GOB_Button_Danger"]:hover,
+html .theme-entry .gob-button-danger:hover {
+    border-color: var(--gob-danger-800);
+    background-color: var(--gob-danger-800);
 }
 
-/* ---------------------------------------------------------------------------
-   8. CHECKBOXES AND RADIO BUTTONS
---------------------------------------------------------------------------- */
+/* Link-style action */
+html .theme-entry [name="GOB_Button_Link"],
+html .theme-entry .gob-button-link {
+    min-height: auto;
+    padding: 0.25rem;
+    border: 0;
+    background: transparent;
+    color: var(--gob-aqua-800);
+    box-shadow: none;
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+}
 
-.theme-entry input[type="checkbox"],
-.theme-entry input[type="radio"] {
+html .theme-entry [name="GOB_Button_Link"]:hover,
+html .theme-entry .gob-button-link:hover {
+    background: transparent;
+    color: var(--gob-aqua-950);
+    box-shadow: none;
+}
+
+/* Toolbars */
+html .theme-entry .toolbar,
+html .theme-entry .view-toolbar,
+html .theme-entry .panel-toolbar,
+html .theme-entry .toolbars {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--gob-space-2);
+    min-height: 3.25rem;
+    padding: var(--gob-space-3) var(--gob-space-4);
+    border-bottom: 1px solid var(--gob-slate-200);
+    background-color: var(--gob-slate-050);
+}
+
+
+/* ==========================================================================
+   08. CHECKBOXES, RADIO BUTTONS AND TOGGLES
+   ========================================================================== */
+
+html .theme-entry input[type="checkbox"],
+html .theme-entry input[type="radio"] {
     width: 1.125rem;
     height: 1.125rem;
     margin: 0 var(--gob-space-2) 0 0;
-    accent-color: var(--gob-aquamarine-700);
+    accent-color: var(--gob-aqua-700);
     vertical-align: middle;
 }
 
-.theme-entry input[type="checkbox"]:focus-visible,
-.theme-entry input[type="radio"]:focus-visible {
+html .theme-entry input[type="checkbox"]:focus-visible,
+html .theme-entry input[type="radio"]:focus-visible {
     outline: 3px solid var(--gob-gold-500);
     outline-offset: 2px;
 }
 
-/* ---------------------------------------------------------------------------
-   9. LIST VIEWS AND TABLES
---------------------------------------------------------------------------- */
 
-.theme-entry table,
-.theme-entry .grid table,
-.theme-entry .list-view table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    color: var(--gob-ink-800);
-}
+/* ==========================================================================
+   09. LIST VIEWS, TABLES AND EDITABLE GRIDS
+   ========================================================================== */
 
-.theme-entry table th,
-.theme-entry .grid-header-cell,
-.theme-entry .list-view th {
-    padding: 0.75rem;
-    border-bottom: 2px solid var(--gob-aquamarine-700);
-    background: var(--gob-aquamarine-050);
-    color: var(--gob-ink-900);
-    font-size: 0.8125rem;
-    font-weight: 750;
-    letter-spacing: 0.025em;
-    text-align: left;
-    text-transform: uppercase;
-}
-
-.theme-entry table td,
-.theme-entry .grid-content-cell,
-.theme-entry .list-view td {
-    padding: 0.75rem;
-    border-bottom: 1px solid var(--gob-ink-200);
-    background: var(--gob-white);
-    vertical-align: top;
-}
-
-.theme-entry table tbody tr:hover td,
-.theme-entry .grid-content-row:hover .grid-content-cell,
-.theme-entry .list-view tbody tr:hover td {
-    background: var(--gob-aquamarine-050);
-}
-
-.theme-entry table tbody tr.selected td,
-.theme-entry .grid-content-row.selected .grid-content-cell,
-.theme-entry .list-view tbody tr.selected td {
-    background: var(--gob-gold-100);
-}
-
-/* Horizontal scroll is safer than compressing data into unusable columns */
-.theme-entry .grid,
-.theme-entry .list-view,
-.theme-entry .grid-content,
-.theme-entry .list-view-content {
+html .theme-entry .grid,
+html .theme-entry .list-view,
+html .theme-entry .grid-content,
+html .theme-entry .list-view-content,
+html .theme-entry .scroll-wrapper {
     max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
 
-/* ---------------------------------------------------------------------------
-   10. VALIDATION, ALERTS, AND STATUS MESSAGES
---------------------------------------------------------------------------- */
-
-.theme-entry .validation-error,
-.theme-entry .invalid,
-.theme-entry .error,
-.theme-entry .error-message,
-.theme-entry .field-validation-error {
-    color: var(--gob-danger-700);
+html .theme-entry table,
+html .theme-entry .grid table,
+html .theme-entry .list-view table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--gob-slate-800);
 }
 
-.theme-entry input.invalid,
-.theme-entry textarea.invalid,
-.theme-entry select.invalid,
-.theme-entry .invalid input,
-.theme-entry .invalid textarea,
-.theme-entry .invalid select {
-    border-color: var(--gob-danger-700);
-    background: var(--gob-danger-100);
+html .theme-entry table th,
+html .theme-entry .grid-header-cell,
+html .theme-entry .list-view th,
+html .theme-entry .grid-column-header-cell {
+    padding: 0.75rem;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid var(--gob-aqua-700);
+    border-left: 0;
+    background-color: var(--gob-aqua-050);
+    color: var(--gob-slate-950);
+    font-size: 0.8125rem;
+    font-weight: 750;
+    letter-spacing: 0.025em;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: normal;
 }
 
-.theme-entry input.invalid:focus,
-.theme-entry textarea.invalid:focus,
-.theme-entry select.invalid:focus {
-    box-shadow: 0 0 0 3px rgba(161, 38, 34, 0.18);
+html .theme-entry table td,
+html .theme-entry .grid-content-cell,
+html .theme-entry .list-view td {
+    padding: 0.75rem;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--gob-slate-200);
+    border-left: 0;
+    background-color: var(--gob-white);
+    vertical-align: top;
 }
 
-.theme-entry .message-box,
-.theme-entry .notification,
-.theme-entry .alert,
-.theme-entry [name="GOB_Status_Success"],
-.theme-entry [name="GOB_Status_Warning"],
-.theme-entry [name="GOB_Status_Error"],
-.theme-entry [name="GOB_Status_Info"] {
-    display: block;
-    margin-bottom: var(--gob-space-4);
-    padding: var(--gob-space-4);
-    border: 1px solid var(--gob-ink-200);
-    border-left-width: 0.35rem;
-    border-radius: var(--gob-radius-md);
-    background: var(--gob-white);
+html .theme-entry table tbody tr:nth-child(even) td,
+html .theme-entry .grid-content-row:nth-child(even) .grid-content-cell {
+    background-color: var(--gob-slate-050);
 }
 
-.theme-entry [name="GOB_Status_Success"],
-.theme-entry .alert.success,
-.theme-entry .notification.success {
-    border-color: var(--gob-success-700);
-    background: var(--gob-success-100);
-    color: var(--gob-success-700);
+html .theme-entry table tbody tr:hover td,
+html .theme-entry .grid-content-row:hover .grid-content-cell,
+html .theme-entry .list-view tbody tr:hover td {
+    background-color: var(--gob-aqua-050);
 }
 
-.theme-entry [name="GOB_Status_Warning"],
-.theme-entry .alert.warning,
-.theme-entry .notification.warning {
-    border-color: var(--gob-gold-600);
-    background: var(--gob-warning-100);
-    color: var(--gob-warning-700);
+html .theme-entry table tbody tr.selected td,
+html .theme-entry .grid-content-row.selected .grid-content-cell,
+html .theme-entry .list-view tbody tr.selected td {
+    background-color: var(--gob-gold-100);
+    box-shadow: inset 0.25rem 0 0 var(--gob-gold-600);
 }
 
-.theme-entry [name="GOB_Status_Error"],
-.theme-entry .alert.error,
-.theme-entry .notification.error {
-    border-color: var(--gob-danger-700);
-    background: var(--gob-danger-100);
-    color: var(--gob-danger-700);
+/* Editable cells */
+html .theme-entry .grid-content-cell input,
+html .theme-entry .grid-content-cell textarea,
+html .theme-entry .grid-content-cell select {
+    min-height: var(--gob-control-height-sm);
+    font-size: 0.9375rem;
 }
 
-.theme-entry [name="GOB_Status_Info"],
-.theme-entry .alert.info,
-.theme-entry .notification.info {
-    border-color: var(--gob-info-700);
-    background: var(--gob-info-100);
-    color: var(--gob-info-700);
+
+/* ==========================================================================
+   10. TABS, ACCORDIONS AND MENUS
+   ========================================================================== */
+
+html .theme-entry .tab-box,
+html .theme-entry .tabs,
+html .theme-entry .tab-container {
+    border-bottom: 1px solid var(--gob-slate-200);
 }
 
-/* ---------------------------------------------------------------------------
-   11. TABS, ACCORDIONS, MENUS
---------------------------------------------------------------------------- */
-
-.theme-entry .tab-box,
-.theme-entry .tabs,
-.theme-entry .tab-container {
-    border-bottom: 1px solid var(--gob-ink-200);
-}
-
-.theme-entry .tab,
-.theme-entry .tab-item,
-.theme-entry .tab-box-tab {
-    min-height: 2.75rem;
-    padding: 0.625rem 1rem;
+html .theme-entry .tab,
+html .theme-entry .tab-item,
+html .theme-entry .tab-box-tab {
+    min-height: 2.875rem;
+    padding: 0.6875rem 1rem;
     border: 0;
     border-bottom: 3px solid transparent;
-    background: transparent;
-    color: var(--gob-ink-700);
+    background-color: transparent;
+    color: var(--gob-slate-700);
     font-weight: 650;
+    box-shadow: none;
 }
 
-.theme-entry .tab:hover,
-.theme-entry .tab-item:hover,
-.theme-entry .tab-box-tab:hover {
-    background: var(--gob-aquamarine-050);
-    color: var(--gob-aquamarine-900);
+html .theme-entry .tab:hover,
+html .theme-entry .tab-item:hover,
+html .theme-entry .tab-box-tab:hover {
+    background-color: var(--gob-aqua-050);
+    color: var(--gob-aqua-950);
 }
 
-.theme-entry .tab.selected,
-.theme-entry .tab.active,
-.theme-entry .tab-item.selected,
-.theme-entry .tab-box-tab.selected {
+html .theme-entry .tab.selected,
+html .theme-entry .tab.active,
+html .theme-entry .tab-item.selected,
+html .theme-entry .tab-box-tab.selected {
     border-bottom-color: var(--gob-gold-500);
-    color: var(--gob-aquamarine-900);
+    background-color: var(--gob-white);
+    color: var(--gob-aqua-950);
 }
 
-.theme-entry .menu,
-.theme-entry .popup-menu,
-.theme-entry .context-menu,
-.theme-entry .dropdown-menu {
+html .theme-entry .menu,
+html .theme-entry .popup-menu,
+html .theme-entry .context-menu,
+html .theme-entry .dropdown-menu {
     overflow: hidden;
-    border: 1px solid var(--gob-ink-200);
+    border: 1px solid var(--gob-slate-200);
     border-radius: var(--gob-radius-md);
-    background: var(--gob-white);
+    background-color: var(--gob-white);
     box-shadow: var(--gob-shadow-md);
 }
 
-.theme-entry .menu-item,
-.theme-entry .popup-menu-item,
-.theme-entry .context-menu-item,
-.theme-entry .dropdown-menu-item {
+html .theme-entry .menu-item,
+html .theme-entry .popup-menu-item,
+html .theme-entry .context-menu-item,
+html .theme-entry .dropdown-menu-item {
     min-height: 2.5rem;
     padding: 0.625rem 0.875rem;
-    color: var(--gob-ink-800);
+    color: var(--gob-slate-800);
 }
 
-.theme-entry .menu-item:hover,
-.theme-entry .popup-menu-item:hover,
-.theme-entry .context-menu-item:hover,
-.theme-entry .dropdown-menu-item:hover {
-    background: var(--gob-aquamarine-050);
-    color: var(--gob-aquamarine-900);
+html .theme-entry .menu-item:hover,
+html .theme-entry .popup-menu-item:hover,
+html .theme-entry .context-menu-item:hover,
+html .theme-entry .dropdown-menu-item:hover {
+    background-color: var(--gob-aqua-050);
+    color: var(--gob-aqua-950);
 }
 
-/* ---------------------------------------------------------------------------
-   12. SUBVIEWS, DIALOGS, MODALS
---------------------------------------------------------------------------- */
 
-.theme-entry .popup,
-.theme-entry .dialog,
-.theme-entry .modal,
-.theme-entry .subview,
-.theme-entry .popup-content {
-    border: 1px solid var(--gob-ink-200);
+/* ==========================================================================
+   11. VALIDATION, MESSAGES AND STATUS CALLOUTS
+   ========================================================================== */
+
+html .theme-entry .validation-error,
+html .theme-entry .invalid,
+html .theme-entry .error,
+html .theme-entry .error-message,
+html .theme-entry .field-validation-error {
+    color: var(--gob-danger-700);
+}
+
+html .theme-entry input.invalid,
+html .theme-entry textarea.invalid,
+html .theme-entry select.invalid,
+html .theme-entry .invalid input,
+html .theme-entry .invalid textarea,
+html .theme-entry .invalid select {
+    border-color: var(--gob-danger-700);
+    background-color: var(--gob-danger-100);
+}
+
+html .theme-entry input.invalid:focus,
+html .theme-entry textarea.invalid:focus,
+html .theme-entry select.invalid:focus {
+    box-shadow: var(--gob-danger-ring);
+}
+
+html .theme-entry .message-box,
+html .theme-entry .notification,
+html .theme-entry .alert,
+html .theme-entry [name="GOB_Status_Success"],
+html .theme-entry [name="GOB_Status_Warning"],
+html .theme-entry [name="GOB_Status_Error"],
+html .theme-entry [name="GOB_Status_Info"] {
+    display: block;
+    margin-bottom: var(--gob-space-4);
+    padding: var(--gob-space-4);
+    border: 1px solid var(--gob-slate-200);
+    border-left-width: 0.375rem;
+    border-radius: var(--gob-radius-md);
+    background-color: var(--gob-white);
+    color: var(--gob-slate-800);
+}
+
+html .theme-entry [name="GOB_Status_Success"],
+html .theme-entry .gob-status-success {
+    border-color: var(--gob-success-700);
+    background-color: var(--gob-success-100);
+    color: var(--gob-success-800);
+}
+
+html .theme-entry [name="GOB_Status_Warning"],
+html .theme-entry .gob-status-warning {
+    border-color: var(--gob-gold-600);
+    background-color: var(--gob-warning-100);
+    color: var(--gob-warning-800);
+}
+
+html .theme-entry [name="GOB_Status_Error"],
+html .theme-entry .gob-status-error {
+    border-color: var(--gob-danger-700);
+    background-color: var(--gob-danger-100);
+    color: var(--gob-danger-800);
+}
+
+html .theme-entry [name="GOB_Status_Info"],
+html .theme-entry .gob-status-info {
+    border-color: var(--gob-info-700);
+    background-color: var(--gob-info-100);
+    color: var(--gob-info-800);
+}
+
+
+/* ==========================================================================
+   12. DIALOGS, POPUPS, SUBFORMS AND SUBVIEWS
+   ========================================================================== */
+
+html .theme-entry .popup,
+html .theme-entry .dialog,
+html .theme-entry .modal,
+html .theme-entry .subview,
+html .theme-entry .popup-content,
+html .theme-entry .popupManager {
+    border: 1px solid var(--gob-slate-200);
     border-radius: var(--gob-radius-lg);
-    background: var(--gob-white);
-    box-shadow: 0 18px 50px rgba(17, 17, 17, 0.24);
+    background-color: var(--gob-white);
+    box-shadow: var(--gob-shadow-dialog);
 }
 
-.theme-entry .popup-header,
-.theme-entry .dialog-header,
-.theme-entry .modal-header,
-.theme-entry .subview-header {
+html .theme-entry .popup-header,
+html .theme-entry .dialog-header,
+html .theme-entry .modal-header,
+html .theme-entry .subview-header {
     padding: var(--gob-space-4) var(--gob-space-5);
-    border-bottom: 1px solid var(--gob-ink-200);
-    background: var(--gob-aquamarine-050);
-    color: var(--gob-ink-900);
+    border-bottom: 1px solid var(--gob-slate-200);
+    background-color: var(--gob-aqua-050);
+    color: var(--gob-slate-950);
     font-weight: 750;
 }
 
-.theme-entry .popup-footer,
-.theme-entry .dialog-footer,
-.theme-entry .modal-footer,
-.theme-entry .subview-footer {
+html .theme-entry .popup-footer,
+html .theme-entry .dialog-footer,
+html .theme-entry .modal-footer,
+html .theme-entry .subview-footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: var(--gob-space-2);
     padding: var(--gob-space-4) var(--gob-space-5);
-    border-top: 1px solid var(--gob-ink-200);
-    background: var(--gob-ink-050);
+    border-top: 1px solid var(--gob-slate-200);
+    background-color: var(--gob-slate-050);
 }
 
-/* ---------------------------------------------------------------------------
-   13. FILE ATTACHMENT AND UPLOAD CONTROLS
---------------------------------------------------------------------------- */
 
-.theme-entry .file-upload,
-.theme-entry .file-attachment,
-.theme-entry .upload-control,
-.theme-entry .drop-zone {
+/* ==========================================================================
+   13. ATTACHMENTS AND UPLOAD CONTROLS
+   ========================================================================== */
+
+html .theme-entry .file-upload,
+html .theme-entry .file-attachment,
+html .theme-entry .upload-control,
+html .theme-entry .drop-zone,
+html .theme-entry .file-wrapper {
     padding: var(--gob-space-5);
-    border: 2px dashed var(--gob-ink-300);
+    border: 2px dashed var(--gob-slate-300);
     border-radius: var(--gob-radius-lg);
-    background: var(--gob-ink-050);
+    background-color: var(--gob-slate-050);
     text-align: center;
 }
 
-.theme-entry .file-upload:hover,
-.theme-entry .file-attachment:hover,
-.theme-entry .upload-control:hover,
-.theme-entry .drop-zone:hover {
-    border-color: var(--gob-aquamarine-600);
-    background: var(--gob-aquamarine-050);
+html .theme-entry .file-upload:hover,
+html .theme-entry .file-attachment:hover,
+html .theme-entry .upload-control:hover,
+html .theme-entry .drop-zone:hover {
+    border-color: var(--gob-aqua-600);
+    background-color: var(--gob-aqua-050);
 }
 
-/* ---------------------------------------------------------------------------
-   14. PAGERS
---------------------------------------------------------------------------- */
 
-.theme-entry .pager,
-.theme-entry .grid-pager,
-.theme-entry .pagination {
+/* ==========================================================================
+   14. PAGERS
+   ========================================================================== */
+
+html .theme-entry .pager,
+html .theme-entry .grid-pager,
+html .theme-entry .pagination {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
     gap: var(--gob-space-2);
     padding: var(--gob-space-3) var(--gob-space-4);
-    border-top: 1px solid var(--gob-ink-200);
-    background: var(--gob-ink-050);
+    border-top: 1px solid var(--gob-slate-200);
+    background-color: var(--gob-slate-050);
 }
 
-.theme-entry .pager a,
-.theme-entry .pagination a,
-.theme-entry .pager button {
+html .theme-entry .pager a,
+html .theme-entry .pagination a,
+html .theme-entry .pager button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-width: 2.5rem;
     min-height: 2.5rem;
     padding: 0.5rem;
-    border: 1px solid var(--gob-ink-300);
+    border: 1px solid var(--gob-slate-300);
     border-radius: var(--gob-radius-md);
-    background: var(--gob-white);
-    color: var(--gob-aquamarine-800);
+    background-color: var(--gob-white);
+    color: var(--gob-aqua-800);
+    box-shadow: none;
 }
 
-.theme-entry .pager .selected,
-.theme-entry .pagination .active,
-.theme-entry .pager .current {
-    border-color: var(--gob-aquamarine-700);
-    background: var(--gob-aquamarine-700);
+html .theme-entry .pager .selected,
+html .theme-entry .pagination .active,
+html .theme-entry .pager .current {
+    border-color: var(--gob-aqua-700);
+    background-color: var(--gob-aqua-700);
     color: var(--gob-white);
 }
 
-/* ---------------------------------------------------------------------------
-   15. LOADING STATES
---------------------------------------------------------------------------- */
 
-.theme-entry .loading,
-.theme-entry .loading-mask,
-.theme-entry .spinner-overlay,
-.theme-entry .busy-indicator {
-    background-color: rgba(255, 255, 255, 0.82);
+/* ==========================================================================
+   15. LOADING AND BUSY STATES
+   ========================================================================== */
+
+html .theme-entry .loading,
+html .theme-entry .loading-mask,
+html .theme-entry .spinner-overlay,
+html .theme-entry .busy-indicator {
+    background-color: rgba(255, 255, 255, 0.86);
     backdrop-filter: blur(2px);
 }
 
-.theme-entry .spinner,
-.theme-entry .loading-spinner,
-.theme-entry .busy-indicator::before {
-    border-color: var(--gob-ink-200);
-    border-top-color: var(--gob-aquamarine-700);
+html .theme-entry .spinner,
+html .theme-entry .loading-spinner,
+html .theme-entry .busy-indicator::before {
+    border-color: var(--gob-slate-200);
+    border-top-color: var(--gob-aqua-700);
 }
 
-/* ---------------------------------------------------------------------------
-   16. UTILITY CLASSES
-   These can be assigned through K2 wrapper controls or HTML controls where
-   permitted, without changing global K2 behavior.
---------------------------------------------------------------------------- */
 
-.theme-entry .gob-surface {
+/* ==========================================================================
+   16. OPTIONAL NAMED-CONTROL COMPONENTS
+   ========================================================================== */
+
+/*
+Recommended K2 Name properties:
+
+GOB_Form_Title
+GOB_Form_Intro
+GOB_Section_Label
+GOB_Button_Primary
+GOB_Button_Secondary
+GOB_Button_Accent
+GOB_Button_Danger
+GOB_Button_Link
+GOB_Status_Success
+GOB_Status_Warning
+GOB_Status_Error
+GOB_Status_Info
+GOB_Card
+GOB_Callout
+GOB_Action_Bar
+*/
+
+html .theme-entry [name="GOB_Form_Title"] {
+    display: block;
+    margin-bottom: var(--gob-space-2);
+    color: var(--gob-slate-950);
+    font-size: clamp(1.75rem, 3vw, var(--gob-text-3xl));
+    font-weight: 750;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+html .theme-entry [name="GOB_Form_Intro"] {
+    display: block;
+    max-width: var(--gob-readable-width);
+    margin-bottom: var(--gob-space-6);
+    color: var(--gob-slate-700);
+    font-size: var(--gob-text-lg);
+    line-height: 1.55;
+}
+
+html .theme-entry [name="GOB_Section_Label"] {
+    display: inline-block;
+    margin-bottom: var(--gob-space-3);
+    padding: 0.3125rem 0.625rem;
+    border-radius: var(--gob-radius-pill);
+    background-color: var(--gob-gold-100);
+    color: var(--gob-gold-800);
+    font-size: var(--gob-text-xs);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+html .theme-entry [name="GOB_Card"] {
+    display: block;
     padding: var(--gob-space-5);
-    border: 1px solid var(--gob-ink-200);
+    border: 1px solid var(--gob-slate-200);
     border-radius: var(--gob-radius-lg);
-    background: var(--gob-white);
+    background-color: var(--gob-white);
     box-shadow: var(--gob-shadow-sm);
 }
 
-.theme-entry .gob-callout {
+html .theme-entry [name="GOB_Callout"] {
+    display: block;
     padding: var(--gob-space-4);
-    border-left: 0.35rem solid var(--gob-gold-500);
+    border-left: 0.375rem solid var(--gob-gold-500);
     border-radius: var(--gob-radius-sm);
-    background: var(--gob-gold-100);
-    color: var(--gob-ink-800);
+    background-color: var(--gob-gold-050);
+    color: var(--gob-slate-800);
 }
 
-.theme-entry .gob-muted {
-    color: var(--gob-ink-600);
-}
-
-.theme-entry .gob-divider {
-    height: 1px;
-    margin-block: var(--gob-space-6);
-    border: 0;
-    background: var(--gob-ink-200);
-}
-
-.theme-entry .gob-actions {
+html .theme-entry [name="GOB_Action_Bar"] {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: var(--gob-space-3);
     margin-top: var(--gob-space-6);
+    padding-top: var(--gob-space-4);
+    border-top: 1px solid var(--gob-slate-200);
 }
 
-/* ---------------------------------------------------------------------------
-   17. RESPONSIVE BEHAVIOR
---------------------------------------------------------------------------- */
+
+/* ==========================================================================
+   17. ACCESSIBILITY AND KEYBOARD FOCUS
+   ========================================================================== */
+
+html .theme-entry button:focus-visible,
+html .theme-entry input[type="button"]:focus-visible,
+html .theme-entry input[type="submit"]:focus-visible,
+html .theme-entry .button:focus-visible,
+html .theme-entry .toolbar-button:focus-visible,
+html .theme-entry a:focus-visible,
+html .theme-entry [tabindex]:focus-visible {
+    outline: 3px solid var(--gob-gold-500);
+    outline-offset: 2px;
+}
+
+/* Do not hide content merely because K2 applies a visually-hidden utility */
+html .theme-entry .sr-only,
+html .theme-entry .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* ==========================================================================
+   18. RESPONSIVE BEHAVIOR
+   ========================================================================== */
 
 @media (max-width: 64rem) {
-    .theme-entry {
+    html .theme-entry {
         --gob-control-height: 2.875rem;
     }
 
-    .theme-entry .form,
-    .theme-entry .runtime-form {
-        padding: 1rem;
-    }
-
-    .theme-entry .view-content,
-    .theme-entry .panel-body,
-    .theme-entry .view-body,
-    .theme-entry .content {
+    html .theme-entry .form,
+    html .theme-entry .runtime-form,
+    html .theme-entry .runtime-content {
         padding: 1rem;
     }
 }
 
 @media (max-width: 48rem) {
-    .theme-entry {
+    html .theme-entry {
         font-size: 15px;
     }
 
-    .theme-entry .form,
-    .theme-entry .runtime-form {
+    html .theme-entry .form,
+    html .theme-entry .runtime-form,
+    html .theme-entry .runtime-content {
         padding: 0.75rem;
     }
 
-    .theme-entry .view,
-    .theme-entry .panel,
-    .theme-entry .view-canvas,
-    .theme-entry .view-container,
-    .theme-entry .content-panel {
+    html .theme-entry .view,
+    html .theme-entry .panel,
+    html .theme-entry .view-canvas,
+    html .theme-entry .view-container,
+    html .theme-entry .content-panel {
         margin-bottom: 1rem;
         border-radius: var(--gob-radius-md);
     }
 
-    .theme-entry .toolbar,
-    .theme-entry .view-toolbar,
-    .theme-entry .panel-toolbar,
-    .theme-entry .popup-footer,
-    .theme-entry .dialog-footer,
-    .theme-entry .modal-footer,
-    .theme-entry .subview-footer,
-    .theme-entry .gob-actions {
+    html .theme-entry .view-header,
+    html .theme-entry .panel-header,
+    html .theme-entry .grid-header,
+    html .theme-entry .view-titlebar,
+    html .theme-entry .panel-heading {
+        padding-right: 0.875rem;
+        padding-left: 0.875rem;
+    }
+
+    html .theme-entry .view-content,
+    html .theme-entry .panel-body,
+    html .theme-entry .view-body,
+    html .theme-entry .content {
+        padding: 0.875rem;
+    }
+
+    html .theme-entry .toolbar,
+    html .theme-entry .view-toolbar,
+    html .theme-entry .panel-toolbar,
+    html .theme-entry .popup-footer,
+    html .theme-entry .dialog-footer,
+    html .theme-entry .modal-footer,
+    html .theme-entry .subview-footer,
+    html .theme-entry [name="GOB_Action_Bar"] {
         align-items: stretch;
         flex-direction: column;
     }
 
-    .theme-entry button,
-    .theme-entry input[type="button"],
-    .theme-entry input[type="submit"],
-    .theme-entry .button,
-    .theme-entry .toolbar-button,
-    .theme-entry a.button {
+    html .theme-entry .toolbar button,
+    html .theme-entry .toolbar input[type="button"],
+    html .theme-entry .toolbar input[type="submit"],
+    html .theme-entry .toolbar .button,
+    html .theme-entry .view-toolbar button,
+    html .theme-entry .view-toolbar .button,
+    html .theme-entry .popup-footer button,
+    html .theme-entry .dialog-footer button,
+    html .theme-entry .modal-footer button,
+    html .theme-entry [name="GOB_Action_Bar"] button {
         width: 100%;
     }
 
-    .theme-entry table th,
-    .theme-entry table td,
-    .theme-entry .grid-header-cell,
-    .theme-entry .grid-content-cell {
+    html .theme-entry table th,
+    html .theme-entry table td,
+    html .theme-entry .grid-header-cell,
+    html .theme-entry .grid-content-cell {
         padding: 0.625rem;
-        white-space: nowrap;
     }
 }
 
 @media (max-width: 30rem) {
-    .theme-entry h1,
-    .theme-entry .form-title,
-    .theme-entry [name="GOB_Form_Title"] {
-        font-size: 1.65rem;
+    html .theme-entry h1,
+    html .theme-entry .form-title,
+    html .theme-entry [name="GOB_Form_Title"] {
+        font-size: 1.625rem;
     }
 
-    .theme-entry .view-header,
-    .theme-entry .panel-header,
-    .theme-entry .grid-header,
-    .theme-entry .view-titlebar,
-    .theme-entry .panel-heading {
-        padding-inline: 0.875rem;
+    html .theme-entry h2,
+    html .theme-entry .view-title,
+    html .theme-entry .panel-title {
+        font-size: 1.25rem;
     }
 
-    .theme-entry .view-content,
-    .theme-entry .panel-body,
-    .theme-entry .view-body,
-    .theme-entry .content {
-        padding: 0.875rem;
+    html .theme-entry .view-header::before,
+    html .theme-entry .panel-header::before,
+    html .theme-entry .view-titlebar::before,
+    html .theme-entry .panel-heading::before {
+        height: 1.4rem;
     }
 }
 
-/* ---------------------------------------------------------------------------
-   18. ACCESSIBILITY PREFERENCES
---------------------------------------------------------------------------- */
+
+/* ==========================================================================
+   19. REDUCED MOTION, FORCED COLORS AND PRINT
+   ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
-    .theme-entry *,
-    .theme-entry *::before,
-    .theme-entry *::after {
+    html .theme-entry *,
+    html .theme-entry *::before,
+    html .theme-entry *::after {
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
         animation-duration: 0.01ms !important;
@@ -1056,53 +1299,66 @@ GOB_Status_Error
 }
 
 @media (forced-colors: active) {
-    .theme-entry button,
-    .theme-entry input,
-    .theme-entry textarea,
-    .theme-entry select,
-    .theme-entry .button,
-    .theme-entry .view,
-    .theme-entry .panel {
+    html .theme-entry button,
+    html .theme-entry input,
+    html .theme-entry textarea,
+    html .theme-entry select,
+    html .theme-entry .button,
+    html .theme-entry .view,
+    html .theme-entry .panel {
         border: 1px solid CanvasText;
     }
 
-    .theme-entry button:focus-visible,
-    .theme-entry input:focus-visible,
-    .theme-entry textarea:focus-visible,
-    .theme-entry select:focus-visible,
-    .theme-entry a:focus-visible {
+    html .theme-entry button:focus-visible,
+    html .theme-entry input:focus-visible,
+    html .theme-entry textarea:focus-visible,
+    html .theme-entry select:focus-visible,
+    html .theme-entry a:focus-visible {
         outline: 2px solid Highlight;
     }
 }
 
-/* ---------------------------------------------------------------------------
-   19. PRINT
---------------------------------------------------------------------------- */
-
 @media print {
-    .theme-entry {
-        background: var(--gob-white);
+    html .theme-entry {
+        background-color: var(--gob-white);
         color: var(--gob-black);
     }
 
-    .theme-entry .toolbar,
-    .theme-entry .view-toolbar,
-    .theme-entry .panel-toolbar,
-    .theme-entry button,
-    .theme-entry input[type="button"],
-    .theme-entry input[type="submit"],
-    .theme-entry .pager,
-    .theme-entry .pagination {
+    html .theme-entry .form::before,
+    html .theme-entry .runtime-form::before,
+    html .theme-entry .toolbar,
+    html .theme-entry .view-toolbar,
+    html .theme-entry .panel-toolbar,
+    html .theme-entry button,
+    html .theme-entry input[type="button"],
+    html .theme-entry input[type="submit"],
+    html .theme-entry .pager,
+    html .theme-entry .pagination {
         display: none !important;
     }
 
-    .theme-entry .view,
-    .theme-entry .panel,
-    .theme-entry .view-canvas,
-    .theme-entry .view-container,
-    .theme-entry .content-panel {
+    html .theme-entry .view,
+    html .theme-entry .panel,
+    html .theme-entry .view-canvas,
+    html .theme-entry .view-container,
+    html .theme-entry .content-panel {
         break-inside: avoid;
-        border-color: #888;
+        border-color: #777777;
         box-shadow: none;
     }
 }
+'''
+
+out = Path("/mnt/data/gob-k2-style-profile-v2.css")
+out.write_text(css, encoding="utf-8")
+
+# Lightweight structural validation.
+text = out.read_text(encoding="utf-8")
+assert text.count("{") == text.count("}"), "Unbalanced CSS braces"
+assert "html .theme-entry" in text
+assert "@media (max-width: 48rem)" in text
+
+print(f"Created {out.name}")
+print(f"Size: {out.stat().st_size:,} bytes")
+print(f"Lines: {len(text.splitlines()):,}")
+print("Validation: balanced braces and required scope confirmed")
