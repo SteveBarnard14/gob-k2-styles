@@ -1,1290 +1,796 @@
-from pathlib import Path
-
-css = r'''/*
-===============================================================================
-GOVERNMENT OF THE COMMONWEALTH OF THE BAHAMAS
-NINTEX K2 SMARTFORMS STYLE PROFILE
-===============================================================================
-File:       gob-k2-style-profile-v2.css
-Version:    2.0.0
-Target:     Nintex K2 Five / Automation On-Prem 5.8 and 5.9
-Purpose:    Modern responsive government application theme
-Scope:      All rules are scoped beneath html .theme-entry
-===============================================================================
-
-DESIGN PRINCIPLES
-- Bahamas-inspired aquamarine, gold, black and white visual identity
-- Clean public-service application experience rather than a marketing website
-- Strong hierarchy, restrained decoration and accessible interaction states
-- Progressive enhancement: K2 remains usable if a selector is not matched
-- Minimal reliance on generated IDs or positional selectors
-- Responsive layouts without attempting to rewrite K2 business behavior
-
-K2 IMPLEMENTATION NOTES
-1. Link this file in Style Profile > Developer > External Files.
-2. Place it last in the CSS file list.
-3. Disable "Use Legacy Theme" on the form.
-4. Avoid extensive control-level Format settings because inline formatting can
-   override this stylesheet.
-5. Use the optional GOB_* control names documented near the end of this file.
-===============================================================================
-*/
-
+/*
+ * Government of The Bahamas
+ * Nintex K2 SmartForms Style Profile
+ * Draft 1 - MOB.Request.New.Form
+ *
+ * Keep this file last in Style Profile > Developer > External Files.
+ * The rules are scoped beneath .theme-entry and avoid generated K2 IDs.
+ */
 
 /* ==========================================================================
-   01. DESIGN TOKENS AND K2 STYLE PROFILE VARIABLES
+   01. Design tokens and K2 profile variables
    ========================================================================== */
 
 html .theme-entry {
-    /* Bahamas brand */
-    --gob-aqua-950: #00343d;
     --gob-aqua-900: #004651;
     --gob-aqua-800: #005f6b;
     --gob-aqua-700: #007681;
     --gob-aqua-600: #008c95;
-    --gob-aqua-500: #00a3ad;
-    --gob-aqua-200: #9ee1e4;
     --gob-aqua-100: #d9f3f4;
     --gob-aqua-050: #f1fbfb;
-
-    --gob-gold-800: #7d5900;
-    --gob-gold-700: #a47400;
-    --gob-gold-600: #c99600;
+    --gob-gold-700: #9a7100;
     --gob-gold-500: #f4c430;
-    --gob-gold-300: #f8da75;
     --gob-gold-100: #fff3c4;
-    --gob-gold-050: #fffaf0;
-
-    --gob-black: #111111;
-    --gob-slate-950: #141b22;
-    --gob-slate-900: #1d2731;
-    --gob-slate-800: #293744;
-    --gob-slate-700: #3c4b58;
-    --gob-slate-600: #566572;
-    --gob-slate-500: #71808c;
-    --gob-slate-400: #94a1ac;
-    --gob-slate-300: #b8c2ca;
-    --gob-slate-200: #d5dce2;
-    --gob-slate-150: #e1e6ea;
-    --gob-slate-100: #ebeff2;
-    --gob-slate-075: #f2f5f7;
-    --gob-slate-050: #f7f9fa;
+    --gob-navy-900: #022243;
+    --gob-ink-900: #18232d;
+    --gob-ink-700: #3c4b58;
+    --gob-ink-600: #566572;
+    --gob-ink-500: #71808c;
+    --gob-border-strong: #aebbc4;
+    --gob-border: #d5dce2;
+    --gob-surface-subtle: #f4f7f8;
+    --gob-canvas: #e9eef1;
     --gob-white: #ffffff;
-
-    --gob-success-800: #0d5b39;
-    --gob-success-700: #137347;
-    --gob-success-100: #e6f5ed;
-    --gob-info-800: #124e71;
-    --gob-info-700: #17688f;
-    --gob-info-100: #e8f4f9;
-    --gob-warning-800: #765000;
-    --gob-warning-700: #916300;
-    --gob-warning-100: #fff4d1;
-    --gob-danger-800: #84201c;
     --gob-danger-700: #a62a24;
     --gob-danger-100: #fdebea;
-
-    --gob-font-sans:
+    --gob-success-700: #137347;
+    --gob-success-100: #e6f5ed;
+    --gob-focus: #007681;
+    --gob-font:
         "Segoe UI",
         "Helvetica Neue",
         Arial,
-        Helvetica,
         sans-serif;
-
-    --gob-font-serif:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    --gob-text-xs: 0.75rem;
-    --gob-text-sm: 0.875rem;
-    --gob-text-md: 1rem;
-    --gob-text-lg: 1.125rem;
-    --gob-text-xl: 1.375rem;
-    --gob-text-2xl: 1.75rem;
-    --gob-text-3xl: 2.25rem;
-
-    --gob-space-1: 0.25rem;
-    --gob-space-2: 0.5rem;
-    --gob-space-3: 0.75rem;
-    --gob-space-4: 1rem;
-    --gob-space-5: 1.25rem;
-    --gob-space-6: 1.5rem;
-    --gob-space-8: 2rem;
-    --gob-space-10: 2.5rem;
-    --gob-space-12: 3rem;
-
-    --gob-radius-xs: 0.1875rem;
-    --gob-radius-sm: 0.3125rem;
-    --gob-radius-md: 0.5rem;
-    --gob-radius-lg: 0.75rem;
-    --gob-radius-pill: 999rem;
-
-    --gob-shadow-xs: 0 1px 2px rgba(17, 17, 17, 0.06);
-    --gob-shadow-sm:
-        0 1px 2px rgba(17, 17, 17, 0.06),
-        0 2px 8px rgba(17, 17, 17, 0.05);
-    --gob-shadow-md:
-        0 4px 12px rgba(17, 17, 17, 0.08),
-        0 12px 28px rgba(17, 17, 17, 0.06);
-    --gob-shadow-dialog:
-        0 20px 50px rgba(17, 17, 17, 0.24);
-
-    --gob-focus-ring: 0 0 0 3px rgba(0, 140, 149, 0.24);
-    --gob-danger-ring: 0 0 0 3px rgba(166, 42, 36, 0.18);
-
     --gob-control-height: 2.75rem;
-    --gob-control-height-sm: 2.375rem;
-    --gob-content-width: 90rem;
-    --gob-readable-width: 72ch;
+    --gob-radius-sm: 0.25rem;
+    --gob-radius-md: 0.5rem;
+    --gob-shadow:
+        0 1px 2px rgba(24, 35, 45, 0.08),
+        0 8px 24px rgba(24, 35, 45, 0.08);
 
-    /* K2 dynamic-theme variables */
-    --page-background-color: var(--gob-slate-075);
+    /* K2 Dynamic Theme values */
+    --k2-main-accent-color: var(--gob-aqua-700);
+    --k2-content-background-color: var(--gob-canvas);
+    --k2-panel-background-color: var(--gob-white);
+    --k2-error-color: var(--gob-danger-700);
+    --page-background-color: var(--gob-canvas);
+    --form-background-color: transparent;
     --panel-background-color: var(--gob-white);
-    --main-text-color: var(--gob-slate-900);
-    --secondary-text-color: var(--gob-slate-600);
-    --border-color: var(--gob-slate-200);
+    --main-text-color: var(--gob-ink-900);
+    --secondary-text-color: var(--gob-ink-600);
+    --border-color: var(--gob-border);
     --primary-color: var(--gob-aqua-700);
-    --primary-hover-color: var(--gob-aqua-800);
-    --primary-active-color: var(--gob-aqua-900);
 
-    box-sizing: border-box;
-    color: var(--gob-slate-900);
-    font-family: var(--gob-font-sans);
+    min-width: 0;
+    background: var(--gob-canvas);
+    color: var(--gob-ink-900);
+    font-family: var(--gob-font);
     font-size: 16px;
     line-height: 1.5;
-    background-color: var(--gob-slate-075);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizeSpeed;
+}
+
+body.theme-entry {
+    min-height: 100vh;
+    margin: 0;
 }
 
 html .theme-entry *,
 html .theme-entry *::before,
 html .theme-entry *::after {
-    box-sizing: inherit;
+    box-sizing: border-box;
 }
-
 
 /* ==========================================================================
-   02. PAGE CANVAS AND FORM SHELL
+   02. Runtime shell
    ========================================================================== */
 
-html .theme-entry .form,
-html .theme-entry .runtime-form,
-html .theme-entry .form-container,
-html .theme-entry .formpanel,
-html .theme-entry .form-wrapper,
-html .theme-entry .runtime-content {
-    width: 100%;
-    max-width: var(--gob-content-width);
-    margin-right: auto;
-    margin-left: auto;
+html .theme-entry .runtime-form {
+    width: 100% !important;
+    max-width: 64rem;
+    min-width: 0 !important;
+    margin: 0 auto;
+    padding: 1.5rem;
 }
 
-html .theme-entry .form,
-html .theme-entry .runtime-form,
-html .theme-entry .runtime-content {
-    padding: clamp(0.75rem, 1.6vw, 1.75rem);
+html .theme-entry .form {
+    min-width: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
 }
 
-/* Bahamas identity bar */
-html .theme-entry .form::before,
-html .theme-entry .runtime-form::before {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 0.375rem;
-    margin-bottom: var(--gob-space-5);
-    border-radius: var(--gob-radius-xs);
-    background:
-        linear-gradient(
-            90deg,
-            var(--gob-aqua-500) 0 44%,
-            var(--gob-gold-500) 44% 57%,
-            var(--gob-black) 57% 65%,
-            var(--gob-aqua-500) 65% 100%
-        );
-}
-
-/* Keep wide fixed K2 layouts within the viewport */
-html .theme-entry .form,
-html .theme-entry .runtime-form,
-html .theme-entry .runtime-content,
+html .theme-entry .row,
 html .theme-entry .view,
-html .theme-entry .grid,
+html .theme-entry .innerpanel,
 html .theme-entry .panel,
-html .theme-entry .view-canvas,
-html .theme-entry .view-container {
+html .theme-entry .panel-body,
+html .theme-entry .SFC.Grid-Layout,
+html .theme-entry .editor-cell {
     min-width: 0;
 }
 
+html .theme-entry .panel {
+    overflow: hidden;
+    border: 1px solid var(--gob-border);
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-white);
+    box-shadow: var(--gob-shadow);
+}
+
+html .theme-entry .panel-body {
+    padding: 1.5rem;
+    background: var(--gob-white);
+}
+
+html .theme-entry .panel-toolbars {
+    min-height: 0;
+    border: 0;
+    background: var(--gob-white);
+}
 
 /* ==========================================================================
-   03. TYPOGRAPHY
+   03. Form identity and instructions
    ========================================================================== */
 
-html .theme-entry,
-html .theme-entry input,
-html .theme-entry textarea,
-html .theme-entry select,
-html .theme-entry button {
-    font-family: var(--gob-font-sans);
+html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] {
+    margin-bottom: 1rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--gob-border);
+    border-top: 0.25rem solid var(--gob-aqua-700);
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-white);
+    box-shadow: 0 1px 3px rgba(24, 35, 45, 0.08);
 }
 
-html .theme-entry h1,
-html .theme-entry h2,
-html .theme-entry h3,
-html .theme-entry h4,
-html .theme-entry h5,
-html .theme-entry h6,
-html .theme-entry .form-title,
-html .theme-entry .view-title,
-html .theme-entry .panel-title,
-html .theme-entry .title {
-    margin-top: 0;
-    color: var(--gob-slate-950);
-    font-weight: 700;
+html .theme-entry [name="dl_Header"] {
+    display: block;
+    overflow: visible !important;
+    margin: 0;
+    color: var(--gob-navy-900) !important;
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem) !important;
+    font-weight: 700 !important;
     line-height: 1.2;
-    letter-spacing: -0.012em;
+    letter-spacing: 0;
+    text-overflow: clip !important;
+    white-space: normal !important;
 }
 
-html .theme-entry h1,
-html .theme-entry .form-title {
-    margin-bottom: var(--gob-space-5);
-    font-size: clamp(1.75rem, 3vw, var(--gob-text-3xl));
+html .theme-entry [name="Data Label1"] {
+    display: block;
+    margin: 0.375rem 0 0;
+    color: var(--gob-ink-700) !important;
+    font-size: clamp(1.05rem, 2vw, 1.375rem) !important;
+    font-weight: 600 !important;
+    line-height: 1.3;
+    letter-spacing: 0;
 }
 
-html .theme-entry h2,
-html .theme-entry .view-title,
-html .theme-entry .panel-title {
-    margin-bottom: var(--gob-space-4);
-    font-size: clamp(1.25rem, 2vw, var(--gob-text-2xl));
+html .theme-entry [name="dl_header_userwelcome"] {
+    color: var(--gob-ink-600) !important;
+    font-size: 0.875rem !important;
+    line-height: 1.4;
 }
 
-html .theme-entry h3 {
-    margin-bottom: var(--gob-space-3);
-    font-size: var(--gob-text-xl);
+html .theme-entry [name="tblInstructions"] {
+    display: block;
+    margin: 0 0 1.25rem;
+    padding: 1.125rem 1.25rem;
+    border: 1px solid #b9dce0;
+    border-left: 0.25rem solid var(--gob-aqua-700);
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-aqua-050) !important;
 }
 
-html .theme-entry h4,
-html .theme-entry h5,
-html .theme-entry h6 {
-    margin-bottom: var(--gob-space-2);
-    font-size: var(--gob-text-lg);
-}
-
-html .theme-entry p {
-    max-width: var(--gob-readable-width);
-    margin-top: 0;
-    margin-bottom: var(--gob-space-4);
-    color: var(--gob-slate-700);
-}
-
-html .theme-entry strong,
-html .theme-entry b {
-    color: var(--gob-slate-900);
-    font-weight: 700;
-}
-
-html .theme-entry small,
-html .theme-entry .description,
-html .theme-entry .helper-text,
-html .theme-entry .form-field-description,
-html .theme-entry .input-control-watermark {
-    color: var(--gob-slate-600);
-    font-size: var(--gob-text-sm);
+html .theme-entry [name="lblInstructionsHeading"] {
+    display: block;
+    margin: 0 0 0.625rem;
+    color: var(--gob-aqua-900) !important;
+    font-size: 1rem !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
     line-height: 1.45;
 }
 
-html .theme-entry a {
-    color: var(--gob-aqua-800);
-    font-weight: 650;
-    text-decoration-line: underline;
-    text-decoration-color: rgba(0, 95, 107, 0.45);
-    text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.16em;
+html .theme-entry [name="lblInstructionsBody"] {
+    display: block;
+    color: var(--gob-ink-700) !important;
+    font-size: 0.9375rem !important;
+    font-style: normal !important;
+    line-height: 1.55;
 }
 
-html .theme-entry a:hover {
-    color: var(--gob-aqua-950);
-    text-decoration-color: currentColor;
+html .theme-entry [name="lblInstructionsBody"] p,
+html .theme-entry [name="lblInstructionsBody"] ul {
+    margin-top: 0;
 }
 
+html .theme-entry [name="lblInstructionsBody"] ul {
+    margin-bottom: 0;
+    padding-left: 1.25rem;
+}
+
+html .theme-entry [name="lblInstructionsBody"] li + li {
+    margin-top: 0.25rem;
+}
 
 /* ==========================================================================
-   04. VIEWS, PANELS AND SECTIONS
+   04. Panels and section headings
    ========================================================================== */
 
-html .theme-entry .view,
-html .theme-entry .panel,
-html .theme-entry .view-canvas,
-html .theme-entry .view-container,
-html .theme-entry .content-panel {
-    overflow: hidden;
-    margin-bottom: var(--gob-space-6);
-    border: 1px solid var(--gob-slate-200);
-    border-radius: var(--gob-radius-lg);
-    background-color: var(--gob-white);
-    box-shadow: var(--gob-shadow-sm);
-}
-
-html .theme-entry .view-header,
-html .theme-entry .panel-header,
-html .theme-entry .grid-header,
-html .theme-entry .view-titlebar,
-html .theme-entry .panel-heading,
-html .theme-entry .view .header {
+html .theme-entry .panel-header {
     position: relative;
     min-height: 3.25rem;
-    padding: 0.8125rem var(--gob-space-5);
-    border-bottom: 1px solid var(--gob-slate-200);
-    background:
-        linear-gradient(
-            90deg,
-            var(--gob-aqua-050) 0%,
-            var(--gob-white) 72%
-        );
-    color: var(--gob-slate-950);
+    padding: 0.875rem 1.25rem 0.875rem 1.5rem;
+    border: 0;
+    border-bottom: 1px solid var(--gob-border);
+    background: var(--gob-surface-subtle) !important;
+    color: var(--gob-navy-900) !important;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0;
 }
 
-/* Gold section marker */
-html .theme-entry .view-header::before,
 html .theme-entry .panel-header::before,
-html .theme-entry .view-titlebar::before,
-html .theme-entry .panel-heading::before {
-    content: "";
+html .theme-entry [name="FormSectionName2"]::before,
+html .theme-entry [name="lblDeviceDetails"]::before {
     position: absolute;
     top: 50%;
     left: 0;
     width: 0.25rem;
-    height: 1.75rem;
-    border-radius: 0 var(--gob-radius-pill) var(--gob-radius-pill) 0;
-    background-color: var(--gob-gold-500);
+    height: 1.5rem;
+    background: var(--gob-gold-500);
+    content: "";
     transform: translateY(-50%);
 }
 
-html .theme-entry .view-content,
-html .theme-entry .panel-body,
-html .theme-entry .view-body,
-html .theme-entry .content {
-    padding: clamp(0.875rem, 1.8vw, 1.5rem);
-    background-color: var(--gob-white);
+html .theme-entry [name="FormSectionName2"],
+html .theme-entry [name="lblDeviceDetails"],
+html .theme-entry .gob-section-heading {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 1.75rem 0 1rem;
+    padding: 0.75rem 1rem 0.75rem 1.25rem;
+    border-top: 1px solid var(--gob-border) !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    border-left: 0 !important;
+    border-radius: 0 !important;
+    background: var(--gob-surface-subtle) !important;
+    color: var(--gob-navy-900) !important;
+    font-size: 0.875rem !important;
+    font-weight: 700 !important;
+    line-height: 1.35;
+    letter-spacing: 0;
+    text-align: left;
 }
-
-/* Avoid double-card styling inside popups and deeply nested K2 containers */
-html .theme-entry .view .view,
-html .theme-entry .panel .panel,
-html .theme-entry .popup .view,
-html .theme-entry .dialog .view {
-    box-shadow: none;
-}
-
 
 /* ==========================================================================
-   05. LABELS, REQUIRED MARKERS AND FIELD SPACING
+   05. Typography, labels, and descriptions
    ========================================================================== */
 
-html .theme-entry label,
-html .theme-entry .input-control-label,
-html .theme-entry .form-field-label,
+html .theme-entry h1,
+html .theme-entry h2,
+html .theme-entry h3,
+html .theme-entry h4 {
+    color: var(--gob-navy-900);
+    font-family: var(--gob-font);
+    letter-spacing: 0;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Label:not(.input-label),
 html .theme-entry .field-label,
-html .theme-entry .control-label {
-    display: inline-block;
-    margin-bottom: var(--gob-space-2);
-    color: var(--gob-slate-800);
-    font-size: 0.9375rem;
-    font-weight: 650;
+html .theme-entry .gob-field-label {
+    display: block;
+    margin: 0 0 0.375rem;
+    color: var(--gob-ink-900) !important;
+    font-size: 0.9375rem !important;
+    font-style: normal;
+    font-weight: 600 !important;
     line-height: 1.35;
+}
+
+html .theme-entry .description,
+html .theme-entry .LabelWrap.description,
+html .theme-entry .helper-text,
+html .theme-entry .gob-help {
+    display: block;
+    margin: 0.375rem 0 0;
+    color: var(--gob-ink-600) !important;
+    font-size: 0.875rem !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1.45;
 }
 
 html .theme-entry .required,
 html .theme-entry .mandatory,
-html .theme-entry .input-control-label .required,
-html .theme-entry .form-field-label .required {
-    color: var(--gob-danger-700);
-    font-weight: 800;
+html .theme-entry [aria-required="true"] + .required-indicator {
+    color: var(--gob-danger-700) !important;
+    font-weight: 700;
 }
 
-html .theme-entry .form-field,
 html .theme-entry .field,
-html .theme-entry .editor-cell,
-html .theme-entry .input-control {
+html .theme-entry .gob-field {
     min-width: 0;
+    margin: 0;
 }
 
-html .theme-entry .editor-cell,
-html .theme-entry .form-field,
-html .theme-entry .field {
-    padding-top: var(--gob-space-2);
-    padding-bottom: var(--gob-space-2);
+html .theme-entry fieldset.gob-field {
+    padding: 0;
+    border: 0;
 }
 
+html .theme-entry fieldset.gob-field > legend {
+    padding: 0;
+}
 
 /* ==========================================================================
-   06. TEXT INPUTS, TEXTAREAS, DROPDOWNS, PICKERS AND LOOKUPS
+   06. Text fields and K2 composite controls
    ========================================================================== */
 
-html .theme-entry input[type="text"],
-html .theme-entry input[type="password"],
-html .theme-entry input[type="email"],
-html .theme-entry input[type="number"],
-html .theme-entry input[type="tel"],
-html .theme-entry input[type="url"],
-html .theme-entry input[type="search"],
-html .theme-entry input[type="date"],
-html .theme-entry input[type="datetime-local"],
-html .theme-entry textarea,
-html .theme-entry select,
-html .theme-entry .input-control input,
-html .theme-entry .input-control textarea,
-html .theme-entry .input-control select,
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox,
+html .theme-entry textarea.SourceCode-Forms-Controls-Web-TextArea,
+html .theme-entry textarea.SFC,
+html .theme-entry .text-input input,
+html .theme-entry .text-input textarea,
 html .theme-entry .dropdown-box,
+html .theme-entry .lookup-box,
 html .theme-entry .picker-input,
-html .theme-entry .lookup-input,
-html .theme-entry .input-control-m-c,
-html .theme-entry .input-control-m-c > input {
+html .theme-entry .calendar-control,
+html .theme-entry .gob-control {
+    width: 100%;
     max-width: 100%;
     min-height: var(--gob-control-height);
-    border: 1px solid var(--gob-slate-300);
-    border-radius: var(--gob-radius-md);
-    background-color: var(--gob-white);
-    color: var(--gob-slate-950);
-    font-size: var(--gob-text-md);
-    line-height: 1.4;
-    box-shadow: none;
+    border: 1px solid var(--gob-border-strong) !important;
+    border-radius: var(--gob-radius-sm) !important;
+    background: var(--gob-white) !important;
+    color: var(--gob-ink-900) !important;
+    font-family: var(--gob-font);
+    font-size: 1rem !important;
+    line-height: 1.35;
+    box-shadow: none !important;
     transition:
-        border-color 140ms ease,
-        box-shadow 140ms ease,
-        background-color 140ms ease;
+        border-color 120ms ease,
+        box-shadow 120ms ease,
+        background-color 120ms ease;
 }
 
-html .theme-entry input[type="text"],
-html .theme-entry input[type="password"],
-html .theme-entry input[type="email"],
-html .theme-entry input[type="number"],
-html .theme-entry input[type="tel"],
-html .theme-entry input[type="url"],
-html .theme-entry input[type="search"],
-html .theme-entry input[type="date"],
-html .theme-entry input[type="datetime-local"],
-html .theme-entry textarea,
-html .theme-entry select,
-html .theme-entry .input-control input,
-html .theme-entry .input-control textarea,
-html .theme-entry .input-control select {
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox,
+html .theme-entry textarea.SourceCode-Forms-Controls-Web-TextArea,
+html .theme-entry textarea.SFC,
+html .theme-entry .text-input input,
+html .theme-entry .text-input textarea,
+html .theme-entry .gob-control {
     padding: 0.625rem 0.75rem;
 }
 
-html .theme-entry textarea,
-html .theme-entry .input-control textarea {
+html .theme-entry textarea.SourceCode-Forms-Controls-Web-TextArea,
+html .theme-entry textarea.SFC,
+html .theme-entry .text-input textarea,
+html .theme-entry textarea.gob-control {
     min-height: 7rem;
     resize: vertical;
 }
 
-html .theme-entry input:hover,
-html .theme-entry textarea:hover,
-html .theme-entry select:hover,
-html .theme-entry .dropdown-box:hover,
-html .theme-entry .picker-input:hover,
-html .theme-entry .lookup-input:hover {
-    border-color: var(--gob-aqua-600);
+html .theme-entry .dropdown-box,
+html .theme-entry .lookup-box,
+html .theme-entry .calendar-control {
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
 }
 
-html .theme-entry input:focus,
-html .theme-entry textarea:focus,
-html .theme-entry select:focus,
+html .theme-entry .dropdown-box > a,
+html .theme-entry .lookup-box > a,
+html .theme-entry .calendar-control > a {
+    display: flex;
+    min-width: var(--gob-control-height);
+    min-height: calc(var(--gob-control-height) - 2px);
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--gob-border);
+    color: var(--gob-aqua-800);
+    text-decoration: none;
+}
+
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox:hover,
+html .theme-entry textarea.SFC:hover,
+html .theme-entry .dropdown-box:hover,
+html .theme-entry .lookup-box:hover,
+html .theme-entry .calendar-control:hover,
+html .theme-entry .gob-control:hover {
+    border-color: var(--gob-aqua-600) !important;
+}
+
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox:focus,
+html .theme-entry textarea.SFC:focus,
 html .theme-entry .dropdown-box:focus-within,
-html .theme-entry .picker-input:focus-within,
-html .theme-entry .lookup-input:focus-within,
-html .theme-entry .input-control-m-c:focus-within {
-    outline: none;
-    border-color: var(--gob-aqua-700);
-    box-shadow: var(--gob-focus-ring);
+html .theme-entry .lookup-box:focus-within,
+html .theme-entry .calendar-control:focus-within,
+html .theme-entry .gob-control:focus {
+    outline: 0;
+    border-color: var(--gob-focus) !important;
+    box-shadow: 0 0 0 3px rgba(0, 118, 129, 0.2) !important;
+}
+
+html .theme-entry input[readonly],
+html .theme-entry textarea[readonly],
+html .theme-entry .read-only,
+html .theme-entry .readonly {
+    border-color: var(--gob-border) !important;
+    background: var(--gob-surface-subtle) !important;
+    color: var(--gob-ink-700) !important;
+}
+
+html .theme-entry input:disabled,
+html .theme-entry textarea:disabled,
+html .theme-entry select:disabled,
+html .theme-entry .disabled {
+    cursor: not-allowed;
+    border-color: var(--gob-border) !important;
+    background: #e8edef !important;
+    color: var(--gob-ink-500) !important;
+    opacity: 1;
 }
 
 html .theme-entry input::placeholder,
 html .theme-entry textarea::placeholder {
-    color: var(--gob-slate-500);
+    color: var(--gob-ink-500);
     opacity: 1;
 }
-
-/* Read-only must remain legible */
-html .theme-entry input[readonly],
-html .theme-entry textarea[readonly],
-html .theme-entry select[readonly],
-html .theme-entry .read-only input,
-html .theme-entry .read-only textarea,
-html .theme-entry .readonly input,
-html .theme-entry .readonly textarea {
-    border-color: var(--gob-slate-200);
-    background-color: var(--gob-slate-050);
-    color: var(--gob-slate-800);
-}
-
-/* Disabled controls */
-html .theme-entry input:disabled,
-html .theme-entry textarea:disabled,
-html .theme-entry select:disabled,
-html .theme-entry .disabled input,
-html .theme-entry .disabled textarea,
-html .theme-entry .disabled select {
-    cursor: not-allowed;
-    border-color: var(--gob-slate-200);
-    background-color: var(--gob-slate-100);
-    color: var(--gob-slate-500);
-    opacity: 1;
-}
-
 
 /* ==========================================================================
-   07. BUTTONS AND ACTIONS
+   07. Choice controls
    ========================================================================== */
 
-html .theme-entry button,
-html .theme-entry input[type="button"],
-html .theme-entry input[type="submit"],
-html .theme-entry .button,
-html .theme-entry .toolbar-button,
-html .theme-entry a.button,
-html .theme-entry .SourceCode-Forms-Controls-Web-Button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--gob-space-2);
-    min-height: var(--gob-control-height);
-    padding: 0.625rem 1.125rem;
-    border: 1px solid transparent;
-    border-radius: var(--gob-radius-md);
-    background-color: var(--gob-aqua-700);
-    color: var(--gob-white);
-    font-size: 0.9375rem;
-    font-weight: 700;
-    line-height: 1.2;
-    text-align: center;
-    text-decoration: none;
-    white-space: normal;
-    cursor: pointer;
-    box-shadow: var(--gob-shadow-xs);
-    transition:
-        transform 100ms ease,
-        background-color 140ms ease,
-        border-color 140ms ease,
-        color 140ms ease,
-        box-shadow 140ms ease;
-}
-
-html .theme-entry button:hover,
-html .theme-entry input[type="button"]:hover,
-html .theme-entry input[type="submit"]:hover,
-html .theme-entry .button:hover,
-html .theme-entry .toolbar-button:hover,
-html .theme-entry a.button:hover,
-html .theme-entry .SourceCode-Forms-Controls-Web-Button:hover {
-    background-color: var(--gob-aqua-800);
-    color: var(--gob-white);
-    box-shadow: var(--gob-shadow-sm);
-}
-
-html .theme-entry button:active,
-html .theme-entry input[type="button"]:active,
-html .theme-entry input[type="submit"]:active,
-html .theme-entry .button:active,
-html .theme-entry .toolbar-button:active,
-html .theme-entry .SourceCode-Forms-Controls-Web-Button:active {
-    transform: translateY(1px);
-    background-color: var(--gob-aqua-900);
-}
-
-html .theme-entry button:disabled,
-html .theme-entry input[type="button"]:disabled,
-html .theme-entry input[type="submit"]:disabled,
-html .theme-entry .button.disabled,
-html .theme-entry .toolbar-button.disabled {
-    cursor: not-allowed;
-    border-color: var(--gob-slate-200);
-    background-color: var(--gob-slate-200);
-    color: var(--gob-slate-500);
-    box-shadow: none;
-    transform: none;
-}
-
-/* Secondary */
-html .theme-entry [name="GOB_Button_Secondary"],
-html .theme-entry .gob-button-secondary {
-    border-color: var(--gob-aqua-700);
-    background-color: var(--gob-white);
-    color: var(--gob-aqua-800);
-    box-shadow: none;
-}
-
-html .theme-entry [name="GOB_Button_Secondary"]:hover,
-html .theme-entry .gob-button-secondary:hover {
-    border-color: var(--gob-aqua-800);
-    background-color: var(--gob-aqua-050);
-    color: var(--gob-aqua-950);
-}
-
-/* Gold accent */
-html .theme-entry [name="GOB_Button_Accent"],
-html .theme-entry .gob-button-accent {
-    border-color: var(--gob-gold-600);
-    background-color: var(--gob-gold-500);
-    color: var(--gob-black);
-}
-
-html .theme-entry [name="GOB_Button_Accent"]:hover,
-html .theme-entry .gob-button-accent:hover {
-    border-color: var(--gob-gold-700);
-    background-color: var(--gob-gold-600);
-    color: var(--gob-black);
-}
-
-/* Destructive */
-html .theme-entry [name="GOB_Button_Danger"],
-html .theme-entry .gob-button-danger {
-    border-color: var(--gob-danger-700);
-    background-color: var(--gob-danger-700);
-    color: var(--gob-white);
-}
-
-html .theme-entry [name="GOB_Button_Danger"]:hover,
-html .theme-entry .gob-button-danger:hover {
-    border-color: var(--gob-danger-800);
-    background-color: var(--gob-danger-800);
-}
-
-/* Link-style action */
-html .theme-entry [name="GOB_Button_Link"],
-html .theme-entry .gob-button-link {
-    min-height: auto;
-    padding: 0.25rem;
-    border: 0;
-    background: transparent;
-    color: var(--gob-aqua-800);
-    box-shadow: none;
-    text-decoration: underline;
-    text-underline-offset: 0.16em;
-}
-
-html .theme-entry [name="GOB_Button_Link"]:hover,
-html .theme-entry .gob-button-link:hover {
-    background: transparent;
-    color: var(--gob-aqua-950);
-    box-shadow: none;
-}
-
-/* Toolbars */
-html .theme-entry .toolbar,
-html .theme-entry .view-toolbar,
-html .theme-entry .panel-toolbar,
-html .theme-entry .toolbars {
+html .theme-entry .ControlPack-Choice.displayTypeRadio,
+html .theme-entry .gob-choice-list {
     display: flex;
+    min-width: 0;
     flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+html .theme-entry [name="AssignmentType Choice"],
+html .theme-entry .gob-choice-list.is-stacked {
+    align-items: stretch;
+    flex-direction: column;
+}
+
+html .theme-entry [name="AssignmentType Choice"] {
+    max-width: 36rem;
+}
+
+html .theme-entry .input-control.radio.style-aware,
+html .theme-entry .input-control.checkbox.style-aware,
+html .theme-entry .gob-choice {
+    position: relative;
+    display: inline-flex;
+    min-height: 2.75rem;
     align-items: center;
-    gap: var(--gob-space-2);
-    min-height: 3.25rem;
-    padding: var(--gob-space-3) var(--gob-space-4);
-    border-bottom: 1px solid var(--gob-slate-200);
-    background-color: var(--gob-slate-050);
+    gap: 0.625rem;
+    padding: 0.5625rem 0.75rem;
+    border: 1px solid transparent;
+    border-radius: var(--gob-radius-sm);
+    background: transparent;
+    color: var(--gob-ink-700);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.35;
+    cursor: pointer;
 }
 
-
-/* ==========================================================================
-   08. CHECKBOXES, RADIO BUTTONS AND TOGGLES
-   ========================================================================== */
-
-html .theme-entry input[type="checkbox"],
-html .theme-entry input[type="radio"] {
-    width: 1.125rem;
-    height: 1.125rem;
-    margin: 0 var(--gob-space-2) 0 0;
-    accent-color: var(--gob-aqua-700);
-    vertical-align: middle;
+html .theme-entry .input-control.radio.style-aware:hover,
+html .theme-entry .input-control.checkbox.style-aware:hover,
+html .theme-entry .gob-choice:hover {
+    background: var(--gob-surface-subtle);
 }
 
-html .theme-entry input[type="checkbox"]:focus-visible,
-html .theme-entry input[type="radio"]:focus-visible {
+html .theme-entry .input-control.radio.style-aware.checked,
+html .theme-entry .input-control.checkbox.style-aware.checked,
+html .theme-entry .gob-choice:has(input:checked) {
+    border-color: #9fcfd3;
+    background: var(--gob-aqua-050);
+    color: var(--gob-aqua-900);
+}
+
+html .theme-entry .input-control.radio.style-aware.focus,
+html .theme-entry .input-control.checkbox.style-aware.focus,
+html .theme-entry .gob-choice:focus-within {
     outline: 3px solid var(--gob-gold-500);
     outline-offset: 2px;
 }
 
-
-/* ==========================================================================
-   09. LIST VIEWS, TABLES AND EDITABLE GRIDS
-   ========================================================================== */
-
-html .theme-entry .grid,
-html .theme-entry .list-view,
-html .theme-entry .grid-content,
-html .theme-entry .list-view-content,
-html .theme-entry .scroll-wrapper {
-    max-width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+html .theme-entry .input-control.radio.style-aware svg,
+html .theme-entry .input-control.checkbox.style-aware svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex: 0 0 auto;
 }
 
-html .theme-entry table,
-html .theme-entry .grid table,
-html .theme-entry .list-view table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    color: var(--gob-slate-800);
+html .theme-entry .radio.checked .svg-radio-btn-circle {
+    stroke: var(--gob-aqua-700);
 }
 
-html .theme-entry table th,
-html .theme-entry .grid-header-cell,
-html .theme-entry .list-view th,
-html .theme-entry .grid-column-header-cell {
-    padding: 0.75rem;
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 2px solid var(--gob-aqua-700);
-    border-left: 0;
-    background-color: var(--gob-aqua-050);
-    color: var(--gob-slate-950);
-    font-size: 0.8125rem;
-    font-weight: 750;
-    letter-spacing: 0.025em;
-    text-align: left;
-    text-transform: uppercase;
-    white-space: normal;
+html .theme-entry .radio.checked .svg-radio-btn-checked {
+    fill: var(--gob-aqua-700);
 }
 
-html .theme-entry table td,
-html .theme-entry .grid-content-cell,
-html .theme-entry .list-view td {
-    padding: 0.75rem;
-    border-top: 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--gob-slate-200);
-    border-left: 0;
-    background-color: var(--gob-white);
-    vertical-align: top;
+html .theme-entry .gob-choice input {
+    width: 1.125rem;
+    height: 1.125rem;
+    flex: 0 0 auto;
+    margin: 0;
+    accent-color: var(--gob-aqua-700);
 }
 
-html .theme-entry table tbody tr:nth-child(even) td,
-html .theme-entry .grid-content-row:nth-child(even) .grid-content-cell {
-    background-color: var(--gob-slate-050);
-}
-
-html .theme-entry table tbody tr:hover td,
-html .theme-entry .grid-content-row:hover .grid-content-cell,
-html .theme-entry .list-view tbody tr:hover td {
-    background-color: var(--gob-aqua-050);
-}
-
-html .theme-entry table tbody tr.selected td,
-html .theme-entry .grid-content-row.selected .grid-content-cell,
-html .theme-entry .list-view tbody tr.selected td {
-    background-color: var(--gob-gold-100);
-    box-shadow: inset 0.25rem 0 0 var(--gob-gold-600);
-}
-
-/* Editable cells */
-html .theme-entry .grid-content-cell input,
-html .theme-entry .grid-content-cell textarea,
-html .theme-entry .grid-content-cell select {
-    min-height: var(--gob-control-height-sm);
-    font-size: 0.9375rem;
-}
-
-
-/* ==========================================================================
-   10. TABS, ACCORDIONS AND MENUS
-   ========================================================================== */
-
-html .theme-entry .tab-box,
-html .theme-entry .tabs,
-html .theme-entry .tab-container {
-    border-bottom: 1px solid var(--gob-slate-200);
-}
-
-html .theme-entry .tab,
-html .theme-entry .tab-item,
-html .theme-entry .tab-box-tab {
-    min-height: 2.875rem;
-    padding: 0.6875rem 1rem;
-    border: 0;
-    border-bottom: 3px solid transparent;
-    background-color: transparent;
-    color: var(--gob-slate-700);
-    font-weight: 650;
-    box-shadow: none;
-}
-
-html .theme-entry .tab:hover,
-html .theme-entry .tab-item:hover,
-html .theme-entry .tab-box-tab:hover {
-    background-color: var(--gob-aqua-050);
-    color: var(--gob-aqua-950);
-}
-
-html .theme-entry .tab.selected,
-html .theme-entry .tab.active,
-html .theme-entry .tab-item.selected,
-html .theme-entry .tab-box-tab.selected {
-    border-bottom-color: var(--gob-gold-500);
-    background-color: var(--gob-white);
-    color: var(--gob-aqua-950);
-}
-
-html .theme-entry .menu,
-html .theme-entry .popup-menu,
-html .theme-entry .context-menu,
-html .theme-entry .dropdown-menu {
-    overflow: hidden;
-    border: 1px solid var(--gob-slate-200);
-    border-radius: var(--gob-radius-md);
-    background-color: var(--gob-white);
-    box-shadow: var(--gob-shadow-md);
-}
-
-html .theme-entry .menu-item,
-html .theme-entry .popup-menu-item,
-html .theme-entry .context-menu-item,
-html .theme-entry .dropdown-menu-item {
-    min-height: 2.5rem;
-    padding: 0.625rem 0.875rem;
-    color: var(--gob-slate-800);
-}
-
-html .theme-entry .menu-item:hover,
-html .theme-entry .popup-menu-item:hover,
-html .theme-entry .context-menu-item:hover,
-html .theme-entry .dropdown-menu-item:hover {
-    background-color: var(--gob-aqua-050);
-    color: var(--gob-aqua-950);
-}
-
-
-/* ==========================================================================
-   11. VALIDATION, MESSAGES AND STATUS CALLOUTS
-   ========================================================================== */
-
-html .theme-entry .validation-error,
-html .theme-entry .invalid,
-html .theme-entry .error,
-html .theme-entry .error-message,
-html .theme-entry .field-validation-error {
-    color: var(--gob-danger-700);
-}
-
-html .theme-entry input.invalid,
-html .theme-entry textarea.invalid,
-html .theme-entry select.invalid,
-html .theme-entry .invalid input,
-html .theme-entry .invalid textarea,
-html .theme-entry .invalid select {
-    border-color: var(--gob-danger-700);
-    background-color: var(--gob-danger-100);
-}
-
-html .theme-entry input.invalid:focus,
-html .theme-entry textarea.invalid:focus,
-html .theme-entry select.invalid:focus {
-    box-shadow: var(--gob-danger-ring);
-}
-
-html .theme-entry .message-box,
-html .theme-entry .notification,
-html .theme-entry .alert,
-html .theme-entry [name="GOB_Status_Success"],
-html .theme-entry [name="GOB_Status_Warning"],
-html .theme-entry [name="GOB_Status_Error"],
-html .theme-entry [name="GOB_Status_Info"] {
-    display: block;
-    margin-bottom: var(--gob-space-4);
-    padding: var(--gob-space-4);
-    border: 1px solid var(--gob-slate-200);
-    border-left-width: 0.375rem;
-    border-radius: var(--gob-radius-md);
-    background-color: var(--gob-white);
-    color: var(--gob-slate-800);
-}
-
-html .theme-entry [name="GOB_Status_Success"],
-html .theme-entry .gob-status-success {
-    border-color: var(--gob-success-700);
-    background-color: var(--gob-success-100);
-    color: var(--gob-success-800);
-}
-
-html .theme-entry [name="GOB_Status_Warning"],
-html .theme-entry .gob-status-warning {
-    border-color: var(--gob-gold-600);
-    background-color: var(--gob-warning-100);
-    color: var(--gob-warning-800);
-}
-
-html .theme-entry [name="GOB_Status_Error"],
-html .theme-entry .gob-status-error {
-    border-color: var(--gob-danger-700);
-    background-color: var(--gob-danger-100);
-    color: var(--gob-danger-800);
-}
-
-html .theme-entry [name="GOB_Status_Info"],
-html .theme-entry .gob-status-info {
-    border-color: var(--gob-info-700);
-    background-color: var(--gob-info-100);
-    color: var(--gob-info-800);
-}
-
-
-/* ==========================================================================
-   12. DIALOGS, POPUPS, SUBFORMS AND SUBVIEWS
-   ========================================================================== */
-
-html .theme-entry .popup,
-html .theme-entry .dialog,
-html .theme-entry .modal,
-html .theme-entry .subview,
-html .theme-entry .popup-content,
-html .theme-entry .popupManager {
-    border: 1px solid var(--gob-slate-200);
-    border-radius: var(--gob-radius-lg);
-    background-color: var(--gob-white);
-    box-shadow: var(--gob-shadow-dialog);
-}
-
-html .theme-entry .popup-header,
-html .theme-entry .dialog-header,
-html .theme-entry .modal-header,
-html .theme-entry .subview-header {
-    padding: var(--gob-space-4) var(--gob-space-5);
-    border-bottom: 1px solid var(--gob-slate-200);
-    background-color: var(--gob-aqua-050);
-    color: var(--gob-slate-950);
-    font-weight: 750;
-}
-
-html .theme-entry .popup-footer,
-html .theme-entry .dialog-footer,
-html .theme-entry .modal-footer,
-html .theme-entry .subview-footer {
+html .theme-entry .gob-check-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: var(--gob-space-2);
-    padding: var(--gob-space-4) var(--gob-space-5);
-    border-top: 1px solid var(--gob-slate-200);
-    background-color: var(--gob-slate-050);
+    gap: 0.5rem 1rem;
 }
-
 
 /* ==========================================================================
-   13. ATTACHMENTS AND UPLOAD CONTROLS
+   08. Policy acknowledgement and actions
    ========================================================================== */
 
-html .theme-entry .file-upload,
-html .theme-entry .file-attachment,
-html .theme-entry .upload-control,
-html .theme-entry .drop-zone,
-html .theme-entry .file-wrapper {
-    padding: var(--gob-space-5);
-    border: 2px dashed var(--gob-slate-300);
-    border-radius: var(--gob-radius-lg);
-    background-color: var(--gob-slate-050);
-    text-align: center;
-}
-
-html .theme-entry .file-upload:hover,
-html .theme-entry .file-attachment:hover,
-html .theme-entry .upload-control:hover,
-html .theme-entry .drop-zone:hover {
-    border-color: var(--gob-aqua-600);
-    background-color: var(--gob-aqua-050);
-}
-
-
-/* ==========================================================================
-   14. PAGERS
-   ========================================================================== */
-
-html .theme-entry .pager,
-html .theme-entry .grid-pager,
-html .theme-entry .pagination {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
-    gap: var(--gob-space-2);
-    padding: var(--gob-space-3) var(--gob-space-4);
-    border-top: 1px solid var(--gob-slate-200);
-    background-color: var(--gob-slate-050);
-}
-
-html .theme-entry .pager a,
-html .theme-entry .pagination a,
-html .theme-entry .pager button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.5rem;
-    min-height: 2.5rem;
-    padding: 0.5rem;
-    border: 1px solid var(--gob-slate-300);
+html .theme-entry .gob-policy,
+html .theme-entry [name="GOB_Policy_Acknowledgement"] {
+    margin-top: 1.5rem;
+    padding: 1rem 1.125rem;
+    border: 1px solid #ead99a;
+    border-left: 0.25rem solid var(--gob-gold-500);
     border-radius: var(--gob-radius-md);
-    background-color: var(--gob-white);
-    color: var(--gob-aqua-800);
-    box-shadow: none;
+    background: #fffdf5;
 }
 
-html .theme-entry .pager .selected,
-html .theme-entry .pagination .active,
-html .theme-entry .pager .current {
-    border-color: var(--gob-aqua-700);
-    background-color: var(--gob-aqua-700);
-    color: var(--gob-white);
-}
-
-
-/* ==========================================================================
-   15. LOADING AND BUSY STATES
-   ========================================================================== */
-
-html .theme-entry .loading,
-html .theme-entry .loading-mask,
-html .theme-entry .spinner-overlay,
-html .theme-entry .busy-indicator {
-    background-color: rgba(255, 255, 255, 0.86);
-    backdrop-filter: blur(2px);
-}
-
-html .theme-entry .spinner,
-html .theme-entry .loading-spinner,
-html .theme-entry .busy-indicator::before {
-    border-color: var(--gob-slate-200);
-    border-top-color: var(--gob-aqua-700);
-}
-
-
-/* ==========================================================================
-   16. OPTIONAL NAMED-CONTROL COMPONENTS
-   ========================================================================== */
-
-/*
-Recommended K2 Name properties:
-
-GOB_Form_Title
-GOB_Form_Intro
-GOB_Section_Label
-GOB_Button_Primary
-GOB_Button_Secondary
-GOB_Button_Accent
-GOB_Button_Danger
-GOB_Button_Link
-GOB_Status_Success
-GOB_Status_Warning
-GOB_Status_Error
-GOB_Status_Info
-GOB_Card
-GOB_Callout
-GOB_Action_Bar
-*/
-
-html .theme-entry [name="GOB_Form_Title"] {
-    display: block;
-    margin-bottom: var(--gob-space-2);
-    color: var(--gob-slate-950);
-    font-size: clamp(1.75rem, 3vw, var(--gob-text-3xl));
-    font-weight: 750;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-}
-
-html .theme-entry [name="GOB_Form_Intro"] {
-    display: block;
-    max-width: var(--gob-readable-width);
-    margin-bottom: var(--gob-space-6);
-    color: var(--gob-slate-700);
-    font-size: var(--gob-text-lg);
+html .theme-entry .gob-policy p,
+html .theme-entry [name="GOB_Policy_Acknowledgement"] p {
+    margin: 0.625rem 0 0;
+    color: var(--gob-ink-700) !important;
+    font-size: 0.9375rem !important;
+    font-style: normal !important;
     line-height: 1.55;
 }
 
-html .theme-entry [name="GOB_Section_Label"] {
-    display: inline-block;
-    margin-bottom: var(--gob-space-3);
-    padding: 0.3125rem 0.625rem;
-    border-radius: var(--gob-radius-pill);
-    background-color: var(--gob-gold-100);
-    color: var(--gob-gold-800);
-    font-size: var(--gob-text-xs);
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+html .theme-entry .gob-policy-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 16rem);
+    align-items: end;
+    gap: 1.25rem;
 }
 
-html .theme-entry [name="GOB_Card"] {
-    display: block;
-    padding: var(--gob-space-5);
-    border: 1px solid var(--gob-slate-200);
-    border-radius: var(--gob-radius-lg);
-    background-color: var(--gob-white);
-    box-shadow: var(--gob-shadow-sm);
-}
-
-html .theme-entry [name="GOB_Callout"] {
-    display: block;
-    padding: var(--gob-space-4);
-    border-left: 0.375rem solid var(--gob-gold-500);
-    border-radius: var(--gob-radius-sm);
-    background-color: var(--gob-gold-050);
-    color: var(--gob-slate-800);
-}
-
-html .theme-entry [name="GOB_Action_Bar"] {
+html .theme-entry .gob-action-bar {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: flex-end;
-    gap: var(--gob-space-3);
-    margin-top: var(--gob-space-6);
-    padding-top: var(--gob-space-4);
-    border-top: 1px solid var(--gob-slate-200);
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--gob-border);
 }
 
+html .theme-entry .SourceCode-Forms-Controls-Web-Button,
+html .theme-entry .gob-button {
+    display: inline-flex;
+    min-width: 7.5rem;
+    min-height: var(--gob-control-height);
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.125rem;
+    border: 1px solid var(--gob-aqua-700) !important;
+    border-radius: var(--gob-radius-sm) !important;
+    background: var(--gob-white) !important;
+    color: var(--gob-aqua-800) !important;
+    font-family: var(--gob-font);
+    font-size: 0.9375rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    box-shadow: none !important;
+    transition:
+        background-color 120ms ease,
+        border-color 120ms ease,
+        color 120ms ease;
+}
 
-/* ==========================================================================
-   17. ACCESSIBILITY AND KEYBOARD FOCUS
-   ========================================================================== */
+html .theme-entry .SourceCode-Forms-Controls-Web-Button:hover,
+html .theme-entry .gob-button:hover {
+    border-color: var(--gob-aqua-800) !important;
+    background: var(--gob-aqua-050) !important;
+    color: var(--gob-aqua-900) !important;
+}
 
-html .theme-entry button:focus-visible,
-html .theme-entry input[type="button"]:focus-visible,
-html .theme-entry input[type="submit"]:focus-visible,
-html .theme-entry .button:focus-visible,
-html .theme-entry .toolbar-button:focus-visible,
-html .theme-entry a:focus-visible,
-html .theme-entry [tabindex]:focus-visible {
+html .theme-entry [name="CreateListItem Button"],
+html .theme-entry .gob-button.is-primary {
+    border-color: var(--gob-aqua-700) !important;
+    background: var(--gob-aqua-700) !important;
+    color: var(--gob-white) !important;
+}
+
+html .theme-entry [name="CreateListItem Button"]:hover,
+html .theme-entry .gob-button.is-primary:hover {
+    border-color: var(--gob-aqua-900) !important;
+    background: var(--gob-aqua-900) !important;
+    color: var(--gob-white) !important;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Button:focus-visible,
+html .theme-entry .gob-button:focus-visible {
     outline: 3px solid var(--gob-gold-500);
     outline-offset: 2px;
 }
 
-/* Do not hide content merely because K2 applies a visually-hidden utility */
-html .theme-entry .sr-only,
-html .theme-entry .visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-
 /* ==========================================================================
-   18. RESPONSIVE BEHAVIOR
+   09. Validation and system states
    ========================================================================== */
 
-@media (max-width: 64rem) {
-    html .theme-entry {
-        --gob-control-height: 2.875rem;
-    }
-
-    html .theme-entry .form,
-    html .theme-entry .runtime-form,
-    html .theme-entry .runtime-content {
-        padding: 1rem;
-    }
+html .theme-entry input.invalid,
+html .theme-entry textarea.invalid,
+html .theme-entry .invalid input,
+html .theme-entry .invalid textarea,
+html .theme-entry .validation-error {
+    border-color: var(--gob-danger-700) !important;
 }
 
+html .theme-entry .field-validation-error,
+html .theme-entry .error-message {
+    display: block;
+    margin-top: 0.375rem;
+    color: var(--gob-danger-700) !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+html .theme-entry .gob-status {
+    padding: 0.75rem 1rem;
+    border-radius: var(--gob-radius-sm);
+    font-size: 0.9375rem;
+}
+
+html .theme-entry .gob-status.is-success {
+    border: 1px solid #aad6bf;
+    background: var(--gob-success-100);
+    color: var(--gob-success-700);
+}
+
+/* ==========================================================================
+   10. Preview layout helpers
+   These classes recreate the K2-authored grid locally; they do not alter
+   K2's runtime Grid-Layout or editor-cell positioning.
+   ========================================================================== */
+
+html .theme-entry .gob-form-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+html .theme-entry .gob-span-12 {
+    grid-column: span 12;
+}
+
+html .theme-entry .gob-span-8 {
+    grid-column: span 8;
+}
+
+html .theme-entry .gob-span-6 {
+    grid-column: span 6;
+}
+
+html .theme-entry .gob-span-4 {
+    grid-column: span 4;
+}
+
+html .theme-entry .gob-span-3 {
+    grid-column: span 3;
+}
+
+html .theme-entry .gob-header-grid {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 1rem;
+}
+
+html .theme-entry .gob-crest {
+    width: 3.75rem;
+    height: auto;
+}
+
+html .theme-entry .gob-welcome {
+    color: var(--gob-ink-600);
+    font-size: 0.875rem;
+    white-space: nowrap;
+}
+
+html .theme-entry [hidden] {
+    display: none !important;
+}
+
+/* ==========================================================================
+   11. Responsive behavior
+   ========================================================================== */
+
 @media (max-width: 48rem) {
-    html .theme-entry {
-        font-size: 15px;
+    html .theme-entry .runtime-form {
+        padding: 1rem;
     }
 
-    html .theme-entry .form,
-    html .theme-entry .runtime-form,
-    html .theme-entry .runtime-content {
-        padding: 0.75rem;
+    html .theme-entry .panel-body {
+        padding: 1.125rem;
     }
 
-    html .theme-entry .view,
-    html .theme-entry .panel,
-    html .theme-entry .view-canvas,
-    html .theme-entry .view-container,
-    html .theme-entry .content-panel {
-        margin-bottom: 1rem;
-        border-radius: var(--gob-radius-md);
+    html .theme-entry .gob-header-grid {
+        grid-template-columns: 3.25rem minmax(0, 1fr);
+        gap: 0.75rem;
     }
 
-    html .theme-entry .view-header,
-    html .theme-entry .panel-header,
-    html .theme-entry .grid-header,
-    html .theme-entry .view-titlebar,
-    html .theme-entry .panel-heading {
-        padding-right: 0.875rem;
-        padding-left: 0.875rem;
+    html .theme-entry .gob-crest {
+        width: 2.875rem;
     }
 
-    html .theme-entry .view-content,
-    html .theme-entry .panel-body,
-    html .theme-entry .view-body,
-    html .theme-entry .content {
-        padding: 0.875rem;
+    html .theme-entry .gob-welcome {
+        grid-column: 1 / -1;
+        padding-top: 0.75rem;
+        border-top: 1px solid var(--gob-border);
+        white-space: normal;
     }
 
-    html .theme-entry .toolbar,
-    html .theme-entry .view-toolbar,
-    html .theme-entry .panel-toolbar,
-    html .theme-entry .popup-footer,
-    html .theme-entry .dialog-footer,
-    html .theme-entry .modal-footer,
-    html .theme-entry .subview-footer,
-    html .theme-entry [name="GOB_Action_Bar"] {
+    html .theme-entry .gob-span-8,
+    html .theme-entry .gob-span-6,
+    html .theme-entry .gob-span-4,
+    html .theme-entry .gob-span-3 {
+        grid-column: span 12;
+    }
+
+    html .theme-entry .gob-policy-meta {
+        grid-template-columns: 1fr;
+    }
+
+    html .theme-entry .gob-action-bar {
         align-items: stretch;
         flex-direction: column;
     }
 
-    html .theme-entry .toolbar button,
-    html .theme-entry .toolbar input[type="button"],
-    html .theme-entry .toolbar input[type="submit"],
-    html .theme-entry .toolbar .button,
-    html .theme-entry .view-toolbar button,
-    html .theme-entry .view-toolbar .button,
-    html .theme-entry .popup-footer button,
-    html .theme-entry .dialog-footer button,
-    html .theme-entry .modal-footer button,
-    html .theme-entry [name="GOB_Action_Bar"] button {
+    html .theme-entry .gob-action-bar .gob-button,
+    html .theme-entry .gob-action-bar .SourceCode-Forms-Controls-Web-Button {
         width: 100%;
-    }
-
-    html .theme-entry table th,
-    html .theme-entry table td,
-    html .theme-entry .grid-header-cell,
-    html .theme-entry .grid-content-cell {
-        padding: 0.625rem;
     }
 }
 
 @media (max-width: 30rem) {
-    html .theme-entry h1,
-    html .theme-entry .form-title,
-    html .theme-entry [name="GOB_Form_Title"] {
-        font-size: 1.625rem;
+    html .theme-entry {
+        --gob-control-height: 3rem;
+        font-size: 15px;
     }
 
-    html .theme-entry h2,
-    html .theme-entry .view-title,
-    html .theme-entry .panel-title {
-        font-size: 1.25rem;
+    html .theme-entry .runtime-form {
+        padding: 0.75rem;
     }
 
-    html .theme-entry .view-header::before,
-    html .theme-entry .panel-header::before,
-    html .theme-entry .view-titlebar::before,
-    html .theme-entry .panel-heading::before {
-        height: 1.4rem;
+    html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"],
+    html .theme-entry [name="tblInstructions"],
+    html .theme-entry .panel-body {
+        padding: 1rem;
+    }
+
+    html .theme-entry .ControlPack-Choice.displayTypeRadio,
+    html .theme-entry .gob-choice-list,
+    html .theme-entry .gob-check-grid {
+        align-items: stretch;
+        flex-direction: column;
     }
 }
 
-
 /* ==========================================================================
-   19. REDUCED MOTION, FORCED COLORS AND PRINT
+   12. Accessibility preferences and print
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1299,66 +805,41 @@ html .theme-entry .visually-hidden {
 }
 
 @media (forced-colors: active) {
-    html .theme-entry button,
-    html .theme-entry input,
-    html .theme-entry textarea,
-    html .theme-entry select,
-    html .theme-entry .button,
-    html .theme-entry .view,
-    html .theme-entry .panel {
-        border: 1px solid CanvasText;
+    html .theme-entry .panel,
+    html .theme-entry .gob-control,
+    html .theme-entry .dropdown-box,
+    html .theme-entry .lookup-box,
+    html .theme-entry .calendar-control,
+    html .theme-entry .gob-choice,
+    html .theme-entry .gob-button {
+        border: 1px solid CanvasText !important;
     }
 
-    html .theme-entry button:focus-visible,
-    html .theme-entry input:focus-visible,
-    html .theme-entry textarea:focus-visible,
-    html .theme-entry select:focus-visible,
-    html .theme-entry a:focus-visible {
-        outline: 2px solid Highlight;
+    html .theme-entry .gob-button:focus-visible,
+    html .theme-entry .gob-choice:focus-within {
+        outline-color: Highlight;
     }
 }
 
 @media print {
     html .theme-entry {
-        background-color: var(--gob-white);
-        color: var(--gob-black);
+        background: var(--gob-white);
+        color: #000000;
     }
 
-    html .theme-entry .form::before,
-    html .theme-entry .runtime-form::before,
-    html .theme-entry .toolbar,
-    html .theme-entry .view-toolbar,
-    html .theme-entry .panel-toolbar,
-    html .theme-entry button,
-    html .theme-entry input[type="button"],
-    html .theme-entry input[type="submit"],
-    html .theme-entry .pager,
-    html .theme-entry .pagination {
-        display: none !important;
+    html .theme-entry .runtime-form {
+        max-width: none;
+        padding: 0;
     }
 
-    html .theme-entry .view,
     html .theme-entry .panel,
-    html .theme-entry .view-canvas,
-    html .theme-entry .view-container,
-    html .theme-entry .content-panel {
-        break-inside: avoid;
+    html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] {
         border-color: #777777;
         box-shadow: none;
     }
+
+    html .theme-entry .gob-action-bar,
+    html .theme-entry .panel-toolbars {
+        display: none !important;
+    }
 }
-'''
-
-out = Path("/mnt/data/gob-k2-style-profile-v2.css")
-out.write_text(css, encoding="utf-8")
-
-# Lightweight structural validation.
-text = out.read_text(encoding="utf-8")
-assert text.count("{") == text.count("}"), "Unbalanced CSS braces"
-assert "html .theme-entry" in text
-assert "@media (max-width: 48rem)" in text
-
-print(f"Created {out.name}")
-print(f"Size: {out.stat().st_size:,} bytes")
-print(f"Lines: {len(text.splitlines()):,}")
-print("Validation: balanced braces and required scope confirmed")
