@@ -926,6 +926,19 @@ html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] [name="Picture"]
 }
 
 html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
+    .editor-cell:has(> [name="Picture"]),
+html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
+    .editor-cell:has([name="dl_header_userwelcome"]) {
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
+    .editor-cell:has(> [name="Picture"]) {
+    align-items: center !important;
+}
+
+html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
     .editor-cell:has(> [name="dl_Header"]),
 html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
     .editor-cell:has(> [name="Data Label1"]) {
