@@ -331,6 +331,9 @@ html .theme-entry .gob-field-label {
     font-style: normal;
     font-weight: 600 !important;
     line-height: 1.35;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
 }
 
 html .theme-entry .description,
