@@ -950,12 +950,12 @@ html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
 
 html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
     .editor-cell:has(> [name="dl_Header"]) {
-    padding: 6px 2px 0 !important;
+    padding: 0 2px !important;
 }
 
 html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
     .editor-cell:has(> [name="Data Label1"]) {
-    padding: 0 2px 6px !important;
+    padding: 0 2px !important;
 }
 
 html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
