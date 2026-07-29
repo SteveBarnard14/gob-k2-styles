@@ -1233,7 +1233,10 @@ html .theme-entry .grid > .grid-header {
     background: var(--gob-surface-subtle) !important;
 }
 
-html .theme-entry .grid > .grid-header:has(.grid-header-text:empty) {
+html .theme-entry .grid > .grid-header:has(.grid-header-text:empty),
+html .theme-entry .grid > .grid-header:has(
+    .grid-header-text > span[data-sf-title=""]
+) {
     display: none !important;
 }
 
@@ -1438,6 +1441,13 @@ html .theme-entry .grid-content-table > tbody > tr:hover > td {
 html .theme-entry .grid-content-table > tbody
     > tr.highlighted > td,
 html .theme-entry .grid-content-table > tbody
+    > tr.selected > td {
+    background: #dff3f4 !important;
+}
+
+html .theme-entry .grid-content-table.zebra-stripes > tbody
+    > tr.highlighted > td,
+html .theme-entry .grid-content-table.zebra-stripes > tbody
     > tr.selected > td {
     background: #dff3f4 !important;
 }
