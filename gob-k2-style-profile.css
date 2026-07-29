@@ -532,6 +532,14 @@ html .theme-entry .gob-choice {
     cursor: pointer;
 }
 
+html .theme-entry .input-control.radio.style-aware .input-control-text,
+html .theme-entry .input-control.checkbox.style-aware .input-control-text {
+    min-width: 0;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
 html .theme-entry .input-control.radio.style-aware:hover,
 html .theme-entry .input-control.checkbox.style-aware:hover,
 html .theme-entry .gob-choice:hover {
