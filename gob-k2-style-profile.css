@@ -41,6 +41,7 @@ html .theme-entry {
         "Helvetica Neue",
         Arial,
         sans-serif;
+    --gob-content-max-width: 1280px;
     --gob-control-height: 44px;
     --gob-radius-sm: 4px;
     --gob-radius-md: 8px;
@@ -93,7 +94,7 @@ html .theme-entry .hidden {
 
 html .theme-entry .runtime-form {
     width: 100% !important;
-    max-width: 1024px;
+    max-width: var(--gob-content-max-width);
     min-width: 0 !important;
     margin: 0 auto;
     padding: 24px;
