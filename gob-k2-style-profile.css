@@ -43,6 +43,7 @@ html .theme-entry {
         sans-serif;
     --gob-content-max-width: 1280px;
     --gob-control-height: 44px;
+    --gob-control-font-size: 16px;
     --gob-radius-sm: 4px;
     --gob-radius-md: 8px;
     --gob-shadow:
@@ -398,7 +399,7 @@ html .theme-entry .gob-control {
     background: var(--gob-white) !important;
     color: var(--gob-ink-900) !important;
     font-family: var(--gob-font);
-    font-size: 16px !important;
+    font-size: var(--gob-control-font-size) !important;
     line-height: 1.35;
     box-shadow: none !important;
     transition:
@@ -526,7 +527,7 @@ html .theme-entry .gob-choice {
     border-radius: var(--gob-radius-sm);
     background: transparent;
     color: var(--gob-ink-700);
-    font-size: 15px;
+    font-size: var(--gob-control-font-size) !important;
     font-weight: 400;
     line-height: 1.35;
     cursor: pointer;
@@ -536,6 +537,7 @@ html .theme-entry .input-control.radio.style-aware .input-control-text,
 html .theme-entry .input-control.checkbox.style-aware .input-control-text {
     min-width: 0;
     overflow: visible !important;
+    font-size: var(--gob-control-font-size) !important;
     text-overflow: clip !important;
     white-space: normal !important;
 }
@@ -1022,6 +1024,15 @@ html .theme-entry .input-control.select-box .input-control-wrapper > input,
 html .theme-entry .input-control.select-box .input-control-buttons > a {
     height: calc(var(--gob-control-height) - 2px) !important;
     min-height: calc(var(--gob-control-height) - 2px) !important;
+}
+
+html .theme-entry .input-control.select-box .input-control-wrapper > input,
+html .theme-entry
+    .input-control.select-box
+    .input-control-wrapper
+    > a.input-control
+    > span {
+    font-size: var(--gob-control-font-size) !important;
 }
 
 html .theme-entry .input-control.select-box.dropdown-box
