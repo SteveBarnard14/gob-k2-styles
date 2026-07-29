@@ -425,6 +425,65 @@ html .theme-entry textarea.gob-control {
     resize: vertical;
 }
 
+/*
+ * Standard K2 data-entry typography.
+ * These selectors use runtime control classes rather than Designer names.
+ */
+html .theme-entry input:not(
+        [type="button"],
+        [type="submit"],
+        [type="reset"],
+        [type="checkbox"],
+        [type="radio"],
+        [type="file"],
+        [type="hidden"],
+        [type="image"],
+        [type="range"],
+        [type="color"]
+    ),
+html .theme-entry textarea,
+html .theme-entry select,
+html .theme-entry .input-control .editable-area,
+html .theme-entry .input-control .input-control-watermark,
+html .theme-entry .input-placeholder,
+html .theme-entry .token-input .entity-text,
+html .theme-entry .picker .entity-text,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-AutoComplete
+    input.ui-autocomplete-input,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-AutoComplete
+    .input-control-watermark,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-Choice
+    .input-control-text,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-Choice
+    .input-control
+    input,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-Choice
+    .input-control
+    a.input-control
+    > span,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-ListBox
+    :is(.option, .listbox-watermark),
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-MultiChoice
+    .option,
+html .theme-entry .autocomplete-menu .ui-menu-item a,
+html .theme-entry
+    .multi-select-outer-panel
+    :is(label, .input-control-text),
+html .theme-entry .tree-outer-panel :is(a, span),
+html .theme-entry .file-wrapper :is(.file-info-cell, .file-watermark, .file-ellipsis),
+html .theme-entry a.Hyperlink,
+html .theme-entry a.Hyperlink-NotSet {
+    font-family: var(--gob-font) !important;
+    font-size: var(--gob-control-font-size) !important;
+}
+
 html .theme-entry .dropdown-box,
 html .theme-entry .lookup-box,
 html .theme-entry .calendar-control {
