@@ -708,7 +708,7 @@ html .theme-entry .gob-action-bar {
     justify-content: flex-end;
     gap: 12px;
     margin-top: 24px;
-    padding-top: 20px;
+    padding: 20px 0 24px;
     border-top: 1px solid var(--gob-border);
 }
 
@@ -1252,6 +1252,18 @@ html .theme-entry [name="Cell Cell109"] {
 
 html .theme-entry [name="Cell Cell108"] {
     margin-right: 132px;
+}
+
+html
+    .theme-entry
+    .root-table
+    > .editor-cell.align-right:has(
+        > .SourceCode-Forms-Controls-Web-Button
+    ) {
+    box-sizing: border-box;
+    align-items: center;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
 }
 
 @media (max-width: 768px) {
