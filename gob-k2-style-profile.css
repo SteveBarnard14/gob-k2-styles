@@ -189,12 +189,17 @@ html .theme-entry [name="tblInstructions"] {
 
 html .theme-entry [name="lblInstructionsHeading"] {
     display: block;
+    width: 100% !important;
     margin: 0 0 10px;
     color: var(--gob-aqua-900) !important;
     font-size: 16px !important;
     font-style: normal !important;
     font-weight: 700 !important;
     line-height: 1.45;
+    overflow: visible !important;
+    text-align: left !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
 }
 
 html .theme-entry [name="lblInstructionsBody"] {
