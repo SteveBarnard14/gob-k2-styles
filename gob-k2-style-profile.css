@@ -915,6 +915,10 @@ html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] .root-table {
     grid-template-columns: 72px minmax(0, 1fr) 220px !important;
 }
 
+html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] {
+    background: var(--gob-white) !important;
+}
+
 html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] [name="Picture"] {
     width: 60px !important;
     max-width: 60px !important;
@@ -951,6 +955,7 @@ html .theme-entry [name="dl_Header"],
 html .theme-entry [name="Data Label1"] {
     width: 100% !important;
     max-width: none !important;
+    padding: 0 !important;
     text-align: left !important;
 }
 
@@ -1005,12 +1010,18 @@ html .theme-entry .input-control.select-box .input-control-buttons > a {
     min-height: calc(var(--gob-control-height) - 2px) !important;
 }
 
-html .theme-entry [name="lblDescription2"] {
+html .theme-entry
+    .SFC.SourceCode-Forms-Controls-Web-Label.description[name="lblDescription2"] {
     color: var(--gob-ink-600) !important;
     font-size: 14px !important;
     font-style: normal !important;
     font-weight: 400 !important;
     line-height: 1.45;
+}
+
+html .theme-entry [name="Cell Cell460"]:has([name="Role Name Label"].hidden),
+html .theme-entry [name="Cell Cell462"] {
+    display: none !important;
 }
 
 html .theme-entry [name="Cell Cell126"],
@@ -1082,6 +1093,27 @@ html .theme-entry [name="Cell Cell123"]::after {
     height: 100%;
     background: #ead99a;
     content: "";
+}
+
+html .theme-entry [name="CreateListItem Button"],
+html .theme-entry [name="btnCancel"] {
+    width: 120px !important;
+    min-width: 120px !important;
+    height: var(--gob-control-height) !important;
+    min-height: var(--gob-control-height) !important;
+}
+
+html .theme-entry [name="Cell Cell108"],
+html .theme-entry [name="Cell Cell109"] {
+    grid-column: 3 / 4 !important;
+    grid-row: 16 / 17 !important;
+    width: 120px !important;
+    padding: 0 !important;
+    justify-self: end;
+}
+
+html .theme-entry [name="Cell Cell108"] {
+    margin-right: 132px;
 }
 
 @media (max-width: 768px) {
