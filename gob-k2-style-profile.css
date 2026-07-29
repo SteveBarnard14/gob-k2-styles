@@ -1168,7 +1168,9 @@ html .theme-entry .panel:has([name="dl_Header"]) .panel-body-wrapper {
     background: var(--gob-white) !important;
 }
 
-html .theme-entry .panel:has([name="dl_Header"]) .panel-body {
+html .theme-entry .panel:has([name="dl_Header"]):not(
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .panel-body {
     padding: 20px 24px !important;
 }
 
