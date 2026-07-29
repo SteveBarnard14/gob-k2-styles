@@ -1334,6 +1334,7 @@ html .theme-entry .grid .toolbar-button:hover {
     color: var(--gob-aqua-900) !important;
 }
 
+html .theme-entry .grid .toolbar-button:focus,
 html .theme-entry .grid .toolbar-button:focus-visible {
     outline: 3px solid var(--gob-gold-500);
     outline-offset: 2px;
@@ -1420,7 +1421,6 @@ html .theme-entry .grid-content-table {
 }
 
 html .theme-entry .grid-content-table > tbody > tr > td {
-    min-height: 48px;
     padding: 0 !important;
     border: 0 !important;
     border-bottom: 1px solid var(--gob-border) !important;
