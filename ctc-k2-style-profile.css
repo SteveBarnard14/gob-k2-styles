@@ -96,6 +96,7 @@ html .theme-entry {
     --ctc-surface-muted: var(--ctc-slate-075);
     --ctc-surface-inset: var(--ctc-slate-100);
     --ctc-surface-selected: var(--ctc-blue-050);
+    --ctc-surface-hover: #f0f5ff;
     --ctc-surface-disabled: #eceff3;
 
     --ctc-text: var(--ctc-slate-900);
@@ -133,6 +134,9 @@ html .theme-entry {
     --ctc-danger: var(--ctc-red-700);
     --ctc-danger-strong: var(--ctc-red-800);
     --ctc-danger-bg: var(--ctc-red-050);
+    --ctc-danger-hover-bg: #fbd2ce;
+    --ctc-danger-disabled-bg: #f7d8d5;
+    --ctc-danger-disabled-text: #8c4c46;
     --ctc-danger-border: #f2ada8;
     --ctc-info: var(--ctc-cyan-700);
     --ctc-info-strong: var(--ctc-cyan-800);
@@ -181,6 +185,7 @@ html .theme-entry.k2-theme-dark {
     --ctc-surface-muted: #15191f;
     --ctc-surface-inset: #0f1318;
     --ctc-surface-selected: #172949;
+    --ctc-surface-hover: #1d3154;
     --ctc-surface-disabled: #242a32;
     --ctc-text: #eef1f5;
     --ctc-text-muted: #aab2bd;
@@ -210,6 +215,9 @@ html .theme-entry.k2-theme-dark {
     --ctc-danger: #ff9b92;
     --ctc-danger-strong: #ffc4bf;
     --ctc-danger-bg: #3a1210;
+    --ctc-danger-hover-bg: #5a1b17;
+    --ctc-danger-disabled-bg: #3b2423;
+    --ctc-danger-disabled-text: #d99d98;
     --ctc-danger-border: #8d302a;
     --ctc-info: #80d7ff;
     --ctc-info-strong: #b9eaff;
@@ -233,6 +241,7 @@ html .theme-entry.k2-theme-dark {
         --ctc-surface-muted: #15191f;
         --ctc-surface-inset: #0f1318;
         --ctc-surface-selected: #172949;
+        --ctc-surface-hover: #1d3154;
         --ctc-surface-disabled: #242a32;
         --ctc-text: #eef1f5;
         --ctc-text-muted: #aab2bd;
@@ -262,6 +271,9 @@ html .theme-entry.k2-theme-dark {
         --ctc-danger: #ff9b92;
         --ctc-danger-strong: #ffc4bf;
         --ctc-danger-bg: #3a1210;
+        --ctc-danger-hover-bg: #5a1b17;
+        --ctc-danger-disabled-bg: #3b2423;
+        --ctc-danger-disabled-text: #d99d98;
         --ctc-danger-border: #8d302a;
         --ctc-info: #80d7ff;
         --ctc-info-strong: #b9eaff;
@@ -772,6 +784,22 @@ html .theme-entry .input-control.select-box.picker-input[data-maxrows="1"] .inpu
     transform: translateY(-50%);
 }
 
+html .theme-entry select,
+html .theme-entry .dropdown-box,
+html .theme-entry .input-control.select-box.dropdown-box,
+html .theme-entry .SourceCode-Forms-Controls-Web-DropDownList,
+html .theme-entry .drop-down-list {
+    border-color: transparent !important;
+    background: var(--ctc-surface-subtle) !important;
+    box-shadow: inset 0 0 0 1px transparent !important;
+}
+
+html .theme-entry .dropdown-box > a,
+html .theme-entry .input-control.select-box.dropdown-box .input-control-buttons > a {
+    border-left-color: transparent !important;
+    background: var(--ctc-surface-muted) !important;
+}
+
 html .theme-entry input:hover,
 html .theme-entry textarea:hover,
 html .theme-entry select:hover,
@@ -781,6 +809,15 @@ html .theme-entry .picker-input:hover,
 html .theme-entry .calendar-control:hover,
 html .theme-entry .input-control.select-box:hover {
     border-color: var(--ctc-primary) !important;
+}
+
+html .theme-entry select:hover,
+html .theme-entry .dropdown-box:hover,
+html .theme-entry .input-control.select-box.dropdown-box:hover,
+html .theme-entry .SourceCode-Forms-Controls-Web-DropDownList:hover,
+html .theme-entry .drop-down-list:hover {
+    border-color: transparent !important;
+    background: var(--ctc-surface-hover) !important;
 }
 
 html .theme-entry input:focus,
@@ -793,6 +830,15 @@ html .theme-entry .calendar-control:focus-within,
 html .theme-entry .input-control.select-box:focus-within {
     outline: 0;
     border-color: var(--ctc-primary) !important;
+    box-shadow: var(--ctc-focus-ring) !important;
+}
+
+html .theme-entry select:focus,
+html .theme-entry .dropdown-box:focus-within,
+html .theme-entry .input-control.select-box.dropdown-box:focus-within,
+html .theme-entry .SourceCode-Forms-Controls-Web-DropDownList:focus-within,
+html .theme-entry .drop-down-list:focus-within {
+    border-color: transparent !important;
     box-shadow: var(--ctc-focus-ring) !important;
 }
 
@@ -867,7 +913,7 @@ html .theme-entry .ctc-choice {
     align-items: center;
     gap: 10px;
     padding: 9px 12px;
-    border: 1px solid transparent;
+    border: 0 !important;
     border-radius: var(--ctc-radius-sm);
     background: transparent !important;
     color: var(--ctc-text) !important;
@@ -899,9 +945,10 @@ html .theme-entry .input-control.checkbox.style-aware.checked,
 html .theme-entry label.input-control.checkbox.style-aware.checked,
 html .theme-entry label.input-control.radio.style-aware.checked,
 html .theme-entry .ctc-choice:has(input:checked) {
-    border-color: var(--ctc-primary);
+    border-color: transparent !important;
     background: var(--ctc-primary-subtle) !important;
     color: var(--ctc-primary-hover) !important;
+    box-shadow: inset 4px 0 0 var(--ctc-primary);
 }
 
 html .theme-entry .input-control.radio.style-aware.focus,
@@ -946,6 +993,16 @@ html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-ListDisplay {
     border-radius: var(--ctc-radius-sm);
     background: var(--ctc-surface);
     color: var(--ctc-text);
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-Choice,
+html .theme-entry [class*="ControlPack-Choice"],
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-MultiChoice,
+html .theme-entry .checkbox-list,
+html .theme-entry .radio-list {
+    border-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
 html .theme-entry .tree-outer-panel a,
@@ -1016,17 +1073,21 @@ html .theme-entry .button-primary:hover {
 }
 
 html .theme-entry .ctc-button.is-destructive,
+html .theme-entry [name="CTC_DestructiveAction"],
 html .theme-entry .destructive,
 html .theme-entry .delete-button {
     border-color: var(--ctc-danger) !important;
-    color: var(--ctc-danger) !important;
+    background: var(--ctc-danger) !important;
+    color: var(--ctc-text-inverse) !important;
 }
 
 html .theme-entry .ctc-button.is-destructive:hover,
+html .theme-entry [name="CTC_DestructiveAction"]:hover,
 html .theme-entry .destructive:hover,
 html .theme-entry .delete-button:hover {
-    background: var(--ctc-danger-bg) !important;
-    color: var(--ctc-danger-strong) !important;
+    border-color: var(--ctc-danger-strong) !important;
+    background: var(--ctc-danger-strong) !important;
+    color: var(--ctc-text-inverse) !important;
 }
 
 html .theme-entry .SourceCode-Forms-Controls-Web-Button:focus-visible,
@@ -1049,6 +1110,20 @@ html .theme-entry .SourceCode-Forms-Controls-Web-Button.disabled {
     border-color: var(--ctc-border) !important;
     background: var(--ctc-surface-disabled) !important;
     color: var(--ctc-text-disabled) !important;
+}
+
+html .theme-entry .ctc-button.is-destructive:disabled,
+html .theme-entry [name="CTC_DestructiveAction"]:disabled,
+html .theme-entry .destructive:disabled,
+html .theme-entry .delete-button:disabled,
+html .theme-entry .ctc-button.is-destructive.disabled,
+html .theme-entry [name="CTC_DestructiveAction"].disabled,
+html .theme-entry .destructive.disabled,
+html .theme-entry .delete-button.disabled {
+    cursor: not-allowed;
+    border-color: transparent !important;
+    background: var(--ctc-danger-disabled-bg) !important;
+    color: var(--ctc-danger-disabled-text) !important;
 }
 
 html .theme-entry .toolbar-button,
@@ -1227,6 +1302,223 @@ html .theme-entry .sort-ascending,
 html .theme-entry .sort-descending,
 html .theme-entry .filter-active {
     color: var(--ctc-primary) !important;
+}
+
+html .theme-entry .grid-toolbars,
+html .theme-entry .grid .toolbars,
+html .theme-entry .grid-header-wrapper,
+html .theme-entry .toolbar-wrapper {
+    min-height: 44px;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--ctc-border);
+    background: var(--ctc-surface-subtle) !important;
+}
+
+html .theme-entry .grid-toolbars .toolbar-button,
+html .theme-entry .grid .toolbar-button,
+html .theme-entry .grid-toolbars a.toolbar-button,
+html .theme-entry .grid-toolbars button,
+html .theme-entry .grid-toolbars input[type="button"],
+html .theme-entry .grid-footer button,
+html .theme-entry .grid-footer a,
+html .theme-entry .grid-paging a,
+html .theme-entry .pager a {
+    min-width: 36px;
+    min-height: 36px;
+    padding: 7px 10px;
+    border: 0 !important;
+    border-radius: var(--ctc-radius-sm);
+    background: transparent !important;
+    color: var(--ctc-text) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+}
+
+html .theme-entry .grid-toolbars .toolbar-button:hover,
+html .theme-entry .grid .toolbar-button:hover,
+html .theme-entry .grid-toolbars a.toolbar-button:hover,
+html .theme-entry .grid-toolbars button:hover,
+html .theme-entry .grid-toolbars input[type="button"]:hover,
+html .theme-entry .grid-footer button:hover,
+html .theme-entry .grid-footer a:hover,
+html .theme-entry .grid-paging a:hover,
+html .theme-entry .pager a:hover {
+    background: var(--ctc-primary-subtle) !important;
+    color: var(--ctc-primary-hover) !important;
+}
+
+html .theme-entry .grid-toolbars .save,
+html .theme-entry .grid-toolbars .commit,
+html .theme-entry .grid-toolbars [class*="save"],
+html .theme-entry .grid-toolbars [class*="Save"],
+html .theme-entry .grid .toolbar-button.save {
+    background: var(--ctc-primary-subtle) !important;
+    color: var(--ctc-primary-hover) !important;
+}
+
+html .theme-entry .grid-toolbars .delete,
+html .theme-entry .grid-toolbars .remove,
+html .theme-entry .grid-toolbars [class*="delete"],
+html .theme-entry .grid-toolbars [class*="Delete"],
+html .theme-entry .grid .toolbar-button.delete {
+    background: var(--ctc-danger-bg) !important;
+    color: var(--ctc-danger-strong) !important;
+}
+
+html .theme-entry .grid-toolbars .delete:hover,
+html .theme-entry .grid-toolbars .remove:hover,
+html .theme-entry .grid-toolbars [class*="delete"]:hover,
+html .theme-entry .grid-toolbars [class*="Delete"]:hover,
+html .theme-entry .grid .toolbar-button.delete:hover {
+    background: var(--ctc-danger-hover-bg) !important;
+    color: var(--ctc-danger-strong) !important;
+}
+
+html .theme-entry .grid-toolbars .disabled,
+html .theme-entry .grid-toolbars .toolbar-button.disabled,
+html .theme-entry .grid-footer .disabled,
+html .theme-entry .grid-paging .disabled,
+html .theme-entry .pager .disabled {
+    cursor: not-allowed;
+    background: transparent !important;
+    color: var(--ctc-text-disabled) !important;
+    opacity: 1;
+}
+
+html .theme-entry .filter-row,
+html .theme-entry .grid-filter-row,
+html .theme-entry .grid .filter,
+html .theme-entry .column-filter,
+html .theme-entry .grid-content-table tr.filter-row {
+    background: var(--ctc-surface-muted) !important;
+}
+
+html .theme-entry .filter-row input,
+html .theme-entry .filter-row select,
+html .theme-entry .grid-filter-row input,
+html .theme-entry .grid-filter-row select,
+html .theme-entry .column-filter input,
+html .theme-entry .column-filter select {
+    min-height: 34px;
+    border-color: transparent !important;
+    background: var(--ctc-surface) !important;
+    font-size: 13px !important;
+}
+
+html .theme-entry .grid-content-table tbody tr:focus-within,
+html .theme-entry .grid table tbody tr:focus-within,
+html .theme-entry .runtime-list-item:focus-within {
+    background: var(--ctc-surface-hover) !important;
+    box-shadow: inset 4px 0 0 var(--ctc-primary);
+}
+
+html .theme-entry .grid .current,
+html .theme-entry .grid .active,
+html .theme-entry tr.current,
+html .theme-entry tr.active {
+    background: var(--ctc-primary-subtle) !important;
+    box-shadow: inset 4px 0 0 var(--ctc-primary);
+}
+
+html .theme-entry .grid .new-row,
+html .theme-entry tr.new-row,
+html .theme-entry .grid .added-row,
+html .theme-entry tr.added-row {
+    background: var(--ctc-success-bg) !important;
+    box-shadow: inset 4px 0 0 var(--ctc-success);
+}
+
+html .theme-entry .grid .dirty-row,
+html .theme-entry tr.dirty-row,
+html .theme-entry .grid .modified-row,
+html .theme-entry tr.modified-row {
+    background: var(--ctc-warning-bg) !important;
+    box-shadow: inset 4px 0 0 var(--ctc-warning);
+}
+
+html .theme-entry .grid .deleted-row,
+html .theme-entry tr.deleted-row,
+html .theme-entry .grid .remove-row,
+html .theme-entry tr.remove-row {
+    background: var(--ctc-danger-bg) !important;
+    color: var(--ctc-danger-strong) !important;
+    text-decoration-color: var(--ctc-danger);
+    box-shadow: inset 4px 0 0 var(--ctc-danger);
+}
+
+html .theme-entry .grid .selected .grid-content-cell,
+html .theme-entry .grid .highlighted .grid-content-cell,
+html .theme-entry .grid tr.selected td,
+html .theme-entry .grid tr.highlighted td {
+    color: var(--ctc-text) !important;
+}
+
+html .theme-entry .grid-content-cell .SourceCode-Forms-Controls-Web-Button,
+html .theme-entry .grid-content-cell button,
+html .theme-entry .grid-content-cell input[type="button"] {
+    min-width: 72px;
+    min-height: 34px;
+    padding: 6px 10px;
+    font-size: 13px !important;
+}
+
+html .theme-entry .edit-row .dropdown-box,
+html .theme-entry .edit-row .input-control.select-box.dropdown-box,
+html .theme-entry .editable-row .dropdown-box,
+html .theme-entry .editable-row .input-control.select-box.dropdown-box,
+html .theme-entry .grid-content-cell .dropdown-box,
+html .theme-entry .grid-content-cell .input-control.select-box.dropdown-box {
+    min-height: 34px;
+    height: 34px !important;
+    background: var(--ctc-surface) !important;
+}
+
+html .theme-entry .edit-row .dropdown-box > a,
+html .theme-entry .editable-row .dropdown-box > a,
+html .theme-entry .grid-content-cell .dropdown-box > a,
+html .theme-entry .edit-row .input-control-buttons > a,
+html .theme-entry .editable-row .input-control-buttons > a,
+html .theme-entry .grid-content-cell .input-control-buttons > a {
+    min-width: 32px;
+    min-height: 32px;
+}
+
+html .theme-entry .grid-content-cell :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware),
+html .theme-entry .edit-row :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware),
+html .theme-entry .editable-row :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware) {
+    min-height: 34px;
+    padding: 6px 8px;
+}
+
+html .theme-entry .grid-summary,
+html .theme-entry .grid-aggregate,
+html .theme-entry .summary-row,
+html .theme-entry tfoot .summary {
+    border-top: 1px solid var(--ctc-border);
+    background: var(--ctc-surface-muted) !important;
+    color: var(--ctc-text) !important;
+    font-weight: 750;
+}
+
+html .theme-entry .grid .validation-error,
+html .theme-entry .grid .field-validation-error,
+html .theme-entry .grid .error-message {
+    margin: 4px 0 0;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+html .theme-entry .grid-loading,
+html .theme-entry .grid-busy,
+html .theme-entry .list-loading {
+    background:
+        linear-gradient(
+            90deg,
+            var(--ctc-surface-subtle),
+            var(--ctc-primary-subtle),
+            var(--ctc-surface-subtle)
+        );
+    color: var(--ctc-text-muted) !important;
 }
 
 /* ==========================================================================
