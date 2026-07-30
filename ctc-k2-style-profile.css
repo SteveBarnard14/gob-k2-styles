@@ -1582,6 +1582,7 @@ html .theme-entry .pager .disabled {
 
 html .theme-entry .filter-row,
 html .theme-entry .grid-filter-row,
+html .theme-entry .grid .filterContainer,
 html .theme-entry .grid .filter,
 html .theme-entry .column-filter,
 html .theme-entry .grid tr.filter-row,
@@ -1698,6 +1699,109 @@ html .theme-entry .column-filter :is(
     min-height: 0 !important;
     border: 0 !important;
     background: transparent !important;
+}
+
+html .theme-entry .grid .filterContainer {
+    min-height: 34px !important;
+    padding: 2px 8px !important;
+    font-size: 12px !important;
+    line-height: 30px !important;
+}
+
+html .theme-entry .grid .filterContainer :is(.filterChosen.filter, .quickSearch.filter) {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 30px !important;
+    height: 30px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    background: var(--ctc-surface-muted) !important;
+}
+
+html .theme-entry .grid .filterContainer .filterLabel {
+    font-size: 11px !important;
+    line-height: 30px !important;
+    color: var(--ctc-text-muted) !important;
+}
+
+html .theme-entry .grid .filterContainer :is(.searchDdl, .filterTxt) {
+    display: inline-flex !important;
+    align-items: center !important;
+    min-height: 28px !important;
+    height: 28px !important;
+    vertical-align: middle !important;
+}
+
+html .theme-entry .grid .filterContainer :is(
+    .input-control.select-box,
+    .input-control.dropdown-box,
+    .input-control.lookup-box,
+    .input-control.calendar-control,
+    .picker-input
+),
+html .theme-entry .grid .filterContainer .filterTxt input.input-control:not([type="checkbox"]):not([type="radio"]) {
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 2px 6px !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    background: var(--ctc-surface) !important;
+    color: var(--ctc-text) !important;
+    border-color: transparent !important;
+}
+
+html .theme-entry .grid .filterContainer .input-control :is(
+    .styling-outer-wrapper,
+    .styling-inner-wrapper,
+    .input-control-body,
+    .input-control-m,
+    .input-control-m-c,
+    .input-control-buttons
+) {
+    height: 26px !important;
+    min-height: 0 !important;
+}
+
+html .theme-entry .grid .filterContainer .input-control :is(
+    .input-control-wrapper,
+    a.input-control
+) {
+    height: 22px !important;
+    min-height: 22px !important;
+    line-height: 20px !important;
+}
+
+html .theme-entry .grid .filterContainer .input-control .styling-font {
+    font-size: 12px !important;
+    line-height: 20px !important;
+}
+
+html .theme-entry .grid .filterContainer .input-control .input-control-wrapper > a.input-control > .styling-font {
+    padding-right: 8px !important;
+    padding-left: 8px !important;
+}
+
+html .theme-entry .grid .filterContainer .input-control-buttons > a,
+html .theme-entry .grid .filterContainer .dropdown-box > a,
+html .theme-entry .grid .filterContainer .lookup-box > a,
+html .theme-entry .grid .filterContainer .calendar-control > a {
+    min-width: 26px !important;
+    width: 26px !important;
+    min-height: 24px !important;
+    height: 24px !important;
+    border-left-color: transparent !important;
+}
+
+html .theme-entry .grid .filterContainer :is(.toolbar-button, .toolbar-button-inline) {
+    width: 30px !important;
+    min-width: 30px !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 3px 6px !important;
+    line-height: 22px !important;
+    vertical-align: middle !important;
 }
 
 html .theme-entry .grid-content-table tbody tr:focus-within,
