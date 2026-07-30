@@ -783,7 +783,37 @@ html .theme-entry .gob-button:focus-visible {
 }
 
 /* ==========================================================================
-   09. Validation and system states
+   09. Runtime message boxes
+   ========================================================================== */
+
+html .theme-entry .popup.dialog.runtime-message .popup-header-buttons,
+html .theme-entry .popup.dialog.runtime-message .popup-header-button-bar,
+html .theme-entry .popup.dialog.runtime-message .popup-header-button-bar-wrapper,
+html .theme-entry .popup.dialog.runtime-message a.close {
+    display: none !important;
+    width: 0 !important;
+    min-width: 0 !important;
+}
+
+html .theme-entry .popup.dialog.runtime-message .popup-header-text {
+    width: 100% !important;
+}
+
+html .theme-entry .popup.dialog.runtime-message .message-box-content .panel {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+html .theme-entry .popup.dialog.runtime-message
+    .message-box-content
+    :is(.panel-body, .panel-body-m, .panel-body-m-c, .scroll-wrapper) {
+    background: transparent !important;
+}
+
+/* ==========================================================================
+   10. Validation and system states
    ========================================================================== */
 
 html .theme-entry input.invalid,
@@ -817,7 +847,7 @@ html .theme-entry .gob-status.is-success {
 }
 
 /* ==========================================================================
-   10. Preview layout helpers
+   11. Preview layout helpers
    These classes recreate the K2-authored grid locally; they do not alter
    K2's runtime Grid-Layout or editor-cell positioning.
    ========================================================================== */
@@ -871,7 +901,7 @@ html .theme-entry [hidden] {
 }
 
 /* ==========================================================================
-   11. Responsive behavior
+   12. Responsive behavior
    ========================================================================== */
 
 @media (max-width: 768px) {
@@ -1017,7 +1047,7 @@ html .theme-entry [hidden] {
 }
 
 /* ==========================================================================
-   12. Accessibility preferences and print
+   13. Accessibility preferences and print
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1049,7 +1079,7 @@ html .theme-entry [hidden] {
 }
 
 /* ==========================================================================
-   13. Live K2 layout parity
+   14. Live K2 layout parity
    K2's generated runtime uses fixed grid cells and legacy composite controls.
    These overrides preserve the authored row/column placements while matching
    the local reference dimensions and surfaces.
@@ -1469,7 +1499,7 @@ html
 }
 
 /* ==========================================================================
-   14. Shared form headers and editable list views
+   15. Shared form headers and editable list views
    These selectors target stable K2 component classes and authored control
    names so the treatment carries across forms without generated GUIDs.
    ========================================================================== */
