@@ -1,0 +1,1877 @@
+/*
+ * CTC Enterprise
+ * Generic Nintex K2 SmartForms Style Profile CSS
+ *
+ * Deployment:
+ * - Link this file in Style Profile > Developer > External Files.
+ * - Keep it as the last enabled CSS file so it wins the Style Profile cascade.
+ * - Use the Dynamic theme / Style Profile path and disable Legacy Theme.
+ * - Avoid form-level Format/background overrides unless intentionally replacing
+ *   these tokens for a specific form.
+ *
+ * Scope:
+ * - Rules are scoped to .theme-entry wherever possible, as recommended for K2.
+ * - Popup/menu selectors outside .theme-entry are limited to common K2/jQuery UI
+ *   overlay layers that may be rendered directly under body.
+ * - No project-specific branding selectors or generated K2 control IDs are used.
+ *   Optional authored helper names use the CTC_* prefix.
+ */
+
+/* ==========================================================================
+   01. Primitive tokens, semantic tokens, and K2 Dynamic Theme bridge
+   ========================================================================== */
+
+html .theme-entry {
+    --ctc-slate-950: #0b1220;
+    --ctc-slate-900: #17202a;
+    --ctc-slate-800: #26323f;
+    --ctc-slate-700: #3d4a58;
+    --ctc-slate-600: #56616d;
+    --ctc-slate-500: #6f7b88;
+    --ctc-slate-400: #8b949e;
+    --ctc-slate-300: #a7b0ba;
+    --ctc-slate-200: #d3d8df;
+    --ctc-slate-150: #e1e5ea;
+    --ctc-slate-100: #eef1f5;
+    --ctc-slate-075: #f3f5f8;
+    --ctc-slate-050: #f7f8fa;
+    --ctc-white: #ffffff;
+
+    --ctc-blue-900: #163884;
+    --ctc-blue-800: #1d46aa;
+    --ctc-blue-700: #2458d3;
+    --ctc-blue-600: #346ee8;
+    --ctc-blue-300: #7aa7ff;
+    --ctc-blue-100: #dbe8ff;
+    --ctc-blue-050: #edf3ff;
+
+    --ctc-green-800: #0f5f3d;
+    --ctc-green-700: #147a4f;
+    --ctc-green-100: #d9f2e6;
+    --ctc-green-050: #e8f6ef;
+    --ctc-amber-800: #704400;
+    --ctc-amber-700: #8a5a00;
+    --ctc-amber-100: #ffe8a3;
+    --ctc-amber-050: #fff4d6;
+    --ctc-red-800: #8f1d13;
+    --ctc-red-700: #b42318;
+    --ctc-red-100: #ffd9d6;
+    --ctc-red-050: #fdeceb;
+    --ctc-cyan-800: #075c82;
+    --ctc-cyan-700: #0b6f9c;
+    --ctc-cyan-050: #e8f5fb;
+
+    --ctc-font-family:
+        "Segoe UI",
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+    --ctc-space-1: 4px;
+    --ctc-space-2: 8px;
+    --ctc-space-3: 12px;
+    --ctc-space-4: 16px;
+    --ctc-space-5: 20px;
+    --ctc-space-6: 24px;
+    --ctc-space-8: 32px;
+
+    --ctc-radius-xs: 2px;
+    --ctc-radius-sm: 4px;
+    --ctc-radius-md: 8px;
+    --ctc-radius-lg: 12px;
+
+    --ctc-control-height: 44px;
+    --ctc-control-height-compact: 36px;
+    --ctc-control-height-touch: 48px;
+    --ctc-control-font-size: 15px;
+    --ctc-content-max-width: 1280px;
+
+    --ctc-bg: var(--ctc-slate-100);
+    --ctc-surface: var(--ctc-white);
+    --ctc-surface-raised: var(--ctc-white);
+    --ctc-surface-subtle: var(--ctc-slate-050);
+    --ctc-surface-muted: var(--ctc-slate-075);
+    --ctc-surface-inset: var(--ctc-slate-100);
+    --ctc-surface-selected: var(--ctc-blue-050);
+    --ctc-surface-disabled: #eceff3;
+
+    --ctc-text: var(--ctc-slate-900);
+    --ctc-text-muted: var(--ctc-slate-600);
+    --ctc-text-subtle: var(--ctc-slate-500);
+    --ctc-text-disabled: var(--ctc-slate-600);
+    --ctc-text-inverse: var(--ctc-white);
+
+    --ctc-border: var(--ctc-slate-200);
+    --ctc-border-subtle: var(--ctc-slate-150);
+    --ctc-border-strong: var(--ctc-slate-300);
+
+    --ctc-primary: var(--ctc-blue-700);
+    --ctc-primary-hover: var(--ctc-blue-800);
+    --ctc-primary-active: var(--ctc-blue-900);
+    --ctc-primary-subtle: var(--ctc-blue-050);
+    --ctc-on-primary: var(--ctc-white);
+
+    --ctc-focus: var(--ctc-blue-300);
+    --ctc-focus-ring:
+        0 0 0 2px var(--ctc-surface),
+        0 0 0 5px rgba(122, 167, 255, 0.72);
+    --ctc-focus-ring-inset:
+        inset 0 0 0 2px var(--ctc-surface),
+        inset 0 0 0 5px rgba(122, 167, 255, 0.72);
+
+    --ctc-success: var(--ctc-green-700);
+    --ctc-success-strong: var(--ctc-green-800);
+    --ctc-success-bg: var(--ctc-green-050);
+    --ctc-success-border: #a9d9bf;
+    --ctc-warning: var(--ctc-amber-700);
+    --ctc-warning-strong: var(--ctc-amber-800);
+    --ctc-warning-bg: var(--ctc-amber-050);
+    --ctc-warning-border: #e8c767;
+    --ctc-danger: var(--ctc-red-700);
+    --ctc-danger-strong: var(--ctc-red-800);
+    --ctc-danger-bg: var(--ctc-red-050);
+    --ctc-danger-border: #f2ada8;
+    --ctc-info: var(--ctc-cyan-700);
+    --ctc-info-strong: var(--ctc-cyan-800);
+    --ctc-info-bg: var(--ctc-cyan-050);
+    --ctc-info-border: #a6d5e8;
+
+    --ctc-shadow-sm: 0 1px 2px rgba(23, 32, 42, 0.08);
+    --ctc-shadow-md:
+        0 1px 2px rgba(23, 32, 42, 0.08),
+        0 10px 30px rgba(23, 32, 42, 0.10);
+    --ctc-shadow-overlay:
+        0 16px 48px rgba(23, 32, 42, 0.18),
+        0 4px 12px rgba(23, 32, 42, 0.12);
+
+    /* K2 Dynamic Theme variables */
+    --k2-main-accent-color: var(--ctc-primary);
+    --k2-content-background-color: var(--ctc-bg);
+    --k2-panel-background-color: var(--ctc-surface);
+    --k2-error-color: var(--ctc-danger);
+    --page-background-color: var(--ctc-bg);
+    --form-background-color: transparent;
+    --panel-background-color: var(--ctc-surface);
+    --main-text-color: var(--ctc-text);
+    --secondary-text-color: var(--ctc-text-muted);
+    --border-color: var(--ctc-border);
+    --primary-color: var(--ctc-primary);
+    --primary-color-hover: var(--ctc-primary-hover);
+
+    min-width: 0;
+    background: var(--ctc-bg);
+    color: var(--ctc-text);
+    font-family: var(--ctc-font-family);
+    font-size: 15px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeSpeed;
+}
+
+html .theme-entry.ctc-theme-dark,
+html .theme-entry.k2-theme-dark {
+    --ctc-bg: #111418;
+    --ctc-surface: #1b1f24;
+    --ctc-surface-raised: #20252d;
+    --ctc-surface-subtle: #232832;
+    --ctc-surface-muted: #15191f;
+    --ctc-surface-inset: #0f1318;
+    --ctc-surface-selected: #172949;
+    --ctc-surface-disabled: #242a32;
+    --ctc-text: #eef1f5;
+    --ctc-text-muted: #aab2bd;
+    --ctc-text-subtle: #8f98a6;
+    --ctc-text-disabled: #aab2bd;
+    --ctc-text-inverse: #0b1220;
+    --ctc-border: #3a414b;
+    --ctc-border-subtle: #2b323b;
+    --ctc-border-strong: #5a6470;
+    --ctc-primary: #8ab4ff;
+    --ctc-primary-hover: #a8c7ff;
+    --ctc-primary-active: #c9ddff;
+    --ctc-primary-subtle: #172949;
+    --ctc-on-primary: #0b1220;
+    --ctc-focus: #a8c7ff;
+    --ctc-focus-ring:
+        0 0 0 2px var(--ctc-surface),
+        0 0 0 5px rgba(168, 199, 255, 0.78);
+    --ctc-success: #7bdca8;
+    --ctc-success-strong: #a7efc6;
+    --ctc-success-bg: #0e2a1c;
+    --ctc-success-border: #247249;
+    --ctc-warning: #ffd37a;
+    --ctc-warning-strong: #ffe3a8;
+    --ctc-warning-bg: #332300;
+    --ctc-warning-border: #8f6814;
+    --ctc-danger: #ff9b92;
+    --ctc-danger-strong: #ffc4bf;
+    --ctc-danger-bg: #3a1210;
+    --ctc-danger-border: #8d302a;
+    --ctc-info: #80d7ff;
+    --ctc-info-strong: #b9eaff;
+    --ctc-info-bg: #082839;
+    --ctc-info-border: #286b88;
+    --ctc-shadow-sm: 0 0 0 1px var(--ctc-border-subtle);
+    --ctc-shadow-md:
+        0 0 0 1px var(--ctc-border),
+        0 16px 40px rgba(0, 0, 0, 0.35);
+    --ctc-shadow-overlay:
+        0 0 0 1px var(--ctc-border),
+        0 20px 56px rgba(0, 0, 0, 0.55);
+}
+
+@media (prefers-color-scheme: dark) {
+    html .theme-entry:not(.ctc-theme-light):not(.k2-theme-light) {
+        --ctc-bg: #111418;
+        --ctc-surface: #1b1f24;
+        --ctc-surface-raised: #20252d;
+        --ctc-surface-subtle: #232832;
+        --ctc-surface-muted: #15191f;
+        --ctc-surface-inset: #0f1318;
+        --ctc-surface-selected: #172949;
+        --ctc-surface-disabled: #242a32;
+        --ctc-text: #eef1f5;
+        --ctc-text-muted: #aab2bd;
+        --ctc-text-subtle: #8f98a6;
+        --ctc-text-disabled: #aab2bd;
+        --ctc-text-inverse: #0b1220;
+        --ctc-border: #3a414b;
+        --ctc-border-subtle: #2b323b;
+        --ctc-border-strong: #5a6470;
+        --ctc-primary: #8ab4ff;
+        --ctc-primary-hover: #a8c7ff;
+        --ctc-primary-active: #c9ddff;
+        --ctc-primary-subtle: #172949;
+        --ctc-on-primary: #0b1220;
+        --ctc-focus: #a8c7ff;
+        --ctc-focus-ring:
+            0 0 0 2px var(--ctc-surface),
+            0 0 0 5px rgba(168, 199, 255, 0.78);
+        --ctc-success: #7bdca8;
+        --ctc-success-strong: #a7efc6;
+        --ctc-success-bg: #0e2a1c;
+        --ctc-success-border: #247249;
+        --ctc-warning: #ffd37a;
+        --ctc-warning-strong: #ffe3a8;
+        --ctc-warning-bg: #332300;
+        --ctc-warning-border: #8f6814;
+        --ctc-danger: #ff9b92;
+        --ctc-danger-strong: #ffc4bf;
+        --ctc-danger-bg: #3a1210;
+        --ctc-danger-border: #8d302a;
+        --ctc-info: #80d7ff;
+        --ctc-info-strong: #b9eaff;
+        --ctc-info-bg: #082839;
+        --ctc-info-border: #286b88;
+        --ctc-shadow-sm: 0 0 0 1px var(--ctc-border-subtle);
+        --ctc-shadow-md:
+            0 0 0 1px var(--ctc-border),
+            0 16px 40px rgba(0, 0, 0, 0.35);
+        --ctc-shadow-overlay:
+            0 0 0 1px var(--ctc-border),
+            0 20px 56px rgba(0, 0, 0, 0.55);
+    }
+}
+
+html .theme-entry.ctc-density-compact {
+    --ctc-control-height: var(--ctc-control-height-compact);
+    --ctc-control-font-size: 14px;
+}
+
+/* ==========================================================================
+   02. Runtime shell and base layout
+   ========================================================================== */
+
+html,
+body.theme-entry,
+html body.theme-entry {
+    background: var(--ctc-bg) !important;
+}
+
+body.theme-entry {
+    min-height: 100vh;
+    margin: 0;
+}
+
+html .theme-entry *,
+html .theme-entry *::before,
+html .theme-entry *::after {
+    box-sizing: border-box;
+}
+
+html .theme-entry .hidden,
+html .theme-entry [hidden] {
+    display: none !important;
+}
+
+html .theme-entry .runtime-form {
+    width: 100% !important;
+    max-width: var(--ctc-content-max-width);
+    min-width: 0 !important;
+    margin: 0 auto;
+    padding: var(--ctc-space-6);
+}
+
+html .theme-entry .form,
+html .theme-entry .row,
+html .theme-entry .view,
+html .theme-entry .innerpanel,
+html .theme-entry .panel,
+html .theme-entry .panel-body,
+html .theme-entry .panel-body-wrapper,
+html .theme-entry .panel-body-m,
+html .theme-entry .panel-body-m-c,
+html .theme-entry .SFC.Grid-Layout,
+html .theme-entry .root-table,
+html .theme-entry .editor-cell {
+    min-width: 0;
+}
+
+html .theme-entry .form {
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+html .theme-entry .view {
+    margin-bottom: var(--ctc-space-6);
+}
+
+html .theme-entry .panel {
+    overflow: visible;
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-md);
+    background: var(--ctc-surface) !important;
+    color: var(--ctc-text);
+    box-shadow: var(--ctc-shadow-sm);
+}
+
+html .theme-entry .panel-body,
+html .theme-entry .panel-body-wrapper,
+html .theme-entry .panel-body-m,
+html .theme-entry .panel-body-m-c {
+    background: var(--ctc-surface) !important;
+}
+
+html .theme-entry .panel-body {
+    padding: var(--ctc-space-6);
+}
+
+html .theme-entry .panel.without-header .panel-body {
+    border-top-left-radius: var(--ctc-radius-md);
+    border-top-right-radius: var(--ctc-radius-md);
+}
+
+html .theme-entry .panel.without-footer .panel-body {
+    border-bottom-right-radius: var(--ctc-radius-md);
+    border-bottom-left-radius: var(--ctc-radius-md);
+}
+
+html .theme-entry .panel-header {
+    min-height: 52px;
+    border: 0;
+    border-bottom: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-md) var(--ctc-radius-md) 0 0;
+    background: var(--ctc-surface-subtle) !important;
+    color: var(--ctc-text) !important;
+}
+
+html .theme-entry .panel-header .panel-header-l,
+html .theme-entry .panel-header .panel-header-c,
+html .theme-entry .panel-header .panel-header-r,
+html .theme-entry .panel-header .panel-header-wrapper {
+    border: 0 !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+html .theme-entry .panel-header .panel-header-wrapper {
+    display: flex;
+    min-height: 51px;
+    align-items: center;
+    padding: 0 var(--ctc-space-5);
+}
+
+html .theme-entry .panel-header .panel-header-text,
+html .theme-entry .panel-header {
+    color: var(--ctc-text) !important;
+    font-family: var(--ctc-font-family);
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.35;
+    letter-spacing: 0;
+}
+
+html .theme-entry .panel-footer,
+html .theme-entry .panel-toolbars,
+html .theme-entry .toolbar {
+    border-color: var(--ctc-border);
+    background: var(--ctc-surface-subtle) !important;
+}
+
+html .theme-entry .panel-toolbars,
+html .theme-entry .toolbar {
+    min-height: var(--ctc-control-height-compact);
+}
+
+/* ==========================================================================
+   03. Typography, labels, sections, and content controls
+   ========================================================================== */
+
+html .theme-entry h1,
+html .theme-entry h2,
+html .theme-entry h3,
+html .theme-entry h4,
+html .theme-entry h5,
+html .theme-entry h6 {
+    margin: 0 0 var(--ctc-space-3);
+    color: var(--ctc-text);
+    font-family: var(--ctc-font-family);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: 0;
+}
+
+html .theme-entry h1 {
+    font-size: 32px;
+}
+
+html .theme-entry h2 {
+    font-size: 24px;
+}
+
+html .theme-entry h3 {
+    font-size: 20px;
+}
+
+html .theme-entry p,
+html .theme-entry ul,
+html .theme-entry ol {
+    color: var(--ctc-text);
+    font-family: var(--ctc-font-family);
+}
+
+html .theme-entry a,
+html .theme-entry a.Hyperlink,
+html .theme-entry a.Hyperlink-NotSet,
+html .theme-entry .SourceCode-Forms-Controls-Web-Hyperlink {
+    color: var(--ctc-primary);
+    font-family: var(--ctc-font-family);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+}
+
+html .theme-entry a:hover,
+html .theme-entry a.Hyperlink:hover,
+html .theme-entry a.Hyperlink-NotSet:hover {
+    color: var(--ctc-primary-hover);
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Label,
+html .theme-entry .SourceCode-Forms-Controls-Web-DataLabel,
+html .theme-entry .field-label,
+html .theme-entry .input-label,
+html .theme-entry .ctc-field-label {
+    color: var(--ctc-text) !important;
+    font-family: var(--ctc-font-family);
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 650 !important;
+    line-height: 1.35;
+    letter-spacing: 0;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-DataLabel,
+html .theme-entry .data-label {
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+html .theme-entry .description,
+html .theme-entry .LabelWrap.description,
+html .theme-entry .helper-text,
+html .theme-entry .ctc-help,
+html .theme-entry [name^="CTC_HelpText"] {
+    display: block;
+    margin-top: var(--ctc-space-2);
+    color: var(--ctc-text-muted) !important;
+    font-family: var(--ctc-font-family);
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1.45;
+    white-space: normal !important;
+}
+
+html .theme-entry .required,
+html .theme-entry .mandatory,
+html .theme-entry .required-indicator,
+html .theme-entry [aria-required="true"] + .required-indicator {
+    color: var(--ctc-danger) !important;
+    font-weight: 800;
+}
+
+html .theme-entry [name^="CTC_SectionHeading"],
+html .theme-entry .ctc-section-heading,
+html .theme-entry .section-heading {
+    display: block;
+    width: 100%;
+    margin: var(--ctc-space-8) 0 var(--ctc-space-4);
+    padding: var(--ctc-space-3) var(--ctc-space-4);
+    border-top: 1px solid var(--ctc-border) !important;
+    border-bottom: 1px solid var(--ctc-border) !important;
+    background: var(--ctc-surface-subtle) !important;
+    color: var(--ctc-text) !important;
+    font-size: 14px !important;
+    font-weight: 750 !important;
+    line-height: 1.35;
+    text-transform: uppercase;
+}
+
+html .theme-entry img,
+html .theme-entry .SourceCode-Forms-Controls-Web-Picture {
+    max-width: 100%;
+    height: auto;
+}
+
+html .theme-entry iframe,
+html .theme-entry .SourceCode-Forms-Controls-Web-Content {
+    max-width: 100%;
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-sm);
+    background: var(--ctc-surface);
+}
+
+/* ==========================================================================
+   04. Form grids and authored CTC helpers
+   ========================================================================== */
+
+html .theme-entry .ctc-form-grid,
+html .theme-entry [name="CTC_FormGrid"] {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--ctc-space-5);
+}
+
+html .theme-entry .ctc-span-12 {
+    grid-column: span 12;
+}
+
+html .theme-entry .ctc-span-8 {
+    grid-column: span 8;
+}
+
+html .theme-entry .ctc-span-6 {
+    grid-column: span 6;
+}
+
+html .theme-entry .ctc-span-4 {
+    grid-column: span 4;
+}
+
+html .theme-entry .ctc-span-3 {
+    grid-column: span 3;
+}
+
+html .theme-entry .ctc-field,
+html .theme-entry .field {
+    min-width: 0;
+}
+
+html .theme-entry fieldset.ctc-field {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html .theme-entry fieldset.ctc-field > legend {
+    padding: 0;
+}
+
+html .theme-entry [name="CTC_FormHeader"],
+html .theme-entry .ctc-form-header {
+    margin-bottom: var(--ctc-space-5);
+    padding: var(--ctc-space-6);
+    border: 1px solid var(--ctc-border);
+    border-top: 4px solid var(--ctc-primary);
+    border-radius: var(--ctc-radius-md);
+    background: var(--ctc-surface) !important;
+    box-shadow: var(--ctc-shadow-sm);
+}
+
+html .theme-entry [name="CTC_Notice"],
+html .theme-entry .ctc-notice {
+    margin: 0 0 var(--ctc-space-5);
+    padding: var(--ctc-space-4) var(--ctc-space-5);
+    border: 1px solid var(--ctc-info-border);
+    border-left: 4px solid var(--ctc-info);
+    border-radius: var(--ctc-radius-md);
+    background: var(--ctc-info-bg) !important;
+    color: var(--ctc-info-strong) !important;
+}
+
+/* ==========================================================================
+   05. Text inputs and K2 composite inputs
+   ========================================================================== */
+
+html .theme-entry input:not(
+        [type="button"],
+        [type="submit"],
+        [type="reset"],
+        [type="checkbox"],
+        [type="radio"],
+        [type="file"],
+        [type="hidden"],
+        [type="image"],
+        [type="range"],
+        [type="color"]
+    ),
+html .theme-entry textarea,
+html .theme-entry select,
+html .theme-entry .input-control .editable-area,
+html .theme-entry .input-control .input-control-watermark,
+html .theme-entry .input-placeholder,
+html .theme-entry .token-input .entity-text,
+html .theme-entry .picker .entity-text,
+html .theme-entry .autocomplete-menu .ui-menu-item a,
+html .theme-entry .tree-outer-panel :is(a, span),
+html .theme-entry .multi-select-outer-panel :is(label, .input-control-text),
+html .theme-entry .file-wrapper :is(.file-info-cell, .file-watermark, .file-ellipsis),
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-Choice .input-control-text,
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-ListBox :is(.option, .listbox-watermark),
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-MultiChoice .option {
+    font-family: var(--ctc-font-family) !important;
+    font-size: var(--ctc-control-font-size) !important;
+}
+
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox,
+html .theme-entry textarea.SourceCode-Forms-Controls-Web-TextArea,
+html .theme-entry textarea.SFC,
+html .theme-entry .text-input input,
+html .theme-entry .text-input textarea,
+html .theme-entry .dropdown-box,
+html .theme-entry .lookup-box,
+html .theme-entry .picker-input,
+html .theme-entry .calendar-control,
+html .theme-entry .input-control.select-box,
+html .theme-entry .input-control.lookup-box,
+html .theme-entry .input-control.calendar-control,
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-AutoComplete input.ui-autocomplete-input,
+html .theme-entry .ctc-control {
+    width: 100%;
+    max-width: 100%;
+    min-height: var(--ctc-control-height);
+    border: 1px solid var(--ctc-border-strong) !important;
+    border-radius: var(--ctc-radius-sm) !important;
+    background: var(--ctc-surface) !important;
+    color: var(--ctc-text) !important;
+    font-family: var(--ctc-font-family);
+    font-size: var(--ctc-control-font-size) !important;
+    line-height: 1.35;
+    box-shadow: none !important;
+}
+
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox,
+html .theme-entry textarea.SourceCode-Forms-Controls-Web-TextArea,
+html .theme-entry textarea.SFC,
+html .theme-entry .text-input input,
+html .theme-entry .text-input textarea,
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-AutoComplete input.ui-autocomplete-input,
+html .theme-entry .ctc-control {
+    padding: 10px 12px !important;
+}
+
+html .theme-entry textarea.SourceCode-Forms-Controls-Web-TextArea,
+html .theme-entry textarea.SFC,
+html .theme-entry .text-input textarea,
+html .theme-entry textarea.ctc-control,
+html .theme-entry .SourceCode-Forms-Controls-Web-RichText textarea {
+    min-height: 112px;
+    resize: vertical;
+}
+
+html .theme-entry .dropdown-box,
+html .theme-entry .lookup-box,
+html .theme-entry .calendar-control,
+html .theme-entry .input-control.select-box,
+html .theme-entry .input-control.lookup-box,
+html .theme-entry .input-control.calendar-control {
+    display: flex;
+    height: var(--ctc-control-height) !important;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+html .theme-entry .input-control.select-box > .styling-outer-wrapper,
+html .theme-entry .input-control.select-box .input-control-body,
+html .theme-entry .input-control.select-box .input-control-m,
+html .theme-entry .input-control.select-box .input-control-m-c,
+html .theme-entry .input-control.select-box .input-control-wrapper,
+html .theme-entry .input-control.select-box .input-control-buttons {
+    min-height: 0 !important;
+}
+
+html .theme-entry .dropdown-box > a,
+html .theme-entry .lookup-box > a,
+html .theme-entry .calendar-control > a,
+html .theme-entry .input-control-buttons > a {
+    display: inline-flex;
+    min-width: calc(var(--ctc-control-height) - 2px);
+    min-height: calc(var(--ctc-control-height) - 2px);
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--ctc-border);
+    color: var(--ctc-text-muted);
+    text-decoration: none;
+}
+
+html .theme-entry .input-control.select-box.dropdown-box .input-control-wrapper {
+    display: flex !important;
+    align-items: center !important;
+}
+
+html .theme-entry .input-control.select-box.dropdown-box .input-control-wrapper > a.input-control {
+    display: flex !important;
+    width: 100%;
+    height: 100% !important;
+    align-items: center;
+    color: var(--ctc-text) !important;
+}
+
+html .theme-entry .input-control.select-box.dropdown-box .input-control-wrapper > a.input-control > span {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 12px !important;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html .theme-entry .input-control.select-box.picker-input[data-maxrows="1"] .input-control-wrapper {
+    display: flex !important;
+    align-items: center !important;
+}
+
+html .theme-entry .input-control.select-box.picker-input[data-maxrows="1"] .editable-area,
+html .theme-entry .input-control.select-box.picker-input[data-maxrows="1"] .input-control-watermark {
+    min-height: 24px;
+    padding: 0 10px !important;
+    font-size: var(--ctc-control-font-size) !important;
+    line-height: 24px !important;
+}
+
+html .theme-entry .input-control.select-box.picker-input[data-maxrows="1"] .input-control-watermark {
+    top: 50% !important;
+    bottom: auto !important;
+    color: var(--ctc-text-muted) !important;
+    transform: translateY(-50%);
+}
+
+html .theme-entry input:hover,
+html .theme-entry textarea:hover,
+html .theme-entry select:hover,
+html .theme-entry .dropdown-box:hover,
+html .theme-entry .lookup-box:hover,
+html .theme-entry .picker-input:hover,
+html .theme-entry .calendar-control:hover,
+html .theme-entry .input-control.select-box:hover {
+    border-color: var(--ctc-primary) !important;
+}
+
+html .theme-entry input:focus,
+html .theme-entry textarea:focus,
+html .theme-entry select:focus,
+html .theme-entry .dropdown-box:focus-within,
+html .theme-entry .lookup-box:focus-within,
+html .theme-entry .picker-input:focus-within,
+html .theme-entry .calendar-control:focus-within,
+html .theme-entry .input-control.select-box:focus-within {
+    outline: 0;
+    border-color: var(--ctc-primary) !important;
+    box-shadow: var(--ctc-focus-ring) !important;
+}
+
+html .theme-entry input[readonly],
+html .theme-entry textarea[readonly],
+html .theme-entry .read-only,
+html .theme-entry .readonly,
+html .theme-entry .read-only-view {
+    border-color: var(--ctc-border) !important;
+    background: var(--ctc-surface-subtle) !important;
+    color: var(--ctc-text-muted) !important;
+}
+
+html .theme-entry input:disabled,
+html .theme-entry textarea:disabled,
+html .theme-entry select:disabled,
+html .theme-entry .disabled,
+html .theme-entry .aspNetDisabled {
+    cursor: not-allowed;
+    border-color: var(--ctc-border) !important;
+    background: var(--ctc-surface-disabled) !important;
+    color: var(--ctc-text-disabled) !important;
+    opacity: 1;
+}
+
+html .theme-entry input::placeholder,
+html .theme-entry textarea::placeholder {
+    color: var(--ctc-text-muted);
+    opacity: 1;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-Slider,
+html .theme-entry input[type="range"] {
+    accent-color: var(--ctc-primary);
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-Rating,
+html .theme-entry .rating,
+html .theme-entry .rating-control {
+    color: var(--ctc-warning);
+}
+
+/* ==========================================================================
+   06. Choice, radio, checkbox, list box, multi-select, and tree controls
+   ========================================================================== */
+
+html .theme-entry .ControlPack-Choice.displayTypeRadio,
+html .theme-entry .ControlPack-Choice.displayTypeCheckbox,
+html .theme-entry [class*="ControlPack-Choice"].displayTypeRadio,
+html .theme-entry [class*="ControlPack-Choice"].displayTypeCheckbox,
+html .theme-entry .ctc-choice-list {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: var(--ctc-space-2);
+}
+
+html .theme-entry [name="CTC_StackedChoice"],
+html .theme-entry .ctc-choice-list.is-stacked {
+    align-items: stretch;
+    flex-direction: column;
+}
+
+html .theme-entry .input-control.radio.style-aware,
+html .theme-entry .input-control.checkbox.style-aware,
+html .theme-entry label.input-control.checkbox.style-aware,
+html .theme-entry label.input-control.radio.style-aware,
+html .theme-entry .ctc-choice {
+    position: relative;
+    display: inline-flex;
+    min-height: var(--ctc-control-height);
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border: 1px solid transparent;
+    border-radius: var(--ctc-radius-sm);
+    background: transparent !important;
+    color: var(--ctc-text) !important;
+    font-family: var(--ctc-font-family);
+    font-size: var(--ctc-control-font-size) !important;
+    font-weight: 400;
+    line-height: 1.35;
+    cursor: pointer;
+}
+
+html .theme-entry .input-control.radio.style-aware .input-control-text,
+html .theme-entry .input-control.checkbox.style-aware .input-control-text {
+    min-width: 0;
+    overflow: visible !important;
+    color: inherit !important;
+    font-size: var(--ctc-control-font-size) !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+html .theme-entry .input-control.radio.style-aware:hover,
+html .theme-entry .input-control.checkbox.style-aware:hover,
+html .theme-entry .ctc-choice:hover {
+    background: var(--ctc-surface-subtle) !important;
+}
+
+html .theme-entry .input-control.radio.style-aware.checked,
+html .theme-entry .input-control.checkbox.style-aware.checked,
+html .theme-entry label.input-control.checkbox.style-aware.checked,
+html .theme-entry label.input-control.radio.style-aware.checked,
+html .theme-entry .ctc-choice:has(input:checked) {
+    border-color: var(--ctc-primary);
+    background: var(--ctc-primary-subtle) !important;
+    color: var(--ctc-primary-hover) !important;
+}
+
+html .theme-entry .input-control.radio.style-aware.focus,
+html .theme-entry .input-control.checkbox.style-aware.focus,
+html .theme-entry .input-control.radio.style-aware:focus-within,
+html .theme-entry .input-control.checkbox.style-aware:focus-within,
+html .theme-entry .ctc-choice:focus-within {
+    outline: 0;
+    box-shadow: var(--ctc-focus-ring) !important;
+}
+
+html .theme-entry .input-control.radio.style-aware svg,
+html .theme-entry .input-control.checkbox.style-aware svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+}
+
+html .theme-entry .radio.checked .svg-radio-btn-circle {
+    stroke: var(--ctc-primary);
+}
+
+html .theme-entry .radio.checked .svg-radio-btn-checked,
+html .theme-entry .checkbox.checked svg path {
+    fill: var(--ctc-primary);
+}
+
+html .theme-entry input[type="checkbox"],
+html .theme-entry input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--ctc-primary);
+}
+
+html .theme-entry .multi-select-outer-panel,
+html .theme-entry .tree-outer-panel,
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-ListBox,
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-MultiChoice,
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-ListDisplay {
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-sm);
+    background: var(--ctc-surface);
+    color: var(--ctc-text);
+}
+
+html .theme-entry .tree-outer-panel a,
+html .theme-entry .multi-select-outer-panel label,
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-ListBox .option {
+    min-height: 32px;
+    padding: 6px 10px;
+    color: var(--ctc-text) !important;
+}
+
+/* ==========================================================================
+   07. Buttons, toolbar buttons, action bars, and workflow actions
+   ========================================================================== */
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Button,
+html .theme-entry button,
+html .theme-entry input[type="button"],
+html .theme-entry input[type="submit"],
+html .theme-entry input[type="reset"],
+html .theme-entry .ctc-button {
+    display: inline-flex;
+    min-width: 104px;
+    min-height: var(--ctc-control-height);
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: 1px solid var(--ctc-border-strong) !important;
+    border-radius: var(--ctc-radius-sm) !important;
+    background: var(--ctc-surface) !important;
+    color: var(--ctc-text) !important;
+    font-family: var(--ctc-font-family);
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    box-shadow: none !important;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Button:hover,
+html .theme-entry button:hover,
+html .theme-entry input[type="button"]:hover,
+html .theme-entry input[type="submit"]:hover,
+html .theme-entry input[type="reset"]:hover,
+html .theme-entry .ctc-button:hover {
+    border-color: var(--ctc-primary) !important;
+    background: var(--ctc-primary-subtle) !important;
+    color: var(--ctc-primary-hover) !important;
+}
+
+html .theme-entry [name="CTC_PrimaryAction"],
+html .theme-entry .ctc-button.is-primary,
+html .theme-entry .primary-button,
+html .theme-entry .button-primary {
+    border-color: var(--ctc-primary) !important;
+    background: var(--ctc-primary) !important;
+    color: var(--ctc-on-primary) !important;
+}
+
+html .theme-entry [name="CTC_PrimaryAction"]:hover,
+html .theme-entry .ctc-button.is-primary:hover,
+html .theme-entry .primary-button:hover,
+html .theme-entry .button-primary:hover {
+    border-color: var(--ctc-primary-hover) !important;
+    background: var(--ctc-primary-hover) !important;
+    color: var(--ctc-on-primary) !important;
+}
+
+html .theme-entry .ctc-button.is-destructive,
+html .theme-entry .destructive,
+html .theme-entry .delete-button {
+    border-color: var(--ctc-danger) !important;
+    color: var(--ctc-danger) !important;
+}
+
+html .theme-entry .ctc-button.is-destructive:hover,
+html .theme-entry .destructive:hover,
+html .theme-entry .delete-button:hover {
+    background: var(--ctc-danger-bg) !important;
+    color: var(--ctc-danger-strong) !important;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Button:focus-visible,
+html .theme-entry button:focus-visible,
+html .theme-entry input[type="button"]:focus-visible,
+html .theme-entry input[type="submit"]:focus-visible,
+html .theme-entry input[type="reset"]:focus-visible,
+html .theme-entry .ctc-button:focus-visible,
+html .theme-entry a:focus-visible {
+    outline: 0;
+    box-shadow: var(--ctc-focus-ring) !important;
+}
+
+html .theme-entry button:disabled,
+html .theme-entry input[type="button"]:disabled,
+html .theme-entry input[type="submit"]:disabled,
+html .theme-entry input[type="reset"]:disabled,
+html .theme-entry .SourceCode-Forms-Controls-Web-Button.disabled {
+    cursor: not-allowed;
+    border-color: var(--ctc-border) !important;
+    background: var(--ctc-surface-disabled) !important;
+    color: var(--ctc-text-disabled) !important;
+}
+
+html .theme-entry .toolbar-button,
+html .theme-entry .toolbars a,
+html .theme-entry .panel-toolbars a,
+html .theme-entry .grid-toolbars a {
+    min-height: var(--ctc-control-height-compact);
+    border-radius: var(--ctc-radius-sm);
+    color: var(--ctc-text) !important;
+}
+
+html .theme-entry .toolbar-button:hover,
+html .theme-entry .toolbars a:hover,
+html .theme-entry .panel-toolbars a:hover,
+html .theme-entry .grid-toolbars a:hover {
+    background-color: var(--ctc-primary-subtle) !important;
+    color: var(--ctc-primary-hover) !important;
+}
+
+html .theme-entry .toolbar-button:focus-visible,
+html .theme-entry .toolbars a:focus-visible,
+html .theme-entry .panel-toolbars a:focus-visible,
+html .theme-entry .grid-toolbars a:focus-visible {
+    outline: 0;
+    box-shadow: var(--ctc-focus-ring) !important;
+}
+
+html .theme-entry [name="CTC_ActionBar"],
+html .theme-entry .ctc-action-bar,
+html .theme-entry .workflow-action-bar,
+html .theme-entry .task-action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--ctc-space-3);
+    margin-top: var(--ctc-space-6);
+    padding: var(--ctc-space-5) 0 var(--ctc-space-6);
+    border-top: 1px solid var(--ctc-border);
+}
+
+/* ==========================================================================
+   08. List views, editable lists, worklists, and reporting grids
+   ========================================================================== */
+
+html .theme-entry .grid,
+html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-ListDisplay,
+html .theme-entry .worklist-grid,
+html .theme-entry [class*="InstancesGrid"],
+html .theme-entry [class*="PerformanceGrid"],
+html .theme-entry [class*="WorkflowDataGrid"] {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-md);
+    background: var(--ctc-surface) !important;
+    color: var(--ctc-text);
+    box-shadow: var(--ctc-shadow-sm);
+}
+
+html .theme-entry .grid-header,
+html .theme-entry .grid-column-headers,
+html .theme-entry .grid-column-header,
+html .theme-entry .grid table thead th,
+html .theme-entry .grid-content-table thead th {
+    border-color: var(--ctc-border) !important;
+    background: var(--ctc-surface-subtle) !important;
+    color: var(--ctc-text) !important;
+    font-family: var(--ctc-font-family);
+    font-size: 13px !important;
+    font-weight: 750 !important;
+    line-height: 1.35;
+}
+
+html .theme-entry .grid table,
+html .theme-entry .grid-content-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--ctc-surface);
+}
+
+html .theme-entry .grid-content-cell,
+html .theme-entry .grid-content-cell-wrapper,
+html .theme-entry .grid table td,
+html .theme-entry .grid-content-table td {
+    border-color: var(--ctc-border-subtle) !important;
+    color: var(--ctc-text) !important;
+    font-family: var(--ctc-font-family);
+    font-size: 14px !important;
+    line-height: 1.45;
+}
+
+html .theme-entry .grid table th,
+html .theme-entry .grid-content-table th,
+html .theme-entry .grid table td,
+html .theme-entry .grid-content-table td {
+    padding: 10px 12px;
+    vertical-align: middle;
+}
+
+html .theme-entry .grid-body,
+html .theme-entry .grid-content,
+html .theme-entry .grid-content-table tbody tr {
+    background: var(--ctc-surface);
+}
+
+html .theme-entry .grid-content-table tbody tr:nth-child(even),
+html .theme-entry .grid table tbody tr:nth-child(even) {
+    background: var(--ctc-surface-subtle);
+}
+
+html .theme-entry .grid-content-table tbody tr:hover,
+html .theme-entry .grid table tbody tr:hover,
+html .theme-entry .runtime-list-item:hover {
+    background: var(--ctc-primary-subtle) !important;
+}
+
+html .theme-entry .grid .selected,
+html .theme-entry .grid .highlighted,
+html .theme-entry .runtime-list-item.selected,
+html .theme-entry tr.selected,
+html .theme-entry tr.highlighted {
+    background: var(--ctc-surface-selected) !important;
+    color: var(--ctc-text) !important;
+}
+
+html .theme-entry .grid-footer,
+html .theme-entry .grid-paging,
+html .theme-entry .pager {
+    border-top: 1px solid var(--ctc-border);
+    background: var(--ctc-surface-subtle) !important;
+    color: var(--ctc-text-muted) !important;
+    font-size: 13px;
+}
+
+html .theme-entry .grid-empty,
+html .theme-entry .empty,
+html .theme-entry .empty-state,
+html .theme-entry .no-records {
+    padding: var(--ctc-space-8);
+    color: var(--ctc-text-muted) !important;
+    text-align: center;
+}
+
+html .theme-entry .edit-row,
+html .theme-entry .editable-row,
+html .theme-entry tr.edit-row,
+html .theme-entry tr.editable-row,
+html .theme-entry .grid .new-row,
+html .theme-entry .grid .dirty-row {
+    background: var(--ctc-surface-selected) !important;
+}
+
+html .theme-entry .edit-row input,
+html .theme-entry .edit-row textarea,
+html .theme-entry .edit-row .input-control,
+html .theme-entry .editable-row input,
+html .theme-entry .editable-row textarea,
+html .theme-entry .editable-row .input-control,
+html .theme-entry .grid-content-cell input,
+html .theme-entry .grid-content-cell textarea,
+html .theme-entry .grid-content-cell .input-control {
+    min-height: 36px;
+    border-radius: var(--ctc-radius-sm) !important;
+    font-size: 14px !important;
+}
+
+html .theme-entry .edit-row.invalid,
+html .theme-entry .editable-row.invalid,
+html .theme-entry .grid .row-error,
+html .theme-entry tr.error {
+    background: var(--ctc-danger-bg) !important;
+    box-shadow: inset 4px 0 0 var(--ctc-danger);
+}
+
+html .theme-entry .sort-ascending,
+html .theme-entry .sort-descending,
+html .theme-entry .filter-active {
+    color: var(--ctc-primary) !important;
+}
+
+/* ==========================================================================
+   09. Attachments, uploaders, progress, export, and rich text
+   ========================================================================== */
+
+html .theme-entry .file-wrapper,
+html .theme-entry .SourceCode-Forms-Controls-Web-FileAttachment,
+html .theme-entry .SourceCode-Forms-Controls-Web-ImageAttachment,
+html .theme-entry .attachment-control,
+html .theme-entry .upload-control {
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-md);
+    background: var(--ctc-surface-subtle);
+    color: var(--ctc-text);
+}
+
+html .theme-entry .file-wrapper {
+    min-height: var(--ctc-control-height);
+    padding: var(--ctc-space-2);
+}
+
+html .theme-entry .file-wrapper .file-info-cell,
+html .theme-entry .file-wrapper .file-watermark,
+html .theme-entry .file-wrapper .file-ellipsis,
+html .theme-entry .attachment-file,
+html .theme-entry .uploaded-file {
+    overflow-wrap: anywhere;
+    color: var(--ctc-text) !important;
+    line-height: 1.4;
+}
+
+html .theme-entry .file-wrapper .file-watermark,
+html .theme-entry .upload-empty {
+    color: var(--ctc-text-muted) !important;
+}
+
+html .theme-entry .progress,
+html .theme-entry .progress-bar,
+html .theme-entry .upload-progress {
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--ctc-border-subtle);
+}
+
+html .theme-entry .progress-bar-value,
+html .theme-entry .upload-progress-value {
+    background: var(--ctc-primary);
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-SaveAsPDF,
+html .theme-entry .export-control {
+    color: var(--ctc-primary);
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-RichText,
+html .theme-entry .rich-text,
+html .theme-entry .richtext-control {
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-sm);
+    background: var(--ctc-surface);
+    color: var(--ctc-text);
+}
+
+/* ==========================================================================
+   10. Tabs, accordions, collapsible panels, menus, and navigation
+   ========================================================================== */
+
+html .theme-entry .tab-box,
+html .theme-entry .tabstrip,
+html .theme-entry .tabs {
+    border-bottom: 1px solid var(--ctc-border);
+    background: var(--ctc-surface);
+}
+
+html .theme-entry .tab,
+html .theme-entry .tab a,
+html .theme-entry .tab-wrapper,
+html .theme-entry .tab-item {
+    min-height: 40px;
+    color: var(--ctc-text-muted) !important;
+    font-family: var(--ctc-font-family);
+    font-size: 14px !important;
+    font-weight: 650;
+}
+
+html .theme-entry .tab:hover,
+html .theme-entry .tab a:hover,
+html .theme-entry .tab-item:hover {
+    color: var(--ctc-primary-hover) !important;
+    background: var(--ctc-primary-subtle) !important;
+}
+
+html .theme-entry .tab.selected,
+html .theme-entry .tab.active,
+html .theme-entry .tab.selected a,
+html .theme-entry .tab.active a,
+html .theme-entry .tab-item.active {
+    border-bottom: 3px solid var(--ctc-primary);
+    color: var(--ctc-primary-hover) !important;
+    background: var(--ctc-surface) !important;
+}
+
+html .theme-entry .tab:focus-visible,
+html .theme-entry .tab a:focus-visible,
+html .theme-entry .tab-item:focus-visible {
+    outline: 0;
+    box-shadow: var(--ctc-focus-ring-inset) !important;
+}
+
+html .theme-entry .accordion,
+html .theme-entry .collapsible,
+html .theme-entry .expander {
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-md);
+    background: var(--ctc-surface);
+}
+
+html .theme-entry .accordion-header,
+html .theme-entry .collapsible-header,
+html .theme-entry .expander-header {
+    min-height: 44px;
+    padding: 0 var(--ctc-space-4);
+    border-bottom: 1px solid var(--ctc-border);
+    background: var(--ctc-surface-subtle);
+    color: var(--ctc-text);
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   11. Validation, alerts, status chips, and busy/loading states
+   ========================================================================== */
+
+html .theme-entry input.invalid,
+html .theme-entry textarea.invalid,
+html .theme-entry select.invalid,
+html .theme-entry .invalid input,
+html .theme-entry .invalid textarea,
+html .theme-entry .invalid select,
+html .theme-entry .validation-error,
+html .theme-entry .input-control.invalid {
+    border-color: var(--ctc-danger) !important;
+    box-shadow: 0 0 0 1px var(--ctc-danger) !important;
+}
+
+html .theme-entry .field-validation-error,
+html .theme-entry .error-message,
+html .theme-entry .validation-message,
+html .theme-entry .validator,
+html .theme-entry .form-field-error {
+    display: block;
+    margin-top: var(--ctc-space-2);
+    color: var(--ctc-danger-strong) !important;
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.4;
+}
+
+html .theme-entry .field-validation-error::before,
+html .theme-entry .error-message::before,
+html .theme-entry .validation-message::before {
+    margin-right: 6px;
+    content: "!";
+    font-weight: 900;
+}
+
+html .theme-entry .message,
+html .theme-entry .notification,
+html .theme-entry .ctc-status,
+html .theme-entry [name="CTC_Status"] {
+    padding: var(--ctc-space-3) var(--ctc-space-4);
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-sm);
+    background: var(--ctc-surface-subtle);
+    color: var(--ctc-text);
+    font-size: 14px;
+    line-height: 1.45;
+}
+
+html .theme-entry .message.error,
+html .theme-entry .notification.error,
+html .theme-entry .ctc-status.is-error {
+    border-color: var(--ctc-danger-border);
+    background: var(--ctc-danger-bg);
+    color: var(--ctc-danger-strong);
+}
+
+html .theme-entry .message.warning,
+html .theme-entry .notification.warning,
+html .theme-entry .ctc-status.is-warning {
+    border-color: var(--ctc-warning-border);
+    background: var(--ctc-warning-bg);
+    color: var(--ctc-warning-strong);
+}
+
+html .theme-entry .message.success,
+html .theme-entry .notification.success,
+html .theme-entry .ctc-status.is-success {
+    border-color: var(--ctc-success-border);
+    background: var(--ctc-success-bg);
+    color: var(--ctc-success-strong);
+}
+
+html .theme-entry .message.info,
+html .theme-entry .notification.info,
+html .theme-entry .ctc-status.is-info {
+    border-color: var(--ctc-info-border);
+    background: var(--ctc-info-bg);
+    color: var(--ctc-info-strong);
+}
+
+html .theme-entry .loading,
+html .theme-entry .busy,
+html .theme-entry .ajax-loader,
+html .theme-entry .spinner {
+    color: var(--ctc-primary);
+}
+
+html .theme-entry .overlay,
+html .theme-entry .loading-overlay,
+html .theme-entry .busy-overlay {
+    background: rgba(17, 20, 24, 0.48);
+}
+
+/* ==========================================================================
+   12. Popups, dialogs, calendars, autocomplete, pickers, and menus
+   ========================================================================== */
+
+html .theme-entry .popup,
+html .theme-entry .dialog,
+html .theme-entry .modal,
+html .theme-entry .calendar-popup,
+html .theme-entry .picker-search,
+html .theme-entry .dropdown-popup,
+.ui-dialog,
+.ui-datepicker,
+.ui-autocomplete,
+.calendar-popup,
+.picker-search,
+.dropdown-popup,
+.popup,
+.dialog {
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-md);
+    background: var(--ctc-surface-raised) !important;
+    color: var(--ctc-text) !important;
+    box-shadow: var(--ctc-shadow-overlay);
+}
+
+html .theme-entry .popup-header,
+html .theme-entry .dialog-header,
+html .theme-entry .modal-header,
+.ui-dialog .ui-dialog-titlebar,
+.ui-datepicker .ui-datepicker-header {
+    border-bottom: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-md) var(--ctc-radius-md) 0 0;
+    background: var(--ctc-surface-subtle) !important;
+    color: var(--ctc-text) !important;
+    font-family: var(--ctc-font-family);
+    font-weight: 750;
+}
+
+html .theme-entry .popup-body,
+html .theme-entry .dialog-body,
+html .theme-entry .modal-body,
+.ui-dialog .ui-dialog-content,
+.ui-datepicker table,
+.ui-autocomplete .ui-menu-item {
+    background: var(--ctc-surface-raised) !important;
+    color: var(--ctc-text) !important;
+    font-family: var(--ctc-font-family);
+}
+
+.ui-autocomplete .ui-menu-item a,
+.ui-datepicker td a,
+.ui-datepicker td span {
+    color: var(--ctc-text) !important;
+}
+
+.ui-autocomplete .ui-menu-item a:hover,
+.ui-autocomplete .ui-state-focus,
+.ui-datepicker td a:hover,
+.ui-datepicker .ui-datepicker-current-day a {
+    background: var(--ctc-primary-subtle) !important;
+    color: var(--ctc-primary-hover) !important;
+}
+
+.ui-datepicker .ui-datepicker-today a {
+    border: 1px solid var(--ctc-primary) !important;
+}
+
+html .theme-entry .modal-footer,
+html .theme-entry .dialog-footer,
+.ui-dialog .ui-dialog-buttonpane {
+    border-top: 1px solid var(--ctc-border);
+    background: var(--ctc-surface-subtle) !important;
+}
+
+/* ==========================================================================
+   13. Dashboard, search, report, chart, and information controls
+   ========================================================================== */
+
+html .theme-entry .ctc-kpi-grid,
+html .theme-entry .dashboard-grid,
+html .theme-entry .search-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--ctc-space-4);
+}
+
+html .theme-entry .ctc-kpi,
+html .theme-entry .metric-card,
+html .theme-entry .report-card,
+html .theme-entry .chart-panel {
+    min-width: 0;
+    padding: var(--ctc-space-5);
+    border: 1px solid var(--ctc-border);
+    border-radius: var(--ctc-radius-md);
+    background: var(--ctc-surface);
+    color: var(--ctc-text);
+    box-shadow: var(--ctc-shadow-sm);
+}
+
+html .theme-entry .chart,
+html .theme-entry [class*="Chart"] {
+    color: var(--ctc-text);
+}
+
+html .theme-entry .status-chip,
+html .theme-entry .ctc-chip,
+html .theme-entry .badge {
+    display: inline-flex;
+    min-height: 24px;
+    align-items: center;
+    padding: 3px 8px;
+    border: 1px solid var(--ctc-border);
+    border-radius: 999px;
+    background: var(--ctc-surface-subtle);
+    color: var(--ctc-text);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+html .theme-entry .status-chip.is-success,
+html .theme-entry .ctc-chip.is-success {
+    border-color: var(--ctc-success-border);
+    background: var(--ctc-success-bg);
+    color: var(--ctc-success-strong);
+}
+
+html .theme-entry .status-chip.is-warning,
+html .theme-entry .ctc-chip.is-warning {
+    border-color: var(--ctc-warning-border);
+    background: var(--ctc-warning-bg);
+    color: var(--ctc-warning-strong);
+}
+
+html .theme-entry .status-chip.is-danger,
+html .theme-entry .ctc-chip.is-danger {
+    border-color: var(--ctc-danger-border);
+    background: var(--ctc-danger-bg);
+    color: var(--ctc-danger-strong);
+}
+
+/* ==========================================================================
+   14. Responsive behavior
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+    html .theme-entry .runtime-form {
+        padding: var(--ctc-space-5);
+    }
+}
+
+@media (max-width: 768px) {
+    html .theme-entry .runtime-form {
+        padding: var(--ctc-space-4);
+    }
+
+    html .theme-entry .panel-body,
+    html .theme-entry [name="CTC_FormHeader"],
+    html .theme-entry .ctc-form-header,
+    html .theme-entry [name="CTC_Notice"],
+    html .theme-entry .ctc-notice {
+        padding: var(--ctc-space-4);
+    }
+
+    html .theme-entry .ctc-span-8,
+    html .theme-entry .ctc-span-6,
+    html .theme-entry .ctc-span-4,
+    html .theme-entry .ctc-span-3,
+    html .theme-entry .ctc-kpi,
+    html .theme-entry .metric-card {
+        grid-column: span 12;
+    }
+
+    html .theme-entry [name="CTC_ActionBar"],
+    html .theme-entry .ctc-action-bar,
+    html .theme-entry .workflow-action-bar,
+    html .theme-entry .task-action-bar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    html .theme-entry [name="CTC_ActionBar"] .SourceCode-Forms-Controls-Web-Button,
+    html .theme-entry .ctc-action-bar .SourceCode-Forms-Controls-Web-Button,
+    html .theme-entry .ctc-action-bar .ctc-button,
+    html .theme-entry .workflow-action-bar .SourceCode-Forms-Controls-Web-Button,
+    html .theme-entry .task-action-bar .SourceCode-Forms-Controls-Web-Button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    html .theme-entry {
+        --ctc-control-height: var(--ctc-control-height-touch);
+        font-size: 15px;
+    }
+
+    html .theme-entry .runtime-form {
+        padding: var(--ctc-space-3);
+    }
+
+    html .theme-entry h1 {
+        font-size: 28px;
+    }
+
+    html .theme-entry h2 {
+        font-size: 22px;
+    }
+
+    html .theme-entry .ctc-form-grid,
+    html .theme-entry [name="CTC_FormGrid"],
+    html .theme-entry .ctc-kpi-grid,
+    html .theme-entry .dashboard-grid,
+    html .theme-entry .search-filter-grid {
+        gap: var(--ctc-space-4);
+    }
+
+    html .theme-entry .ControlPack-Choice.displayTypeRadio,
+    html .theme-entry .ControlPack-Choice.displayTypeCheckbox,
+    html .theme-entry [class*="ControlPack-Choice"].displayTypeRadio,
+    html .theme-entry [class*="ControlPack-Choice"].displayTypeCheckbox,
+    html .theme-entry .ctc-choice-list {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) :is(.stylewrapper, .controlWrapper, .stackContainer) {
+        display: flex !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--ctc-space-1);
+        overflow: visible !important;
+        white-space: normal !important;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) .stack,
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) .choice-control-item-row {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: var(--ctc-control-height) !important;
+        overflow: visible !important;
+        white-space: normal !important;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware) {
+        width: 100% !important;
+        height: auto !important;
+        min-height: var(--ctc-control-height) !important;
+        justify-content: flex-start;
+        white-space: normal !important;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware)
+        .input-control-text {
+        width: auto !important;
+        min-width: 0 !important;
+        flex: 1 1 auto !important;
+        line-height: 1.35;
+    }
+
+    html .theme-entry .grid,
+    html .theme-entry .SourceCode-Forms-Controls-Web-ControlPack-ListDisplay,
+    html .theme-entry .worklist-grid {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    html .theme-entry .grid table,
+    html .theme-entry .grid-content-table {
+        min-width: 640px;
+    }
+}
+
+/* ==========================================================================
+   15. Accessibility preferences and print
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+    html .theme-entry a,
+    html .theme-entry button,
+    html .theme-entry input,
+    html .theme-entry textarea,
+    html .theme-entry select,
+    html .theme-entry .input-control,
+    html .theme-entry .SourceCode-Forms-Controls-Web-Button,
+    html .theme-entry .toolbar-button,
+    html .theme-entry .tab,
+    html .theme-entry .grid-content-table tbody tr {
+        transition:
+            background-color 160ms ease,
+            border-color 160ms ease,
+            box-shadow 160ms ease,
+            color 160ms ease;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html .theme-entry *,
+    html .theme-entry *::before,
+    html .theme-entry *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+@media (forced-colors: active) {
+    html .theme-entry {
+        --ctc-bg: Canvas;
+        --ctc-surface: Canvas;
+        --ctc-surface-raised: Canvas;
+        --ctc-surface-subtle: Canvas;
+        --ctc-text: CanvasText;
+        --ctc-text-muted: CanvasText;
+        --ctc-border: CanvasText;
+        --ctc-border-strong: CanvasText;
+        --ctc-primary: Highlight;
+        --ctc-primary-hover: Highlight;
+        --ctc-on-primary: HighlightText;
+        --ctc-focus-ring: 0 0 0 3px Highlight;
+    }
+
+    html .theme-entry .panel,
+    html .theme-entry input,
+    html .theme-entry textarea,
+    html .theme-entry select,
+    html .theme-entry .input-control,
+    html .theme-entry .grid,
+    html .theme-entry .ctc-button,
+    html .theme-entry .SourceCode-Forms-Controls-Web-Button {
+        border: 1px solid CanvasText !important;
+        box-shadow: none !important;
+    }
+
+    html .theme-entry :focus,
+    html .theme-entry :focus-visible {
+        outline: 3px solid Highlight !important;
+        outline-offset: 2px;
+        box-shadow: none !important;
+    }
+}
+
+@media print {
+    html,
+    body.theme-entry,
+    html body.theme-entry,
+    html .theme-entry {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+
+    html .theme-entry .runtime-form {
+        max-width: none;
+        padding: 0;
+    }
+
+    html .theme-entry .panel,
+    html .theme-entry .grid,
+    html .theme-entry .ctc-form-header,
+    html .theme-entry [name="CTC_FormHeader"] {
+        border-color: #999999 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+    }
+
+    html .theme-entry .panel-toolbars,
+    html .theme-entry .toolbar,
+    html .theme-entry .grid-toolbars,
+    html .theme-entry .ctc-action-bar,
+    html .theme-entry [name="CTC_ActionBar"],
+    html .theme-entry .workflow-action-bar,
+    html .theme-entry .task-action-bar,
+    html .theme-entry .SourceCode-Forms-Controls-Web-Button,
+    html .theme-entry button {
+        display: none !important;
+    }
+
+    html .theme-entry .grid,
+    html .theme-entry .grid-content,
+    html .theme-entry .grid table,
+    html .theme-entry .grid-content-table {
+        overflow: visible !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    html .theme-entry .message,
+    html .theme-entry .notification,
+    html .theme-entry .ctc-status,
+    html .theme-entry .status-chip,
+    html .theme-entry .ctc-chip {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
