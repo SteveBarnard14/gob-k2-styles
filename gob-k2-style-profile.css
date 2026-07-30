@@ -1319,6 +1319,8 @@ html .theme-entry :is(
     [name="MOF_PolicyRightCapCell"],
     [name="Cell Cell83"]
 ) {
+    position: relative;
+    z-index: 1;
     background: #fffdf5 !important;
 }
 
@@ -1382,6 +1384,13 @@ html .theme-entry :is([name="MOF_PolicyRightCapCell"], [name="Cell Cell83"]) {
 }
 
 html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) {
+    overflow: hidden;
+    color: transparent !important;
+    pointer-events: none;
+    visibility: visible !important;
+}
+
+html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) > * {
     visibility: hidden;
 }
 
