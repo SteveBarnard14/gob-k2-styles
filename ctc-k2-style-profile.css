@@ -1766,6 +1766,20 @@ html .theme-entry .grid .filterContainer .filterTxt .input-control-m-c {
     background: var(--ctc-surface) !important;
 }
 
+html .theme-entry .grid .filterContainer .quickSearch .filterTxt > .input-control.text-input,
+html .theme-entry .grid .filterContainer .quickSearch .filterTxt > .input-control.text-input.active,
+html .theme-entry .grid .filterContainer .quickSearch .filterTxt .input-control.text-input .input-control-m-c,
+html .theme-entry .grid .filterContainer .quickSearch .filterTxt .input-control.text-input .input-control-wrapper,
+html .theme-entry .grid .filterContainer .quickSearch .filterTxt .input-control.text-input input[type="text"].input-control {
+    border-radius: var(--ctc-radius-sm) !important;
+    overflow: hidden !important;
+}
+
+html .theme-entry .grid .filterContainer .quickSearch .filterTxt .input-control.text-input .input-control-m-c {
+    border-color: transparent !important;
+    background: var(--ctc-surface) !important;
+}
+
 html .theme-entry .grid .filterContainer .input-control :is(
     .styling-outer-wrapper,
     .styling-inner-wrapper,
