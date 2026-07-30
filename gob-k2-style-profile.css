@@ -945,6 +945,73 @@ html .theme-entry [hidden] {
         align-items: stretch;
         flex-direction: column;
     }
+
+    html .theme-entry .ControlPack-Choice:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+
+    html .theme-entry .ControlPack-Choice:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) :is(.stylewrapper, .controlWrapper, .stackContainer) {
+        display: flex !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        overflow: visible !important;
+        white-space: normal !important;
+    }
+
+    html .theme-entry .ControlPack-Choice:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) .stack {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    html .theme-entry .ControlPack-Choice:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) .choice-control-item-row {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 44px !important;
+        overflow: visible !important;
+        white-space: normal !important;
+    }
+
+    html .theme-entry .ControlPack-Choice:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware) {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 44px !important;
+        justify-content: flex-start;
+        white-space: normal !important;
+    }
+
+    html .theme-entry .ControlPack-Choice:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware)
+        .input-control-text {
+        width: auto !important;
+        min-width: 0 !important;
+        flex: 1 1 auto !important;
+        line-height: 1.35;
+    }
 }
 
 /* ==========================================================================
