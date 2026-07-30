@@ -567,6 +567,7 @@ html .theme-entry textarea::placeholder {
    ========================================================================== */
 
 html .theme-entry .ControlPack-Choice.displayTypeRadio,
+html .theme-entry [class*="ControlPack-Choice"].displayTypeRadio,
 html .theme-entry .gob-choice-list {
     display: flex;
     min-width: 0;
@@ -940,13 +941,14 @@ html .theme-entry [hidden] {
     }
 
     html .theme-entry .ControlPack-Choice.displayTypeRadio,
+    html .theme-entry [class*="ControlPack-Choice"].displayTypeRadio,
     html .theme-entry .gob-choice-list,
     html .theme-entry .gob-check-grid {
         align-items: stretch;
         flex-direction: column;
     }
 
-    html .theme-entry .ControlPack-Choice:is(
+    html .theme-entry [class*="ControlPack-Choice"]:is(
         .displayTypeRadio,
         .displayTypeCheckbox
     ) {
@@ -955,7 +957,7 @@ html .theme-entry [hidden] {
         overflow: visible !important;
     }
 
-    html .theme-entry .ControlPack-Choice:is(
+    html .theme-entry [class*="ControlPack-Choice"]:is(
         .displayTypeRadio,
         .displayTypeCheckbox
     ) :is(.stylewrapper, .controlWrapper, .stackContainer) {
@@ -970,7 +972,7 @@ html .theme-entry [hidden] {
         white-space: normal !important;
     }
 
-    html .theme-entry .ControlPack-Choice:is(
+    html .theme-entry [class*="ControlPack-Choice"]:is(
         .displayTypeRadio,
         .displayTypeCheckbox
     ) .stack {
@@ -980,7 +982,7 @@ html .theme-entry [hidden] {
         min-height: 0 !important;
     }
 
-    html .theme-entry .ControlPack-Choice:is(
+    html .theme-entry [class*="ControlPack-Choice"]:is(
         .displayTypeRadio,
         .displayTypeCheckbox
     ) .choice-control-item-row {
@@ -991,7 +993,7 @@ html .theme-entry [hidden] {
         white-space: normal !important;
     }
 
-    html .theme-entry .ControlPack-Choice:is(
+    html .theme-entry [class*="ControlPack-Choice"]:is(
         .displayTypeRadio,
         .displayTypeCheckbox
     ) :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware) {
@@ -1002,7 +1004,7 @@ html .theme-entry [hidden] {
         white-space: normal !important;
     }
 
-    html .theme-entry .ControlPack-Choice:is(
+    html .theme-entry [class*="ControlPack-Choice"]:is(
         .displayTypeRadio,
         .displayTypeCheckbox
     ) :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware)
