@@ -21,7 +21,17 @@
    01. Primitive tokens, semantic tokens, and K2 Dynamic Theme bridge
    ========================================================================== */
 
+:root {
+    --ctc-popup-surface: #ffffff;
+    --ctc-popup-text: #17202a;
+    --ctc-popup-border: #d3d8df;
+}
+
 html .theme-entry {
+    --ctc-popup-surface: #ffffff;
+    --ctc-popup-text: #17202a;
+    --ctc-popup-border: #d3d8df;
+
     --ctc-slate-950: #0b1220;
     --ctc-slate-900: #17202a;
     --ctc-slate-800: #26323f;
@@ -138,6 +148,7 @@ html .theme-entry {
     --ctc-danger-disabled-bg: #f7d8d5;
     --ctc-danger-disabled-text: #8c4c46;
     --ctc-danger-border: #f2ada8;
+    --ctc-on-danger: #ffffff;
     --ctc-info: var(--ctc-cyan-700);
     --ctc-info-strong: var(--ctc-cyan-800);
     --ctc-info-bg: var(--ctc-cyan-050);
@@ -178,32 +189,35 @@ html .theme-entry {
 
 html .theme-entry.ctc-theme-dark,
 html .theme-entry.k2-theme-dark {
-    --ctc-bg: #111418;
-    --ctc-surface: #1b1f24;
-    --ctc-surface-raised: #20252d;
-    --ctc-surface-subtle: #232832;
-    --ctc-surface-muted: #15191f;
-    --ctc-surface-inset: #0f1318;
-    --ctc-surface-selected: #172949;
-    --ctc-surface-hover: #1d3154;
-    --ctc-surface-disabled: #242a32;
-    --ctc-text: #eef1f5;
-    --ctc-text-muted: #aab2bd;
-    --ctc-text-subtle: #8f98a6;
-    --ctc-text-disabled: #aab2bd;
+    --ctc-bg: #202633;
+    --ctc-popup-surface: #303a4a;
+    --ctc-popup-text: #f4f7fb;
+    --ctc-popup-border: #566477;
+    --ctc-surface: #293241;
+    --ctc-surface-raised: #303a4a;
+    --ctc-surface-subtle: #354152;
+    --ctc-surface-muted: #242c39;
+    --ctc-surface-inset: #1a202a;
+    --ctc-surface-selected: #203a63;
+    --ctc-surface-hover: #2b4670;
+    --ctc-surface-disabled: #323b49;
+    --ctc-text: #f4f7fb;
+    --ctc-text-muted: #d0d8e4;
+    --ctc-text-subtle: #b7c2d0;
+    --ctc-text-disabled: #b8c2cf;
     --ctc-text-inverse: #0b1220;
-    --ctc-border: #3a414b;
-    --ctc-border-subtle: #2b323b;
-    --ctc-border-strong: #5a6470;
-    --ctc-primary: #8ab4ff;
-    --ctc-primary-hover: #a8c7ff;
-    --ctc-primary-active: #c9ddff;
-    --ctc-primary-subtle: #172949;
+    --ctc-border: #566477;
+    --ctc-border-subtle: #414d5f;
+    --ctc-border-strong: #738195;
+    --ctc-primary: #9ec5ff;
+    --ctc-primary-hover: #c2dbff;
+    --ctc-primary-active: #dceaff;
+    --ctc-primary-subtle: #203a63;
     --ctc-on-primary: #0b1220;
-    --ctc-focus: #a8c7ff;
+    --ctc-focus: #c2dbff;
     --ctc-focus-ring:
         0 0 0 2px var(--ctc-surface),
-        0 0 0 5px rgba(168, 199, 255, 0.78);
+        0 0 0 5px rgba(194, 219, 255, 0.82);
     --ctc-success: #7bdca8;
     --ctc-success-strong: #a7efc6;
     --ctc-success-bg: #0e2a1c;
@@ -219,6 +233,7 @@ html .theme-entry.k2-theme-dark {
     --ctc-danger-disabled-bg: #3b2423;
     --ctc-danger-disabled-text: #d99d98;
     --ctc-danger-border: #8d302a;
+    --ctc-on-danger: #0b1220;
     --ctc-info: #80d7ff;
     --ctc-info-strong: #b9eaff;
     --ctc-info-bg: #082839;
@@ -233,33 +248,36 @@ html .theme-entry.k2-theme-dark {
 }
 
 @media (prefers-color-scheme: dark) {
-    html .theme-entry:not(.ctc-theme-light):not(.k2-theme-light) {
-        --ctc-bg: #111418;
-        --ctc-surface: #1b1f24;
-        --ctc-surface-raised: #20252d;
-        --ctc-surface-subtle: #232832;
-        --ctc-surface-muted: #15191f;
-        --ctc-surface-inset: #0f1318;
-        --ctc-surface-selected: #172949;
-        --ctc-surface-hover: #1d3154;
-        --ctc-surface-disabled: #242a32;
-        --ctc-text: #eef1f5;
-        --ctc-text-muted: #aab2bd;
-        --ctc-text-subtle: #8f98a6;
-        --ctc-text-disabled: #aab2bd;
+    html .theme-entry.ctc-auto-dark:not(.ctc-theme-light):not(.k2-theme-light) {
+        --ctc-bg: #202633;
+        --ctc-popup-surface: #303a4a;
+        --ctc-popup-text: #f4f7fb;
+        --ctc-popup-border: #566477;
+        --ctc-surface: #293241;
+        --ctc-surface-raised: #303a4a;
+        --ctc-surface-subtle: #354152;
+        --ctc-surface-muted: #242c39;
+        --ctc-surface-inset: #1a202a;
+        --ctc-surface-selected: #203a63;
+        --ctc-surface-hover: #2b4670;
+        --ctc-surface-disabled: #323b49;
+        --ctc-text: #f4f7fb;
+        --ctc-text-muted: #d0d8e4;
+        --ctc-text-subtle: #b7c2d0;
+        --ctc-text-disabled: #b8c2cf;
         --ctc-text-inverse: #0b1220;
-        --ctc-border: #3a414b;
-        --ctc-border-subtle: #2b323b;
-        --ctc-border-strong: #5a6470;
-        --ctc-primary: #8ab4ff;
-        --ctc-primary-hover: #a8c7ff;
-        --ctc-primary-active: #c9ddff;
-        --ctc-primary-subtle: #172949;
+        --ctc-border: #566477;
+        --ctc-border-subtle: #414d5f;
+        --ctc-border-strong: #738195;
+        --ctc-primary: #9ec5ff;
+        --ctc-primary-hover: #c2dbff;
+        --ctc-primary-active: #dceaff;
+        --ctc-primary-subtle: #203a63;
         --ctc-on-primary: #0b1220;
-        --ctc-focus: #a8c7ff;
+        --ctc-focus: #c2dbff;
         --ctc-focus-ring:
             0 0 0 2px var(--ctc-surface),
-            0 0 0 5px rgba(168, 199, 255, 0.78);
+            0 0 0 5px rgba(194, 219, 255, 0.82);
         --ctc-success: #7bdca8;
         --ctc-success-strong: #a7efc6;
         --ctc-success-bg: #0e2a1c;
@@ -275,6 +293,7 @@ html .theme-entry.k2-theme-dark {
         --ctc-danger-disabled-bg: #3b2423;
         --ctc-danger-disabled-text: #d99d98;
         --ctc-danger-border: #8d302a;
+        --ctc-on-danger: #0b1220;
         --ctc-info: #80d7ff;
         --ctc-info-strong: #b9eaff;
         --ctc-info-bg: #082839;
@@ -286,6 +305,124 @@ html .theme-entry.k2-theme-dark {
         --ctc-shadow-overlay:
             0 0 0 1px var(--ctc-border),
             0 20px 56px rgba(0, 0, 0, 0.55);
+    }
+}
+
+html .theme-entry:is(.ctc-theme-dark, .k2-theme-dark) :is(
+    .SFC,
+    .editor-cell,
+    .grid-content-cell,
+    .grid-content-cell-wrapper,
+    .panel-header-text,
+    .input-control,
+    .input-control-text,
+    .editable-area,
+    .input-control-watermark
+) {
+    color: var(--ctc-text) !important;
+}
+
+html .theme-entry:is(.ctc-theme-dark, .k2-theme-dark) :is(
+    .panel-body-wrapper,
+    .panel-body-m,
+    .panel-body-m-c,
+    .grid-body,
+    .grid-content,
+    .grid-content-table,
+    .input-control.select-box,
+    .dropdown-box,
+    .lookup-box,
+    .picker-input,
+    .calendar-control
+) {
+    background-color: var(--ctc-surface) !important;
+}
+
+html .theme-entry:is(.ctc-theme-dark, .k2-theme-dark) :is(
+    .styling-outer-wrapper,
+    .styling-inner-wrapper,
+    .input-control-body,
+    .input-control-m,
+    .input-control-m-c,
+    .input-control-wrapper,
+    .input-control-buttons
+) {
+    color: var(--ctc-text) !important;
+    border-color: transparent !important;
+}
+
+html .theme-entry:is(.ctc-theme-dark, .k2-theme-dark) .grid tr:is(
+    .selected,
+    .highlighted,
+    .edit-row,
+    .editable-row,
+    .dirty-row,
+    .new-row,
+    .added-row,
+    .deleted-row,
+    .remove-row
+) :is(td, th, .grid-content-cell) {
+    background: inherit !important;
+    color: inherit !important;
+}
+
+@media (prefers-color-scheme: dark) {
+    html .theme-entry.ctc-auto-dark:not(.ctc-theme-light):not(.k2-theme-light) :is(
+        .SFC,
+        .editor-cell,
+        .grid-content-cell,
+        .grid-content-cell-wrapper,
+        .panel-header-text,
+        .input-control,
+        .input-control-text,
+        .editable-area,
+        .input-control-watermark
+    ) {
+        color: var(--ctc-text) !important;
+    }
+
+    html .theme-entry.ctc-auto-dark:not(.ctc-theme-light):not(.k2-theme-light) :is(
+        .panel-body-wrapper,
+        .panel-body-m,
+        .panel-body-m-c,
+        .grid-body,
+        .grid-content,
+        .grid-content-table,
+        .input-control.select-box,
+        .dropdown-box,
+        .lookup-box,
+        .picker-input,
+        .calendar-control
+    ) {
+        background-color: var(--ctc-surface) !important;
+    }
+
+    html .theme-entry.ctc-auto-dark:not(.ctc-theme-light):not(.k2-theme-light) :is(
+        .styling-outer-wrapper,
+        .styling-inner-wrapper,
+        .input-control-body,
+        .input-control-m,
+        .input-control-m-c,
+        .input-control-wrapper,
+        .input-control-buttons
+    ) {
+        color: var(--ctc-text) !important;
+        border-color: transparent !important;
+    }
+
+    html .theme-entry.ctc-auto-dark:not(.ctc-theme-light):not(.k2-theme-light) .grid tr:is(
+        .selected,
+        .highlighted,
+        .edit-row,
+        .editable-row,
+        .dirty-row,
+        .new-row,
+        .added-row,
+        .deleted-row,
+        .remove-row
+    ) :is(td, th, .grid-content-cell) {
+        background: inherit !important;
+        color: inherit !important;
     }
 }
 
@@ -727,6 +864,46 @@ html .theme-entry .input-control.select-box .input-control-buttons {
     min-height: 0 !important;
 }
 
+html .theme-entry .input-control.select-box :is(
+    .styling-outer-wrapper,
+    .styling-inner-wrapper,
+    .input-control-body,
+    .input-control-m,
+    .input-control-m-c,
+    .input-control-wrapper,
+    .input-control-buttons
+),
+html .theme-entry .dropdown-box :is(
+    .styling-outer-wrapper,
+    .styling-inner-wrapper,
+    .input-control-body,
+    .input-control-m,
+    .input-control-m-c,
+    .input-control-wrapper,
+    .input-control-buttons
+),
+html .theme-entry .lookup-box :is(
+    .styling-outer-wrapper,
+    .styling-inner-wrapper,
+    .input-control-body,
+    .input-control-m,
+    .input-control-m-c,
+    .input-control-wrapper,
+    .input-control-buttons
+),
+html .theme-entry .picker-input :is(
+    .styling-outer-wrapper,
+    .styling-inner-wrapper,
+    .input-control-body,
+    .input-control-m,
+    .input-control-m-c,
+    .input-control-wrapper,
+    .input-control-buttons
+) {
+    color: var(--ctc-text) !important;
+    border-color: transparent !important;
+}
+
 html .theme-entry .dropdown-box > a,
 html .theme-entry .lookup-box > a,
 html .theme-entry .calendar-control > a,
@@ -1096,7 +1273,7 @@ html .theme-entry .destructive,
 html .theme-entry .delete-button {
     border-color: var(--ctc-danger) !important;
     background: var(--ctc-danger) !important;
-    color: var(--ctc-text-inverse) !important;
+    color: var(--ctc-on-danger) !important;
 }
 
 html .theme-entry .ctc-button.is-destructive:hover,
@@ -1105,7 +1282,7 @@ html .theme-entry .destructive:hover,
 html .theme-entry .delete-button:hover {
     border-color: var(--ctc-danger-strong) !important;
     background: var(--ctc-danger-strong) !important;
-    color: var(--ctc-text-inverse) !important;
+    color: var(--ctc-on-danger) !important;
 }
 
 html .theme-entry .SourceCode-Forms-Controls-Web-Button:focus-visible,
@@ -1407,20 +1584,120 @@ html .theme-entry .filter-row,
 html .theme-entry .grid-filter-row,
 html .theme-entry .grid .filter,
 html .theme-entry .column-filter,
+html .theme-entry .grid tr.filter-row,
+html .theme-entry .grid tr.grid-filter-row,
 html .theme-entry .grid-content-table tr.filter-row {
     background: var(--ctc-surface-muted) !important;
 }
 
-html .theme-entry .filter-row input,
+html .theme-entry .grid tr.filter-row th,
+html .theme-entry .grid tr.filter-row td,
+html .theme-entry .grid tr.grid-filter-row th,
+html .theme-entry .grid tr.grid-filter-row td,
+html .theme-entry .grid-content-table tr.filter-row th,
+html .theme-entry .grid-content-table tr.filter-row td,
+html .theme-entry .grid-content-table tr.grid-filter-row th,
+html .theme-entry .grid-content-table tr.grid-filter-row td,
+html .theme-entry .filter-row .grid-content-cell,
+html .theme-entry .grid-filter-row .grid-content-cell,
+html .theme-entry .grid .column-filter {
+    height: 34px !important;
+    padding: 3px 6px !important;
+    vertical-align: middle !important;
+}
+
+html .theme-entry .filter-row input:not([type="checkbox"]):not([type="radio"]),
 html .theme-entry .filter-row select,
-html .theme-entry .grid-filter-row input,
+html .theme-entry .grid-filter-row input:not([type="checkbox"]):not([type="radio"]),
 html .theme-entry .grid-filter-row select,
-html .theme-entry .column-filter input,
-html .theme-entry .column-filter select {
-    min-height: 34px;
+html .theme-entry .column-filter input:not([type="checkbox"]):not([type="radio"]),
+html .theme-entry .column-filter select,
+html .theme-entry .filter-row .input-control,
+html .theme-entry .filter-row .dropdown-box,
+html .theme-entry .filter-row .lookup-box,
+html .theme-entry .filter-row .calendar-control,
+html .theme-entry .filter-row .picker-input,
+html .theme-entry .filter-row .input-control.select-box,
+html .theme-entry .grid-filter-row .input-control,
+html .theme-entry .grid-filter-row .dropdown-box,
+html .theme-entry .grid-filter-row .lookup-box,
+html .theme-entry .grid-filter-row .calendar-control,
+html .theme-entry .grid-filter-row .picker-input,
+html .theme-entry .grid-filter-row .input-control.select-box,
+html .theme-entry .column-filter .input-control,
+html .theme-entry .column-filter .dropdown-box,
+html .theme-entry .column-filter .lookup-box,
+html .theme-entry .column-filter .calendar-control,
+html .theme-entry .column-filter .picker-input,
+html .theme-entry .column-filter .input-control.select-box {
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 2px 6px !important;
     border-color: transparent !important;
     background: var(--ctc-surface) !important;
-    font-size: 13px !important;
+    color: var(--ctc-text) !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+}
+
+html .theme-entry .filter-row .editable-area,
+html .theme-entry .filter-row .input-control-watermark,
+html .theme-entry .grid-filter-row .editable-area,
+html .theme-entry .grid-filter-row .input-control-watermark,
+html .theme-entry .column-filter .editable-area,
+html .theme-entry .column-filter .input-control-watermark {
+    min-height: 22px !important;
+    padding: 0 6px !important;
+    color: var(--ctc-text-muted) !important;
+    font-size: 12px !important;
+    line-height: 22px !important;
+}
+
+html .theme-entry .filter-row .input-control-buttons > a,
+html .theme-entry .filter-row .dropdown-box > a,
+html .theme-entry .filter-row .lookup-box > a,
+html .theme-entry .filter-row .calendar-control > a,
+html .theme-entry .grid-filter-row .input-control-buttons > a,
+html .theme-entry .grid-filter-row .dropdown-box > a,
+html .theme-entry .grid-filter-row .lookup-box > a,
+html .theme-entry .grid-filter-row .calendar-control > a,
+html .theme-entry .column-filter .input-control-buttons > a,
+html .theme-entry .column-filter .dropdown-box > a,
+html .theme-entry .column-filter .lookup-box > a,
+html .theme-entry .column-filter .calendar-control > a {
+    min-width: 26px !important;
+    min-height: 26px !important;
+    border-left-color: transparent !important;
+    background: transparent !important;
+}
+
+html .theme-entry .filter-row :is(
+    .styling-outer-wrapper,
+    .styling-inner-wrapper,
+    .input-control-body,
+    .input-control-m,
+    .input-control-m-c,
+    .input-control-wrapper
+),
+html .theme-entry .grid-filter-row :is(
+    .styling-outer-wrapper,
+    .styling-inner-wrapper,
+    .input-control-body,
+    .input-control-m,
+    .input-control-m-c,
+    .input-control-wrapper
+),
+html .theme-entry .column-filter :is(
+    .styling-outer-wrapper,
+    .styling-inner-wrapper,
+    .input-control-body,
+    .input-control-m,
+    .input-control-m-c,
+    .input-control-wrapper
+) {
+    min-height: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
 }
 
 html .theme-entry .grid-content-table tbody tr:focus-within,
@@ -1779,10 +2056,10 @@ html .theme-entry .dropdown-popup,
 .dropdown-popup,
 .popup,
 .dialog {
-    border: 1px solid var(--ctc-border);
+    border: 1px solid var(--ctc-border, var(--ctc-popup-border));
     border-radius: var(--ctc-radius-md);
-    background: var(--ctc-surface-raised) !important;
-    color: var(--ctc-text) !important;
+    background: var(--ctc-surface-raised, var(--ctc-popup-surface)) !important;
+    color: var(--ctc-text, var(--ctc-popup-text)) !important;
     box-shadow: var(--ctc-shadow-overlay);
 }
 
@@ -1791,10 +2068,10 @@ html .theme-entry .dialog-header,
 html .theme-entry .modal-header,
 .ui-dialog .ui-dialog-titlebar,
 .ui-datepicker .ui-datepicker-header {
-    border-bottom: 1px solid var(--ctc-border);
+    border-bottom: 1px solid var(--ctc-border, var(--ctc-popup-border));
     border-radius: var(--ctc-radius-md) var(--ctc-radius-md) 0 0;
-    background: var(--ctc-surface-subtle) !important;
-    color: var(--ctc-text) !important;
+    background: var(--ctc-surface-subtle, var(--ctc-popup-surface)) !important;
+    color: var(--ctc-text, var(--ctc-popup-text)) !important;
     font-family: var(--ctc-font-family);
     font-weight: 750;
 }
@@ -1805,15 +2082,15 @@ html .theme-entry .modal-body,
 .ui-dialog .ui-dialog-content,
 .ui-datepicker table,
 .ui-autocomplete .ui-menu-item {
-    background: var(--ctc-surface-raised) !important;
-    color: var(--ctc-text) !important;
+    background: var(--ctc-surface-raised, var(--ctc-popup-surface)) !important;
+    color: var(--ctc-text, var(--ctc-popup-text)) !important;
     font-family: var(--ctc-font-family);
 }
 
 .ui-autocomplete .ui-menu-item a,
 .ui-datepicker td a,
 .ui-datepicker td span {
-    color: var(--ctc-text) !important;
+    color: var(--ctc-text, var(--ctc-popup-text)) !important;
 }
 
 .ui-autocomplete .ui-menu-item a:hover,
@@ -1831,8 +2108,8 @@ html .theme-entry .modal-body,
 html .theme-entry .modal-footer,
 html .theme-entry .dialog-footer,
 .ui-dialog .ui-dialog-buttonpane {
-    border-top: 1px solid var(--ctc-border);
-    background: var(--ctc-surface-subtle) !important;
+    border-top: 1px solid var(--ctc-border, var(--ctc-popup-border));
+    background: var(--ctc-surface-subtle, var(--ctc-popup-surface)) !important;
 }
 
 /* ==========================================================================
