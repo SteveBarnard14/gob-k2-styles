@@ -1343,7 +1343,10 @@ html .theme-entry :is([name="MOF_SecondaryActionCell"], [name="Cell Cell109"]) {
     grid-row: 16 / 17 !important;
     width: 120px !important;
     padding: 0 !important;
-    justify-self: end;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    justify-self: end !important;
+    text-align: right !important;
 }
 
 html .theme-entry :is([name="MOF_PrimaryActionCell"], [name="Cell Cell108"]) {
