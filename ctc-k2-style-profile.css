@@ -741,6 +741,24 @@ html .theme-entry .input-control-buttons > a {
     text-decoration: none;
 }
 
+html .theme-entry .calendar-control :is(
+    .styling-inner-wrapper,
+    .input-control-m-c,
+    .input-control-buttons,
+    .input-control-wrapper,
+    .input-control-body
+) {
+    border: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    background-color: transparent !important;
+}
+
+html .theme-entry .calendar-control .input-control-buttons > a,
+html .theme-entry .calendar-control > a {
+    border-left-color: transparent !important;
+}
+
 html .theme-entry .input-control.select-box.dropdown-box .input-control-wrapper {
     display: flex !important;
     align-items: center !important;
