@@ -1,10 +1,12 @@
 /*
  * Government of The Bahamas
  * Nintex K2 SmartForms Style Profile
- * Draft 1 - MOB.Request.New.Form
+ * Ministry of Finance shared SmartForms profile
  *
  * Keep this file last in Style Profile > Developer > External Files.
  * The rules are scoped beneath .theme-entry and avoid generated K2 IDs.
+ * Prefer authored MOF_* control names; legacy MOB selectors are temporary
+ * compatibility aliases for forms already in production.
  */
 
 /* ==========================================================================
@@ -140,7 +142,10 @@ html .theme-entry .panel-toolbars {
    03. Form identity and instructions
    ========================================================================== */
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) {
     margin-bottom: 16px;
     padding: 20px 24px;
     border: 1px solid var(--gob-border);
@@ -150,7 +155,7 @@ html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] {
     box-shadow: 0 1px 3px rgba(24, 35, 45, 0.08);
 }
 
-html .theme-entry [name="dl_Header"] {
+html .theme-entry :is([name="MOF_HeaderMinistry"], [name="dl_Header"]) {
     display: block;
     overflow: visible !important;
     margin: 0;
@@ -163,7 +168,7 @@ html .theme-entry [name="dl_Header"] {
     white-space: normal !important;
 }
 
-html .theme-entry [name="Data Label1"] {
+html .theme-entry :is([name="MOF_HeaderFormTitle"], [name="Data Label1"]) {
     display: block;
     margin: 6px 0 0;
     color: var(--gob-ink-700) !important;
@@ -173,13 +178,13 @@ html .theme-entry [name="Data Label1"] {
     letter-spacing: 0;
 }
 
-html .theme-entry [name="dl_header_userwelcome"] {
+html .theme-entry :is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"]) {
     color: var(--gob-ink-600) !important;
     font-size: 14px !important;
     line-height: 1.4;
 }
 
-html .theme-entry [name="tblInstructions"] {
+html .theme-entry :is([name="MOF_Notice"], [name="tblInstructions"]) {
     margin: 0 0 20px;
     padding: 18px 20px;
     border: 1px solid #b9dce0;
@@ -188,7 +193,10 @@ html .theme-entry [name="tblInstructions"] {
     background: var(--gob-aqua-050) !important;
 }
 
-html .theme-entry [name="lblInstructionsHeading"] {
+html .theme-entry :is(
+    [name="MOF_NoticeHeading"],
+    [name="lblInstructionsHeading"]
+) {
     display: block;
     width: 100% !important;
     margin: 0 0 10px;
@@ -203,7 +211,7 @@ html .theme-entry [name="lblInstructionsHeading"] {
     white-space: normal !important;
 }
 
-html .theme-entry [name="lblInstructionsBody"] {
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) {
     display: block;
     color: var(--gob-ink-700) !important;
     font-size: 15px !important;
@@ -211,17 +219,17 @@ html .theme-entry [name="lblInstructionsBody"] {
     line-height: 1.55;
 }
 
-html .theme-entry [name="lblInstructionsBody"] p,
-html .theme-entry [name="lblInstructionsBody"] ul {
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) p,
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) ul {
     margin-top: 0;
 }
 
-html .theme-entry [name="lblInstructionsBody"] ul {
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) ul {
     margin-bottom: 0;
     padding-left: 20px;
 }
 
-html .theme-entry [name="lblInstructionsBody"] li + li {
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) li + li {
     margin-top: 4px;
 }
 
@@ -268,6 +276,7 @@ html .theme-entry .panel-header .panel-header-text {
 }
 
 html .theme-entry .panel-header::before,
+html .theme-entry [name^="MOF_SectionHeading"]::before,
 html .theme-entry [name="FormSectionName2"]::before,
 html .theme-entry [name="lblDeviceDetails"]::before {
     position: absolute;
@@ -280,6 +289,7 @@ html .theme-entry [name="lblDeviceDetails"]::before {
     transform: translateY(-50%);
 }
 
+html .theme-entry [name^="MOF_SectionHeading"],
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
@@ -302,6 +312,7 @@ html .theme-entry .gob-section-heading {
     text-align: left;
 }
 
+html .theme-entry .editor-cell:has(> [name^="MOF_SectionHeading"]),
 html .theme-entry .editor-cell:has(> [name="FormSectionName2"]),
 html .theme-entry .editor-cell:has(> [name="lblDeviceDetails"]) {
     overflow: visible;
@@ -563,13 +574,13 @@ html .theme-entry .gob-choice-list {
     gap: 8px;
 }
 
-html .theme-entry [name="AssignmentType Choice"],
+html .theme-entry :is([name="MOF_StackedChoice"], [name="AssignmentType Choice"]),
 html .theme-entry .gob-choice-list.is-stacked {
     align-items: stretch;
     flex-direction: column;
 }
 
-html .theme-entry [name="AssignmentType Choice"] {
+html .theme-entry :is([name="MOF_StackedChoice"], [name="AssignmentType Choice"]) {
     max-width: 576px;
 }
 
@@ -677,6 +688,7 @@ html .theme-entry .gob-check-grid {
    ========================================================================== */
 
 html .theme-entry .gob-policy,
+html .theme-entry [name="MOF_PolicyAcknowledgement"],
 html .theme-entry [name="GOB_Policy_Acknowledgement"] {
     margin-top: 24px;
     padding: 16px 18px;
@@ -687,6 +699,7 @@ html .theme-entry [name="GOB_Policy_Acknowledgement"] {
 }
 
 html .theme-entry .gob-policy p,
+html .theme-entry [name="MOF_PolicyAcknowledgement"] p,
 html .theme-entry [name="GOB_Policy_Acknowledgement"] p {
     margin: 10px 0 0;
     color: var(--gob-ink-700) !important;
@@ -745,14 +758,17 @@ html .theme-entry .gob-button:hover {
     color: var(--gob-aqua-900) !important;
 }
 
-html .theme-entry [name="CreateListItem Button"],
+html .theme-entry :is([name="MOF_PrimaryAction"], [name="CreateListItem Button"]),
 html .theme-entry .gob-button.is-primary {
     border-color: var(--gob-aqua-700) !important;
     background: var(--gob-aqua-700) !important;
     color: var(--gob-white) !important;
 }
 
-html .theme-entry [name="CreateListItem Button"]:hover,
+html .theme-entry :is(
+    [name="MOF_PrimaryAction"],
+    [name="CreateListItem Button"]
+):hover,
 html .theme-entry .gob-button.is-primary:hover {
     border-color: var(--gob-aqua-900) !important;
     background: var(--gob-aqua-900) !important;
@@ -914,8 +930,11 @@ html .theme-entry [hidden] {
         padding: 12px;
     }
 
-    html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"],
-    html .theme-entry [name="tblInstructions"],
+    html .theme-entry :is(
+        [name="MOF_FormHeader"],
+        [name="MOBNewDevice-NewItem.Form Area Item3"]
+    ),
+    html .theme-entry :is([name="MOF_Notice"], [name="tblInstructions"]),
     html .theme-entry .panel-body {
         padding: 16px;
     }
@@ -973,61 +992,90 @@ html body.theme-entry {
     background: #e9eef1 !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] .root-table {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .root-table {
     grid-template-columns: 72px minmax(0, 1fr) 220px !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) {
     background: var(--gob-white) !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] [name="Picture"] {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) :is([name="MOF_HeaderLogo"], [name="Picture"]) {
     width: 60px !important;
     max-width: 60px !important;
     height: auto !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
-    .editor-cell:has(> [name="Picture"]),
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
-    .editor-cell:has([name="dl_header_userwelcome"]) {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderLogo"], [name="Picture"])),
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
     min-height: 0 !important;
     padding: 0 !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
-    .editor-cell:has(> [name="Picture"]) {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderLogo"], [name="Picture"])) {
     align-items: center !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
-    .editor-cell:has(> [name="dl_Header"]),
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
-    .editor-cell:has(> [name="Data Label1"]) {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderMinistry"], [name="dl_Header"])),
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderFormTitle"], [name="Data Label1"])) {
     align-items: center !important;
     justify-content: flex-start !important;
     overflow: visible !important;
     text-align: left !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
-    .editor-cell:has(> [name="dl_Header"]) {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderMinistry"], [name="dl_Header"])) {
     padding: 0 2px !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
-    .editor-cell:has(> [name="Data Label1"]) {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderFormTitle"], [name="Data Label1"])) {
     padding: 0 2px !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
-    .editor-cell:has([name="dl_header_userwelcome"]) {
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
     align-items: center !important;
     justify-content: flex-end !important;
 }
 
-html .theme-entry [name="dl_Header"],
-html .theme-entry [name="Data Label1"] {
+html .theme-entry :is(
+    [name="MOF_HeaderMinistry"],
+    [name="MOF_HeaderFormTitle"],
+    [name="dl_Header"],
+    [name="Data Label1"]
+) {
     width: 100% !important;
     max-width: none !important;
     padding: 0 !important;
@@ -1040,16 +1088,30 @@ html .theme-entry .SFC.SourceCode-Forms-Controls-Web-DataLabel {
     white-space: normal !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item2"],
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item2"] .panel-body,
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item2"] .panel-body-wrapper,
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item2"] .panel-body-m,
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item2"] .panel-body-m-c {
+html .theme-entry :is([name="MOF_FormContent"], [name="MOBNewDevice-NewItem.Form Area Item2"]),
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) .panel-body,
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) .panel-body-wrapper,
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) .panel-body-m,
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) .panel-body-m-c {
     background: var(--gob-white) !important;
 }
 
-html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item2"]
-    [name="Table"].root-table {
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) :is([name="MOF_FormGrid"], [name="Table"]).root-table {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     width: 100% !important;
     padding: 24px !important;
@@ -1149,7 +1211,10 @@ html .theme-entry
 }
 
 html .theme-entry
-    .SFC.SourceCode-Forms-Controls-Web-Label.description[name="lblDescription2"] {
+    .SFC.SourceCode-Forms-Controls-Web-Label.description:is(
+        [name="MOF_HelpText"],
+        [name="lblDescription2"]
+    ) {
     color: var(--gob-ink-600) !important;
     font-size: 14px !important;
     font-style: normal !important;
@@ -1157,43 +1222,70 @@ html .theme-entry
     line-height: 1.45;
 }
 
-html .theme-entry [name="Cell Cell460"]:has([name="Role Name Label"].hidden),
-html .theme-entry [name="Cell Cell462"] {
+html .theme-entry :is(
+    [name="MOF_RoleNameCell"],
+    [name="Cell Cell460"]
+):has(:is([name="MOF_RoleNameLabel"], [name="Role Name Label"]).hidden),
+html .theme-entry :is([name="MOF_RoleHelperCell"], [name="Cell Cell462"]) {
     display: none !important;
 }
 
-html .theme-entry [name="Cell Cell126"],
-html .theme-entry [name="Cell Cell125"],
-html .theme-entry [name="Cell Cell82"],
-html .theme-entry [name="Cell Cell123"],
-html .theme-entry [name="Cell Cell83"] {
+html .theme-entry :is(
+    [name="MOF_PolicyPromptCell"],
+    [name="Cell Cell126"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicyChoiceCell"],
+    [name="Cell Cell125"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicySpacerCell"],
+    [name="Cell Cell82"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicyBodyCell"],
+    [name="Cell Cell123"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicyRightCapCell"],
+    [name="Cell Cell83"]
+) {
     background: #fffdf5 !important;
 }
 
-html .theme-entry [name="Cell Cell126"],
-html .theme-entry [name="Cell Cell125"],
-html .theme-entry [name="Cell Cell82"] {
+html .theme-entry :is(
+    [name="MOF_PolicyPromptCell"],
+    [name="Cell Cell126"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicyChoiceCell"],
+    [name="Cell Cell125"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicySpacerCell"],
+    [name="Cell Cell82"]
+) {
     margin-top: 24px;
     border-top: 1px solid #ead99a !important;
 }
 
-html .theme-entry [name="Cell Cell126"] {
+html .theme-entry :is([name="MOF_PolicyPromptCell"], [name="Cell Cell126"]) {
     padding: 16px 8px 8px 18px !important;
     border-left: 4px solid var(--gob-gold-500) !important;
     border-radius: var(--gob-radius-md) 0 0 0;
 }
 
-html .theme-entry [name="Cell Cell125"] {
+html .theme-entry :is([name="MOF_PolicyChoiceCell"], [name="Cell Cell125"]) {
     padding: 16px 8px 8px !important;
 }
 
-html .theme-entry [name="Cell Cell82"] {
+html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) {
     padding: 16px 18px 8px 8px !important;
     border-right: 1px solid #ead99a !important;
     border-radius: 0 var(--gob-radius-md) 0 0;
 }
 
-html .theme-entry [name="Cell Cell123"] {
+html .theme-entry :is([name="MOF_PolicyBodyCell"], [name="Cell Cell123"]) {
     position: relative;
     grid-column: 1 / 4 !important;
     padding: 8px 18px 16px !important;
@@ -1202,14 +1294,15 @@ html .theme-entry [name="Cell Cell123"] {
     border-radius: 0 0 0 var(--gob-radius-md);
 }
 
-html .theme-entry [name="Cell Cell123"] [name="Data Label"] {
+html .theme-entry :is([name="MOF_PolicyBodyCell"], [name="Cell Cell123"])
+    :is([name="MOF_PolicyBodyText"], [name="Data Label"]) {
     color: var(--gob-ink-700) !important;
     font-size: 15px !important;
     font-style: normal !important;
     line-height: 1.55;
 }
 
-html .theme-entry [name="Cell Cell83"] {
+html .theme-entry :is([name="MOF_PolicyRightCapCell"], [name="Cell Cell83"]) {
     grid-column: 3 / 4 !important;
     grid-row: 14 / 15 !important;
     margin-top: 24px;
@@ -1219,11 +1312,11 @@ html .theme-entry [name="Cell Cell83"] {
     border-radius: 0 var(--gob-radius-md) 0 0;
 }
 
-html .theme-entry [name="Cell Cell82"] {
+html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) {
     visibility: hidden;
 }
 
-html .theme-entry [name="Cell Cell123"]::after {
+html .theme-entry :is([name="MOF_PolicyBodyCell"], [name="Cell Cell123"])::after {
     position: absolute;
     right: 0;
     bottom: 0;
@@ -1233,16 +1326,19 @@ html .theme-entry [name="Cell Cell123"]::after {
     content: "";
 }
 
-html .theme-entry [name="CreateListItem Button"],
-html .theme-entry [name="btnCancel"] {
+html .theme-entry :is(
+    [name="MOF_PrimaryAction"],
+    [name="CreateListItem Button"]
+),
+html .theme-entry :is([name="MOF_SecondaryAction"], [name="btnCancel"]) {
     width: 120px !important;
     min-width: 120px !important;
     height: var(--gob-control-height) !important;
     min-height: var(--gob-control-height) !important;
 }
 
-html .theme-entry [name="Cell Cell108"],
-html .theme-entry [name="Cell Cell109"] {
+html .theme-entry :is([name="MOF_PrimaryActionCell"], [name="Cell Cell108"]),
+html .theme-entry :is([name="MOF_SecondaryActionCell"], [name="Cell Cell109"]) {
     grid-column: 3 / 4 !important;
     grid-row: 16 / 17 !important;
     width: 120px !important;
@@ -1250,7 +1346,7 @@ html .theme-entry [name="Cell Cell109"] {
     justify-self: end;
 }
 
-html .theme-entry [name="Cell Cell108"] {
+html .theme-entry :is([name="MOF_PrimaryActionCell"], [name="Cell Cell108"]) {
     margin-right: 132px;
 }
 
@@ -1267,19 +1363,26 @@ html
 }
 
 @media (max-width: 768px) {
-    html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] .root-table {
+    html .theme-entry :is(
+        [name="MOF_FormHeader"],
+        [name="MOBNewDevice-NewItem.Form Area Item3"]
+    ) .root-table {
         grid-template-columns: 52px minmax(0, 1fr) !important;
     }
 
-    html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"]
-        .editor-cell:has([name="dl_header_userwelcome"]) {
+    html .theme-entry :is(
+        [name="MOF_FormHeader"],
+        [name="MOBNewDevice-NewItem.Form Area Item3"]
+    ) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
         grid-column: 1 / -1 !important;
         grid-row: 3 !important;
         justify-content: flex-start !important;
     }
 
-    html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item2"]
-        [name="Table"].root-table {
+    html .theme-entry :is(
+        [name="MOF_FormContent"],
+        [name="MOBNewDevice-NewItem.Form Area Item2"]
+    ) :is([name="MOF_FormGrid"], [name="Table"]).root-table {
         padding: 18px !important;
     }
 }
@@ -1290,55 +1393,78 @@ html
    names so the treatment carries across forms without generated GUIDs.
    ========================================================================== */
 
-html .theme-entry .panel:has([name="dl_Header"]) {
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) {
     border-top: 4px solid var(--gob-aqua-700);
 }
 
-html .theme-entry .panel:has([name="dl_Header"]) > .panel-header {
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) > .panel-header {
     display: none !important;
 }
 
-html .theme-entry .panel:has([name="dl_Header"]) .panel-body,
-html .theme-entry .panel:has([name="dl_Header"]) .panel-body-m,
-html .theme-entry .panel:has([name="dl_Header"]) .panel-body-m-c,
-html .theme-entry .panel:has([name="dl_Header"]) .panel-body-wrapper {
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .panel-body,
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .panel-body-m,
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .panel-body-m-c,
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .panel-body-wrapper {
     background: var(--gob-white) !important;
 }
 
-html .theme-entry .panel:has([name="dl_Header"]):not(
-    [name="MOBNewDevice-NewItem.Form Area Item3"]
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+):not(
+    :is([name="MOF_FormHeader"], [name="MOBNewDevice-NewItem.Form Area Item3"])
 ) .panel-body {
     padding: 20px 24px !important;
 }
 
-html .theme-entry .panel:has([name="dl_Header"]) .root-table {
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .root-table {
     grid-template-columns: 72px minmax(0, 1fr) 220px !important;
     min-height: 74px;
 }
 
-html .theme-entry .panel:has([name="dl_Header"]) [name="Picture"] {
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) :is([name="MOF_HeaderLogo"], [name="Picture"]) {
     width: 60px !important;
     max-width: 60px !important;
     height: auto !important;
 }
 
-html .theme-entry .panel:has([name="dl_Header"])
-    .editor-cell:has(> [name="Picture"]),
-html .theme-entry .panel:has([name="dl_Header"])
-    .editor-cell:has([name="dl_header_userwelcome"]) {
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(> :is([name="MOF_HeaderLogo"], [name="Picture"])),
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
     min-height: 0 !important;
     padding: 0 !important;
 }
 
-html .theme-entry .panel:has([name="dl_Header"])
-    .editor-cell:has(> [name="Picture"]) {
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(> :is([name="MOF_HeaderLogo"], [name="Picture"])) {
     align-items: center !important;
 }
 
-html .theme-entry .panel:has([name="dl_Header"])
-    .editor-cell:has(> [name="dl_Header"]),
-html .theme-entry .panel:has([name="dl_Header"])
-    .editor-cell:has(> [name="Data Label1"]) {
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(> :is([name="MOF_HeaderMinistry"], [name="dl_Header"])),
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(> :is([name="MOF_HeaderFormTitle"], [name="Data Label1"])) {
     align-items: center !important;
     justify-content: flex-start !important;
     overflow: visible !important;
@@ -1346,8 +1472,9 @@ html .theme-entry .panel:has([name="dl_Header"])
     text-align: left !important;
 }
 
-html .theme-entry .panel:has([name="dl_Header"])
-    .editor-cell:has([name="dl_header_userwelcome"]) {
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
     align-items: center !important;
     justify-content: flex-end !important;
 }
@@ -1478,14 +1605,14 @@ html .theme-entry .grid .toolbar-button:focus-visible {
 }
 
 html .theme-entry .grid:has(.edit-row)
-    [name="Save ToolBar Button"] {
+    :is([name="MOF_ListSaveButton"], [name="Save ToolBar Button"]) {
     border-color: var(--gob-aqua-700) !important;
     background: var(--gob-aqua-700) !important;
     color: var(--gob-white) !important;
 }
 
 html .theme-entry .grid:has(.edit-row)
-    [name="Save ToolBar Button"]:hover {
+    :is([name="MOF_ListSaveButton"], [name="Save ToolBar Button"]):hover {
     border-color: var(--gob-aqua-900) !important;
     background: var(--gob-aqua-900) !important;
 }
@@ -1651,12 +1778,15 @@ html .theme-entry .grid-footer {
 }
 
 @media (max-width: 768px) {
-    html .theme-entry .panel:has([name="dl_Header"]) .root-table {
+    html .theme-entry .panel:has(
+        :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+    ) .root-table {
         grid-template-columns: 52px minmax(0, 1fr) !important;
     }
 
-    html .theme-entry .panel:has([name="dl_Header"])
-        .editor-cell:has([name="dl_header_userwelcome"]) {
+    html .theme-entry .panel:has(
+        :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+    ) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
         grid-column: 1 / -1 !important;
         grid-row: 3 !important;
         justify-content: flex-start !important;
@@ -1688,7 +1818,10 @@ html .theme-entry .grid-footer {
     }
 
     html .theme-entry .panel,
-    html .theme-entry [name="MOBNewDevice-NewItem.Form Area Item3"] {
+    html .theme-entry :is(
+        [name="MOF_FormHeader"],
+        [name="MOBNewDevice-NewItem.Form Area Item3"]
+    ) {
         border-color: #777777;
         box-shadow: none;
     }
