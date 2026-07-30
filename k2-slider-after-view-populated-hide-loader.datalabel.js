@@ -1,4 +1,4 @@
-<script id="k2-slider-loaded-new-device">
+<script id="k2-slider-after-view-populated-hide-loader">
 if(!window.K2Slider){
 var sliderLibraryLabel=document.querySelector('[name="slider js"]');
 var sliderLibraryScript=sliderLibraryLabel&&sliderLibraryLabel.querySelector("script");
@@ -7,6 +7,6 @@ new Function(sliderLibraryScript.textContent)();
 }
 }
 if(window.K2Slider){
-window.K2Slider.loading("new-device-detail",false);
+window.K2Slider.loading("detail-slider",false);
 }
 </script>

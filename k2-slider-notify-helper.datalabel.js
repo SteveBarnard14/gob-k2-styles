@@ -10,8 +10,8 @@ new Function(sliderLibraryScript.textContent)();
 "use strict";
 function notify(type,title,message,duration,name){
 if(window.K2Slider){
-window.K2Slider.loading(name||"new-device-detail",false);
-window.K2Slider.notify(name||"new-device-detail",{
+window.K2Slider.loading(name||"detail-slider",false);
+window.K2Slider.notify(name||"detail-slider",{
 type:type||"info",
 title:title||"",
 message:message||"",

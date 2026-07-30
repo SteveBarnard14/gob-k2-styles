@@ -6,9 +6,9 @@ Use these Data Label-ready files:
 
 - `k2-slider-styles.datalabel.css`
 - `k2-slider-library.datalabel.js`
-- `k2-slider-row-click-new-device.datalabel.js`
-- `k2-slider-loaded-new-device.datalabel.js`
-- `k2-slider-close-new-device.datalabel.js`
+- `k2-slider-on-list-row-click-open.datalabel.js`
+- `k2-slider-after-view-populated-hide-loader.datalabel.js`
+- `k2-slider-on-action-complete-close.datalabel.js`
 - `k2-slider-notify-helper.datalabel.js`
 
 Each file already includes its required `<style>` or `<script>` wrapper.
@@ -27,11 +27,17 @@ If K2 Designer adds a datetime token to force re-execution, keep it inside Desig
 
 Use this order:
 
-1. Set `Slider Row Click JS` = `k2-slider-row-click-new-device.datalabel.js`
+1. Set `Slider Row Click JS` = `k2-slider-on-list-row-click-open.datalabel.js`
 2. Run the K2 actions that populate the item view.
-3. Set `Hide Loader JS` = `k2-slider-loaded-new-device.datalabel.js`
+3. Set `Hide Loader JS` = `k2-slider-after-view-populated-hide-loader.datalabel.js`
 
 The open script shows the slider and loader. The loaded script hides only the loader after K2 finishes populating the view.
+
+Before using the open script on a form, edit its options:
+
+- `name:"detail-slider"` can stay as-is unless a form needs multiple sliders.
+- `target:'[name="Detail Item View"]'` must match the K2 item/detail view that should move into the slider.
+- `title:"Details"` can be changed to the panel title for the form.
 
 ## Action Close Rule
 
@@ -39,7 +45,7 @@ For action buttons that should close the slider:
 
 1. Run the K2 save/submit action.
 2. Optionally show a notification.
-3. Set `Slider Close JS` = `k2-slider-close-new-device.datalabel.js`.
+3. Set `Slider Close JS` = `k2-slider-on-action-complete-close.datalabel.js`.
 
 ## Notifications
 
@@ -67,7 +73,7 @@ window.K2SliderNotify.error("Unable to save","The request could not be saved. Re
 
 ## Notes
 
-- To show the included crest while loading, add `logoUrl:"assets/bahamas-coat-of-arms.png"` to the open options in `k2-slider-row-click-new-device.datalabel.js`.
+- To show the included crest while loading, add `logoUrl:"assets/bahamas-coat-of-arms.png"` to the open options in `k2-slider-on-list-row-click-open.datalabel.js`.
 - `slider js` may render as a script tag without executing during Form Initialized. The action scripts bootstrap it from the `slider js` label when needed.
 - The item view must exist in the DOM before the slider can move it.
 - The backdrop blocks clicks to rows behind the slider and does not close the slider.
