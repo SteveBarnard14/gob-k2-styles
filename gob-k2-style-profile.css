@@ -799,14 +799,14 @@ html .theme-entry .popup.dialog.runtime-message .popup-header-text {
     width: 100% !important;
 }
 
-html .theme-entry .popup.dialog.runtime-message .message-box-content .panel {
+html .theme-entry .popup.dialog .message-box-content .panel {
     border: 0 !important;
     border-radius: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
 }
 
-html .theme-entry .popup.dialog.runtime-message
+html .theme-entry .popup.dialog
     .message-box-content
     :is(.panel-body, .panel-body-m, .panel-body-m-c, .scroll-wrapper) {
     background: transparent !important;
