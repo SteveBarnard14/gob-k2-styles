@@ -1750,6 +1750,22 @@ html .theme-entry .grid .filterContainer .filterTxt input.input-control:not([typ
     border-color: transparent !important;
 }
 
+html .theme-entry .grid .filterContainer .filterTxt,
+html .theme-entry .grid .filterContainer .filterTxt .input-control,
+html .theme-entry .grid .filterContainer .filterTxt input.input-control:not([type="checkbox"]):not([type="radio"]),
+html .theme-entry .grid .filterContainer .filterTxt :is(.input-control-m-c, .input-control-wrapper) {
+    border-radius: var(--ctc-radius-sm) !important;
+}
+
+html .theme-entry .grid .filterContainer .filterTxt :is(.input-control-m-c, .input-control-wrapper) {
+    overflow: hidden !important;
+}
+
+html .theme-entry .grid .filterContainer .filterTxt .input-control-m-c {
+    border-color: transparent !important;
+    background: var(--ctc-surface) !important;
+}
+
 html .theme-entry .grid .filterContainer .input-control :is(
     .styling-outer-wrapper,
     .styling-inner-wrapper,
