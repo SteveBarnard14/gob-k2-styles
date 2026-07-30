@@ -1,0 +1,1914 @@
+/*
+ * Government of The Bahamas
+ * Nintex K2 SmartForms Style Profile
+ * Ministry of Finance shared SmartForms profile
+ *
+ * Keep this file last in Style Profile > Developer > External Files.
+ * The rules are scoped beneath .theme-entry and avoid generated K2 IDs.
+ * Prefer authored MOF_* control names; legacy MOB selectors are temporary
+ * compatibility aliases for forms already in production.
+ */
+
+/* ==========================================================================
+   01. Design tokens and K2 profile variables
+   ========================================================================== */
+
+html .theme-entry {
+    --gob-aqua-900: #004651;
+    --gob-aqua-800: #005f6b;
+    --gob-aqua-700: #007681;
+    --gob-aqua-600: #008c95;
+    --gob-aqua-100: #d9f3f4;
+    --gob-aqua-050: #f1fbfb;
+    --gob-gold-700: #9a7100;
+    --gob-gold-500: #f4c430;
+    --gob-gold-100: #fff3c4;
+    --gob-navy-900: #022243;
+    --gob-ink-900: #18232d;
+    --gob-ink-700: #3c4b58;
+    --gob-ink-600: #566572;
+    --gob-ink-500: #71808c;
+    --gob-border-strong: #aebbc4;
+    --gob-border: #d5dce2;
+    --gob-surface-subtle: #f4f7f8;
+    --gob-canvas: #e9eef1;
+    --gob-white: #ffffff;
+    --gob-danger-700: #a62a24;
+    --gob-danger-100: #fdebea;
+    --gob-success-700: #137347;
+    --gob-success-100: #e6f5ed;
+    --gob-focus: #007681;
+    --gob-font:
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+    --gob-content-max-width: 1280px;
+    --gob-control-height: 44px;
+    --gob-control-font-size: 16px;
+    --gob-radius-sm: 4px;
+    --gob-radius-md: 8px;
+    --gob-shadow:
+        0 1px 2px rgba(24, 35, 45, 0.08),
+        0 8px 24px rgba(24, 35, 45, 0.08);
+
+    /* K2 Dynamic Theme values */
+    --k2-main-accent-color: var(--gob-aqua-700);
+    --k2-content-background-color: var(--gob-canvas);
+    --k2-panel-background-color: var(--gob-white);
+    --k2-error-color: var(--gob-danger-700);
+    --page-background-color: var(--gob-canvas);
+    --form-background-color: transparent;
+    --panel-background-color: var(--gob-white);
+    --main-text-color: var(--gob-ink-900);
+    --secondary-text-color: var(--gob-ink-600);
+    --border-color: var(--gob-border);
+    --primary-color: var(--gob-aqua-700);
+
+    min-width: 0;
+    background: var(--gob-canvas);
+    color: var(--gob-ink-900);
+    font-family: var(--gob-font);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeSpeed;
+}
+
+body.theme-entry {
+    min-height: 100vh;
+    margin: 0;
+}
+
+html .theme-entry *,
+html .theme-entry *::before,
+html .theme-entry *::after {
+    box-sizing: border-box;
+}
+
+/* K2 toggles conditional controls with this class at runtime. */
+html .theme-entry .hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   02. Runtime shell
+   ========================================================================== */
+
+html .theme-entry .runtime-form {
+    width: 100% !important;
+    max-width: var(--gob-content-max-width);
+    min-width: 0 !important;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+html .theme-entry .form {
+    min-width: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+html .theme-entry .row,
+html .theme-entry .view,
+html .theme-entry .innerpanel,
+html .theme-entry .panel,
+html .theme-entry .panel-body,
+html .theme-entry .SFC.Grid-Layout,
+html .theme-entry .editor-cell {
+    min-width: 0;
+}
+
+html .theme-entry .panel {
+    overflow: hidden;
+    border: 1px solid var(--gob-border);
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-white);
+    box-shadow: var(--gob-shadow);
+}
+
+html .theme-entry .panel-body {
+    padding: 24px;
+    background: var(--gob-white);
+}
+
+html .theme-entry .panel-toolbars {
+    min-height: 0;
+    border: 0;
+    background: var(--gob-white);
+}
+
+/* ==========================================================================
+   03. Form identity and instructions
+   ========================================================================== */
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) {
+    margin-bottom: 16px;
+    padding: 20px 24px;
+    border: 1px solid var(--gob-border);
+    border-top: 4px solid var(--gob-aqua-700);
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-white);
+    box-shadow: 0 1px 3px rgba(24, 35, 45, 0.08);
+}
+
+html .theme-entry :is([name="MOF_HeaderMinistry"], [name="dl_Header"]) {
+    display: block;
+    overflow: visible !important;
+    margin: 0;
+    color: var(--gob-navy-900) !important;
+    font-size: clamp(20px, 2.4vw, 28px) !important;
+    font-weight: 700 !important;
+    line-height: 1.2;
+    letter-spacing: 0;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+html .theme-entry :is([name="MOF_HeaderFormTitle"], [name="Data Label1"]) {
+    display: block;
+    margin: 6px 0 0;
+    color: var(--gob-ink-700) !important;
+    font-size: clamp(16.8px, 2vw, 22px) !important;
+    font-weight: 600 !important;
+    line-height: 1.3;
+    letter-spacing: 0;
+}
+
+html .theme-entry :is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"]) {
+    color: var(--gob-ink-600) !important;
+    font-size: 14px !important;
+    line-height: 1.4;
+}
+
+html .theme-entry :is([name="MOF_Notice"], [name="tblInstructions"]) {
+    margin: 0 0 20px;
+    padding: 18px 20px;
+    border: 1px solid #b9dce0;
+    border-left: 4px solid var(--gob-aqua-700);
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-aqua-050) !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_NoticeHeading"],
+    [name="lblInstructionsHeading"]
+) {
+    display: block;
+    width: 100% !important;
+    margin: 0 0 10px;
+    color: var(--gob-aqua-900) !important;
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 700 !important;
+    line-height: 1.45;
+    overflow: visible !important;
+    text-align: left !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) {
+    display: block;
+    color: var(--gob-ink-700) !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    line-height: 1.55;
+}
+
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) p,
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) ul {
+    margin-top: 0;
+}
+
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) ul {
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+
+html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) li + li {
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   04. Panels and section headings
+   ========================================================================== */
+
+html .theme-entry .panel-header {
+    position: relative;
+    min-height: 52px;
+    padding: 0 0 0 4px;
+    border: 0;
+    border-bottom: 1px solid var(--gob-border);
+    background: var(--gob-surface-subtle) !important;
+    color: var(--gob-navy-900) !important;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: 0;
+}
+
+html .theme-entry .panel-header .panel-header-l,
+html .theme-entry .panel-header .panel-header-c,
+html .theme-entry .panel-header .panel-header-r,
+html .theme-entry .panel-header .panel-header-wrapper {
+    border: 0 !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+html .theme-entry .panel-header .panel-header-wrapper {
+    display: flex;
+    min-height: 51px;
+    align-items: center;
+    padding: 0 20px;
+}
+
+html .theme-entry .panel-header .panel-header-text {
+    color: var(--gob-navy-900) !important;
+    font-family: var(--gob-font);
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.35;
+}
+
+html .theme-entry .panel-header::before,
+html .theme-entry [name^="MOF_SectionHeading"]::before,
+html .theme-entry [name="FormSectionName2"]::before,
+html .theme-entry [name="lblDeviceDetails"]::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 24px;
+    background: var(--gob-gold-500);
+    content: "";
+    transform: translateY(-50%);
+}
+
+html .theme-entry [name^="MOF_SectionHeading"],
+html .theme-entry [name="FormSectionName2"],
+html .theme-entry [name="lblDeviceDetails"],
+html .theme-entry .gob-section-heading {
+    position: relative;
+    display: block;
+    width: 100%;
+    margin: 28px 0 16px;
+    padding: 12px 16px 12px 20px;
+    border-top: 1px solid var(--gob-border) !important;
+    border-right: 0 !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    border-left: 0 !important;
+    border-radius: 0 !important;
+    background: var(--gob-surface-subtle) !important;
+    color: var(--gob-navy-900) !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.35;
+    letter-spacing: 0;
+    text-align: left;
+}
+
+html .theme-entry .editor-cell:has(> [name^="MOF_SectionHeading"]),
+html .theme-entry .editor-cell:has(> [name="FormSectionName2"]),
+html .theme-entry .editor-cell:has(> [name="lblDeviceDetails"]) {
+    overflow: visible;
+    padding: 0 !important;
+    background-color: transparent !important;
+}
+
+/* ==========================================================================
+   05. Typography, labels, and descriptions
+   ========================================================================== */
+
+html .theme-entry h1,
+html .theme-entry h2,
+html .theme-entry h3,
+html .theme-entry h4 {
+    color: var(--gob-navy-900);
+    font-family: var(--gob-font);
+    letter-spacing: 0;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Label:not(.input-label),
+html .theme-entry .field-label,
+html .theme-entry .gob-field-label {
+    display: block;
+    margin: 0 0 6px;
+    color: var(--gob-ink-900) !important;
+    font-size: 15px !important;
+    font-style: normal;
+    font-weight: 600 !important;
+    line-height: 1.35;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+html .theme-entry .description,
+html .theme-entry .LabelWrap.description,
+html .theme-entry .helper-text,
+html .theme-entry .gob-help {
+    display: block;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 6px 0 0;
+    color: var(--gob-ink-600) !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1.45;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+html .theme-entry .required,
+html .theme-entry .mandatory,
+html .theme-entry [aria-required="true"] + .required-indicator {
+    color: var(--gob-danger-700) !important;
+    font-weight: 700;
+}
+
+html .theme-entry .field,
+html .theme-entry .gob-field {
+    min-width: 0;
+    margin: 0;
+}
+
+html .theme-entry fieldset.gob-field {
+    padding: 0;
+    border: 0;
+}
+
+html .theme-entry fieldset.gob-field > legend {
+    padding: 0;
+}
+
+/* ==========================================================================
+   06. Text fields and K2 composite controls
+   ========================================================================== */
+
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox,
+html .theme-entry textarea.SourceCode-Forms-Controls-Web-TextArea,
+html .theme-entry textarea.SFC,
+html .theme-entry .text-input input,
+html .theme-entry .text-input textarea,
+html .theme-entry .dropdown-box,
+html .theme-entry .lookup-box,
+html .theme-entry .picker-input,
+html .theme-entry .calendar-control,
+html .theme-entry .gob-control {
+    width: 100%;
+    max-width: 100%;
+    min-height: var(--gob-control-height);
+    border: 1px solid var(--gob-border-strong) !important;
+    border-radius: var(--gob-radius-sm) !important;
+    background: var(--gob-white) !important;
+    color: var(--gob-ink-900) !important;
+    font-family: var(--gob-font);
+    font-size: var(--gob-control-font-size) !important;
+    line-height: 1.35;
+    box-shadow: none !important;
+    transition:
+        border-color 120ms ease,
+        box-shadow 120ms ease,
+        background-color 120ms ease;
+}
+
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox,
+html .theme-entry textarea.SourceCode-Forms-Controls-Web-TextArea,
+html .theme-entry textarea.SFC,
+html .theme-entry .text-input input,
+html .theme-entry .text-input textarea,
+html .theme-entry .gob-control {
+    padding: 10px 12px;
+}
+
+html .theme-entry textarea.SourceCode-Forms-Controls-Web-TextArea,
+html .theme-entry textarea.SFC,
+html .theme-entry .text-input textarea,
+html .theme-entry textarea.gob-control {
+    min-height: 112px;
+    resize: vertical;
+}
+
+/*
+ * Standard K2 data-entry typography.
+ * These selectors use runtime control classes rather than Designer names.
+ */
+html .theme-entry input:not(
+        [type="button"],
+        [type="submit"],
+        [type="reset"],
+        [type="checkbox"],
+        [type="radio"],
+        [type="file"],
+        [type="hidden"],
+        [type="image"],
+        [type="range"],
+        [type="color"]
+    ),
+html .theme-entry textarea,
+html .theme-entry select,
+html .theme-entry .input-control .editable-area,
+html .theme-entry .input-control .input-control-watermark,
+html .theme-entry .input-placeholder,
+html .theme-entry .token-input .entity-text,
+html .theme-entry .picker .entity-text,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-AutoComplete
+    input.ui-autocomplete-input,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-AutoComplete
+    .input-control-watermark,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-Choice
+    .input-control-text,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-Choice
+    .input-control
+    input,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-Choice
+    .input-control
+    a.input-control
+    > span,
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-ListBox
+    :is(.option, .listbox-watermark),
+html .theme-entry
+    .SourceCode-Forms-Controls-Web-ControlPack-MultiChoice
+    .option,
+html .theme-entry .autocomplete-menu .ui-menu-item a,
+html .theme-entry
+    .multi-select-outer-panel
+    :is(label, .input-control-text),
+html .theme-entry .tree-outer-panel :is(a, span),
+html .theme-entry .file-wrapper :is(.file-info-cell, .file-watermark, .file-ellipsis),
+html .theme-entry a.Hyperlink,
+html .theme-entry a.Hyperlink-NotSet {
+    font-family: var(--gob-font) !important;
+    font-size: var(--gob-control-font-size) !important;
+}
+
+html .theme-entry .dropdown-box,
+html .theme-entry .lookup-box,
+html .theme-entry .calendar-control {
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+html .theme-entry .dropdown-box > a,
+html .theme-entry .lookup-box > a,
+html .theme-entry .calendar-control > a {
+    display: flex;
+    min-width: var(--gob-control-height);
+    min-height: calc(var(--gob-control-height) - 2px);
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--gob-border);
+    color: var(--gob-aqua-800);
+    text-decoration: none;
+}
+
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox:hover,
+html .theme-entry textarea.SFC:hover,
+html .theme-entry .dropdown-box:hover,
+html .theme-entry .lookup-box:hover,
+html .theme-entry .calendar-control:hover,
+html .theme-entry .gob-control:hover {
+    border-color: var(--gob-aqua-600) !important;
+}
+
+html .theme-entry input.SourceCode-Forms-Controls-Web-TextBox:focus,
+html .theme-entry textarea.SFC:focus,
+html .theme-entry .dropdown-box:focus-within,
+html .theme-entry .lookup-box:focus-within,
+html .theme-entry .calendar-control:focus-within,
+html .theme-entry .gob-control:focus {
+    outline: 0;
+    border-color: var(--gob-focus) !important;
+    box-shadow: 0 0 0 3px rgba(0, 118, 129, 0.2) !important;
+}
+
+html .theme-entry input[readonly],
+html .theme-entry textarea[readonly],
+html .theme-entry .read-only,
+html .theme-entry .readonly {
+    border-color: var(--gob-border) !important;
+    background: var(--gob-surface-subtle) !important;
+    color: var(--gob-ink-700) !important;
+}
+
+html .theme-entry input:disabled,
+html .theme-entry textarea:disabled,
+html .theme-entry select:disabled,
+html .theme-entry .disabled {
+    cursor: not-allowed;
+    border-color: var(--gob-border) !important;
+    background: #e8edef !important;
+    color: var(--gob-ink-500) !important;
+    opacity: 1;
+}
+
+html .theme-entry input::placeholder,
+html .theme-entry textarea::placeholder {
+    color: var(--gob-ink-500);
+    opacity: 1;
+}
+
+/* ==========================================================================
+   07. Choice controls
+   ========================================================================== */
+
+html .theme-entry .ControlPack-Choice.displayTypeRadio,
+html .theme-entry [class*="ControlPack-Choice"].displayTypeRadio,
+html .theme-entry .gob-choice-list {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+html .theme-entry :is([name="MOF_StackedChoice"], [name="AssignmentType Choice"]),
+html .theme-entry .gob-choice-list.is-stacked {
+    align-items: stretch;
+    flex-direction: column;
+}
+
+html .theme-entry :is([name="MOF_StackedChoice"], [name="AssignmentType Choice"]) {
+    max-width: 576px;
+}
+
+html .theme-entry .input-control.radio.style-aware,
+html .theme-entry .input-control.checkbox.style-aware,
+html .theme-entry .gob-choice {
+    position: relative;
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border: 1px solid transparent;
+    border-radius: var(--gob-radius-sm);
+    background: transparent;
+    color: var(--gob-ink-700);
+    font-size: var(--gob-control-font-size) !important;
+    font-weight: 400;
+    line-height: 1.35;
+    cursor: pointer;
+}
+
+html .theme-entry .input-control.radio.style-aware .input-control-text,
+html .theme-entry .input-control.checkbox.style-aware .input-control-text {
+    min-width: 0;
+    overflow: visible !important;
+    font-size: var(--gob-control-font-size) !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+html .theme-entry .input-control.radio.style-aware:hover,
+html .theme-entry .input-control.checkbox.style-aware:hover,
+html .theme-entry .gob-choice:hover {
+    background: var(--gob-surface-subtle);
+}
+
+html .theme-entry .input-control.radio.style-aware.checked,
+html .theme-entry .input-control.checkbox.style-aware.checked,
+html .theme-entry .gob-choice:has(input:checked) {
+    border-color: #9fcfd3;
+    background: var(--gob-aqua-050);
+    color: var(--gob-aqua-900);
+}
+
+html .theme-entry .input-control.radio.style-aware.focus,
+html .theme-entry .input-control.checkbox.style-aware.focus,
+html .theme-entry .gob-choice:focus-within {
+    outline: 3px solid var(--gob-gold-500);
+    outline-offset: 2px;
+}
+
+html .theme-entry .input-control.radio.style-aware svg,
+html .theme-entry .input-control.checkbox.style-aware svg {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+}
+
+html .theme-entry .radio.checked .svg-radio-btn-circle {
+    stroke: var(--gob-aqua-700);
+}
+
+html .theme-entry .radio.checked .svg-radio-btn-checked {
+    fill: var(--gob-aqua-700);
+}
+
+html .theme-entry label.input-control.checkbox.style-aware {
+    min-height: 44px;
+    padding: 9px 12px;
+    border: 1px solid transparent;
+    border-radius: var(--gob-radius-sm);
+    background-color: transparent !important;
+    color: var(--gob-ink-700) !important;
+}
+
+html .theme-entry label.input-control.checkbox.style-aware.checked {
+    border-color: #9fcfd3;
+    background-color: var(--gob-aqua-050) !important;
+    color: var(--gob-aqua-900) !important;
+}
+
+html .theme-entry label.input-control.checkbox.style-aware:focus-within,
+html .theme-entry label.input-control.checkbox.style-aware.focus {
+    outline: 3px solid var(--gob-gold-500);
+    outline-offset: 2px;
+}
+
+html .theme-entry .gob-choice input {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
+    margin: 0;
+    accent-color: var(--gob-aqua-700);
+}
+
+html .theme-entry .gob-check-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+}
+
+/* ==========================================================================
+   08. Policy acknowledgement and actions
+   ========================================================================== */
+
+html .theme-entry .gob-policy,
+html .theme-entry [name="MOF_PolicyAcknowledgement"],
+html .theme-entry [name="GOB_Policy_Acknowledgement"] {
+    margin-top: 24px;
+    padding: 16px 18px;
+    border: 1px solid #ead99a;
+    border-left: 4px solid var(--gob-gold-500);
+    border-radius: var(--gob-radius-md);
+    background: #fffdf5;
+}
+
+html .theme-entry .gob-policy p,
+html .theme-entry [name="MOF_PolicyAcknowledgement"] p,
+html .theme-entry [name="GOB_Policy_Acknowledgement"] p {
+    margin: 10px 0 0;
+    color: var(--gob-ink-700) !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    line-height: 1.55;
+}
+
+html .theme-entry .gob-policy-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(192px, 256px);
+    align-items: end;
+    gap: 20px;
+}
+
+html .theme-entry .gob-action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 20px 0 24px;
+    border-top: 1px solid var(--gob-border);
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Button,
+html .theme-entry .gob-button {
+    display: inline-flex;
+    min-width: 120px;
+    min-height: var(--gob-control-height);
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: 1px solid var(--gob-aqua-700) !important;
+    border-radius: var(--gob-radius-sm) !important;
+    background: var(--gob-white) !important;
+    color: var(--gob-aqua-800) !important;
+    font-family: var(--gob-font);
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    box-shadow: none !important;
+    transition:
+        background-color 120ms ease,
+        border-color 120ms ease,
+        color 120ms ease;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Button:hover,
+html .theme-entry .gob-button:hover {
+    border-color: var(--gob-aqua-800) !important;
+    background: var(--gob-aqua-050) !important;
+    color: var(--gob-aqua-900) !important;
+}
+
+html .theme-entry :is([name="MOF_PrimaryAction"], [name="CreateListItem Button"]),
+html .theme-entry .gob-button.is-primary {
+    border-color: var(--gob-aqua-700) !important;
+    background: var(--gob-aqua-700) !important;
+    color: var(--gob-white) !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_PrimaryAction"],
+    [name="CreateListItem Button"]
+):hover,
+html .theme-entry .gob-button.is-primary:hover {
+    border-color: var(--gob-aqua-900) !important;
+    background: var(--gob-aqua-900) !important;
+    color: var(--gob-white) !important;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-Button:focus-visible,
+html .theme-entry .gob-button:focus-visible {
+    outline: 3px solid var(--gob-gold-500);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   09. Validation and system states
+   ========================================================================== */
+
+html .theme-entry input.invalid,
+html .theme-entry textarea.invalid,
+html .theme-entry .invalid input,
+html .theme-entry .invalid textarea,
+html .theme-entry .validation-error {
+    border-color: var(--gob-danger-700) !important;
+}
+
+html .theme-entry .field-validation-error,
+html .theme-entry .error-message {
+    display: block;
+    margin-top: 6px;
+    color: var(--gob-danger-700) !important;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+html .theme-entry .gob-status {
+    padding: 12px 16px;
+    border-radius: var(--gob-radius-sm);
+    font-size: 15px;
+}
+
+html .theme-entry .gob-status.is-success {
+    border: 1px solid #aad6bf;
+    background: var(--gob-success-100);
+    color: var(--gob-success-700);
+}
+
+/* ==========================================================================
+   10. Preview layout helpers
+   These classes recreate the K2-authored grid locally; they do not alter
+   K2's runtime Grid-Layout or editor-cell positioning.
+   ========================================================================== */
+
+html .theme-entry .gob-form-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 20px;
+}
+
+html .theme-entry .gob-span-12 {
+    grid-column: span 12;
+}
+
+html .theme-entry .gob-span-8 {
+    grid-column: span 8;
+}
+
+html .theme-entry .gob-span-6 {
+    grid-column: span 6;
+}
+
+html .theme-entry .gob-span-4 {
+    grid-column: span 4;
+}
+
+html .theme-entry .gob-span-3 {
+    grid-column: span 3;
+}
+
+html .theme-entry .gob-header-grid {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 16px;
+}
+
+html .theme-entry .gob-crest {
+    width: 60px;
+    height: auto;
+}
+
+html .theme-entry .gob-welcome {
+    color: var(--gob-ink-600);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+html .theme-entry [hidden] {
+    display: none !important;
+}
+
+/* ==========================================================================
+   11. Responsive behavior
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    html .theme-entry .runtime-form {
+        padding: 16px;
+    }
+
+    html .theme-entry .panel-body {
+        padding: 18px;
+    }
+
+    html .theme-entry .gob-header-grid {
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    html .theme-entry .gob-crest {
+        width: 46px;
+    }
+
+    html .theme-entry .gob-welcome {
+        grid-column: 1 / -1;
+        padding-top: 12px;
+        border-top: 1px solid var(--gob-border);
+        white-space: normal;
+    }
+
+    html .theme-entry .gob-span-8,
+    html .theme-entry .gob-span-6,
+    html .theme-entry .gob-span-4,
+    html .theme-entry .gob-span-3 {
+        grid-column: span 12;
+    }
+
+    html .theme-entry .gob-policy-meta {
+        grid-template-columns: 1fr;
+    }
+
+    html .theme-entry .gob-action-bar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    html .theme-entry .gob-action-bar .gob-button,
+    html .theme-entry .gob-action-bar .SourceCode-Forms-Controls-Web-Button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    html .theme-entry {
+        --gob-control-height: 48px;
+        font-size: 15px;
+    }
+
+    html .theme-entry .runtime-form {
+        padding: 12px;
+    }
+
+    html .theme-entry :is(
+        [name="MOF_FormHeader"],
+        [name="MOBNewDevice-NewItem.Form Area Item3"]
+    ),
+    html .theme-entry :is([name="MOF_Notice"], [name="tblInstructions"]),
+    html .theme-entry .panel-body {
+        padding: 16px;
+    }
+
+    html .theme-entry .ControlPack-Choice.displayTypeRadio,
+    html .theme-entry [class*="ControlPack-Choice"].displayTypeRadio,
+    html .theme-entry .gob-choice-list,
+    html .theme-entry .gob-check-grid {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) :is(.stylewrapper, .controlWrapper, .stackContainer) {
+        display: flex !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        overflow: visible !important;
+        white-space: normal !important;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) .stack {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) .choice-control-item-row {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 44px !important;
+        overflow: visible !important;
+        white-space: normal !important;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware) {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 44px !important;
+        justify-content: flex-start;
+        white-space: normal !important;
+    }
+
+    html .theme-entry [class*="ControlPack-Choice"]:is(
+        .displayTypeRadio,
+        .displayTypeCheckbox
+    ) :is(.input-control.radio.style-aware, .input-control.checkbox.style-aware)
+        .input-control-text {
+        width: auto !important;
+        min-width: 0 !important;
+        flex: 1 1 auto !important;
+        line-height: 1.35;
+    }
+}
+
+/* ==========================================================================
+   12. Accessibility preferences and print
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    html .theme-entry *,
+    html .theme-entry *::before,
+    html .theme-entry *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+@media (forced-colors: active) {
+    html .theme-entry .panel,
+    html .theme-entry .gob-control,
+    html .theme-entry .dropdown-box,
+    html .theme-entry .lookup-box,
+    html .theme-entry .calendar-control,
+    html .theme-entry .gob-choice,
+    html .theme-entry .gob-button {
+        border: 1px solid CanvasText !important;
+    }
+
+    html .theme-entry .gob-button:focus-visible,
+    html .theme-entry .gob-choice:focus-within {
+        outline-color: Highlight;
+    }
+}
+
+/* ==========================================================================
+   13. Live K2 layout parity
+   K2's generated runtime uses fixed grid cells and legacy composite controls.
+   These overrides preserve the authored row/column placements while matching
+   the local reference dimensions and surfaces.
+   ========================================================================== */
+
+html,
+body,
+html body.theme-entry {
+    background: #e9eef1 !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .root-table {
+    grid-template-columns: 72px minmax(0, 1fr) 220px !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) {
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) :is([name="MOF_HeaderLogo"], [name="Picture"]) {
+    width: 60px !important;
+    max-width: 60px !important;
+    height: auto !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderLogo"], [name="Picture"])),
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderLogo"], [name="Picture"])) {
+    align-items: center !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderMinistry"], [name="dl_Header"])),
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderFormTitle"], [name="Data Label1"])) {
+    align-items: center !important;
+    justify-content: flex-start !important;
+    overflow: visible !important;
+    text-align: left !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderMinistry"], [name="dl_Header"])) {
+    padding: 0 2px !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(> :is([name="MOF_HeaderFormTitle"], [name="Data Label1"])) {
+    padding: 0 2px !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormHeader"],
+    [name="MOBNewDevice-NewItem.Form Area Item3"]
+) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
+    align-items: center !important;
+    justify-content: flex-end !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_HeaderMinistry"],
+    [name="MOF_HeaderFormTitle"],
+    [name="dl_Header"],
+    [name="Data Label1"]
+) {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    text-align: left !important;
+}
+
+html .theme-entry .SFC.SourceCode-Forms-Controls-Web-DataLabel {
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+}
+
+html .theme-entry :is([name="MOF_FormContent"], [name="MOBNewDevice-NewItem.Form Area Item2"]),
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) .panel-body,
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) .panel-body-wrapper,
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) .panel-body-m,
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) .panel-body-m-c {
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_FormContent"],
+    [name="MOBNewDevice-NewItem.Form Area Item2"]
+) :is([name="MOF_FormGrid"], [name="Table"]).root-table {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    padding: 24px !important;
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry input.SFC.SourceCode-Forms-Controls-Web-TextBox {
+    height: var(--gob-control-height) !important;
+    min-height: var(--gob-control-height) !important;
+    padding: 10px 12px !important;
+}
+
+html .theme-entry .input-control.select-box,
+html .theme-entry .input-control.lookup-box,
+html .theme-entry .input-control.calendar-control {
+    height: var(--gob-control-height) !important;
+    min-height: var(--gob-control-height) !important;
+}
+
+html .theme-entry .input-control.select-box > .styling-outer-wrapper,
+html .theme-entry .input-control.select-box .input-control-body,
+html .theme-entry .input-control.select-box .input-control-m,
+html .theme-entry .input-control.select-box .input-control-m-c,
+html .theme-entry .input-control.select-box .input-control-wrapper,
+html .theme-entry .input-control.select-box .input-control-buttons {
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+html .theme-entry .input-control.select-box .input-control-wrapper > input,
+html .theme-entry .input-control.select-box .input-control-buttons > a {
+    height: calc(var(--gob-control-height) - 2px) !important;
+    min-height: calc(var(--gob-control-height) - 2px) !important;
+}
+
+html .theme-entry .input-control.select-box .input-control-wrapper > input,
+html .theme-entry
+    .input-control.select-box
+    .input-control-wrapper
+    > a.input-control
+    > span {
+    font-size: var(--gob-control-font-size) !important;
+}
+
+html .theme-entry .input-control.select-box.dropdown-box
+    .input-control-wrapper {
+    display: flex !important;
+    align-items: center !important;
+}
+
+html .theme-entry .input-control.select-box.dropdown-box
+    .input-control-wrapper > a.input-control {
+    display: flex !important;
+    width: 100%;
+    height: 100% !important;
+    align-items: center;
+}
+
+html .theme-entry .input-control.select-box.dropdown-box
+    .input-control-wrapper > a.input-control > span {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 12px !important;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html .theme-entry
+    .input-control.select-box.picker-input[data-maxrows="1"]
+    .input-control-wrapper {
+    display: flex !important;
+    align-items: center !important;
+}
+
+html .theme-entry
+    .input-control.select-box.picker-input[data-maxrows="1"]
+    .editable-area {
+    width: 100%;
+    height: auto !important;
+    min-height: 24px;
+    padding: 0 10px !important;
+    font-size: var(--gob-control-font-size) !important;
+    line-height: 24px !important;
+}
+
+html .theme-entry
+    .input-control.select-box.picker-input[data-maxrows="1"]
+    .input-control-watermark {
+    top: 50% !important;
+    bottom: auto !important;
+    padding: 0 10px !important;
+    font-size: var(--gob-control-font-size) !important;
+    line-height: 24px !important;
+    transform: translateY(-50%);
+}
+
+html .theme-entry
+    .SFC.SourceCode-Forms-Controls-Web-Label.description:is(
+        [name="MOF_HelpText"],
+        [name="lblDescription2"]
+    ) {
+    color: var(--gob-ink-600) !important;
+    font-size: 14px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1.45;
+}
+
+html .theme-entry :is(
+    [name="MOF_RoleNameCell"],
+    [name="Cell Cell460"]
+):has(:is([name="MOF_RoleNameLabel"], [name="Role Name Label"]).hidden),
+html .theme-entry :is([name="MOF_RoleHelperCell"], [name="Cell Cell462"]) {
+    display: none !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_PolicyPromptCell"],
+    [name="Cell Cell126"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicyChoiceCell"],
+    [name="Cell Cell125"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicySpacerCell"],
+    [name="Cell Cell82"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicyBodyCell"],
+    [name="Cell Cell123"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicyRightCapCell"],
+    [name="Cell Cell83"]
+) {
+    position: relative;
+    z-index: 1;
+    background: #fffdf5 !important;
+}
+
+html .theme-entry :is(
+    [name="MOF_PolicyPromptCell"],
+    [name="Cell Cell126"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicyChoiceCell"],
+    [name="Cell Cell125"]
+),
+html .theme-entry :is(
+    [name="MOF_PolicySpacerCell"],
+    [name="Cell Cell82"]
+) {
+    margin-top: 24px;
+    border-top: 1px solid #ead99a !important;
+}
+
+html .theme-entry :is([name="MOF_PolicyPromptCell"], [name="Cell Cell126"]) {
+    padding: 16px 8px 8px 18px !important;
+    border-left: 4px solid var(--gob-gold-500) !important;
+    border-radius: var(--gob-radius-md) 0 0 0;
+}
+
+html .theme-entry :is([name="MOF_PolicyChoiceCell"], [name="Cell Cell125"]) {
+    padding: 16px 8px 8px !important;
+}
+
+html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) {
+    padding: 16px 18px 8px 8px !important;
+    border-right: 1px solid #ead99a !important;
+    border-radius: 0 var(--gob-radius-md) 0 0;
+}
+
+html .theme-entry :is([name="MOF_PolicyBodyCell"], [name="Cell Cell123"]) {
+    position: relative;
+    grid-column: 1 / 4 !important;
+    padding: 8px 18px 16px !important;
+    border-bottom: 1px solid #ead99a !important;
+    border-left: 4px solid var(--gob-gold-500) !important;
+    border-radius: 0 0 0 var(--gob-radius-md);
+}
+
+html .theme-entry :is([name="MOF_PolicyBodyCell"], [name="Cell Cell123"])
+    :is([name="MOF_PolicyBodyText"], [name="Data Label"]) {
+    color: var(--gob-ink-700) !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    line-height: 1.55;
+}
+
+html .theme-entry :is([name="MOF_PolicyRightCapCell"], [name="Cell Cell83"]) {
+    grid-column: 3 / 4 !important;
+    grid-row: 14 / 15 !important;
+    margin-top: 24px;
+    padding: 16px 18px 8px 8px !important;
+    border-top: 1px solid #ead99a !important;
+    border-right: 1px solid #ead99a !important;
+    border-radius: 0 var(--gob-radius-md) 0 0;
+}
+
+html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) {
+    overflow: hidden;
+    color: transparent !important;
+    pointer-events: none;
+    visibility: visible !important;
+}
+
+html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) > * {
+    visibility: hidden;
+}
+
+html .theme-entry :is([name="MOF_PolicyBodyCell"], [name="Cell Cell123"])::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    height: 100%;
+    background: #ead99a;
+    content: "";
+}
+
+html .theme-entry :is(
+    [name="MOF_PrimaryAction"],
+    [name="CreateListItem Button"]
+),
+html .theme-entry :is([name="MOF_SecondaryAction"], [name="btnCancel"]) {
+    width: 120px !important;
+    min-width: 120px !important;
+    height: var(--gob-control-height) !important;
+    min-height: var(--gob-control-height) !important;
+}
+
+html .theme-entry :is([name="MOF_PrimaryActionCell"], [name="Cell Cell108"]),
+html .theme-entry :is([name="MOF_SecondaryActionCell"], [name="Cell Cell109"]) {
+    grid-column: 3 / 4 !important;
+    grid-row: 16 / 17 !important;
+    width: 120px !important;
+    padding: 0 !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    justify-self: end !important;
+    text-align: right !important;
+}
+
+html .theme-entry :is([name="MOF_PrimaryActionCell"], [name="Cell Cell108"]) {
+    margin-right: 132px;
+}
+
+html
+    .theme-entry
+    .root-table
+    > .editor-cell.align-right:has(
+        > .SourceCode-Forms-Controls-Web-Button
+    ) {
+    box-sizing: border-box;
+    align-items: center;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+}
+
+@media (max-width: 768px) {
+    html .theme-entry :is(
+        [name="MOF_FormHeader"],
+        [name="MOBNewDevice-NewItem.Form Area Item3"]
+    ) .root-table {
+        grid-template-columns: 52px minmax(0, 1fr) !important;
+    }
+
+    html .theme-entry :is(
+        [name="MOF_FormHeader"],
+        [name="MOBNewDevice-NewItem.Form Area Item3"]
+    ) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
+        grid-column: 1 / -1 !important;
+        grid-row: 3 !important;
+        justify-content: flex-start !important;
+    }
+
+    html .theme-entry :is(
+        [name="MOF_FormContent"],
+        [name="MOBNewDevice-NewItem.Form Area Item2"]
+    ) :is([name="MOF_FormGrid"], [name="Table"]).root-table {
+        padding: 18px !important;
+    }
+}
+
+/* ==========================================================================
+   14. Shared form headers and editable list views
+   These selectors target stable K2 component classes and authored control
+   names so the treatment carries across forms without generated GUIDs.
+   ========================================================================== */
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) {
+    border-top: 4px solid var(--gob-aqua-700);
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) > .panel-header {
+    display: none !important;
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .panel-body,
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .panel-body-m,
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .panel-body-m-c,
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .panel-body-wrapper {
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+):not(
+    :is([name="MOF_FormHeader"], [name="MOBNewDevice-NewItem.Form Area Item3"])
+) .panel-body {
+    padding: 20px 24px !important;
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .root-table {
+    grid-template-columns: 72px minmax(0, 1fr) 220px !important;
+    min-height: 74px;
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) :is([name="MOF_HeaderLogo"], [name="Picture"]) {
+    width: 60px !important;
+    max-width: 60px !important;
+    height: auto !important;
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(> :is([name="MOF_HeaderLogo"], [name="Picture"])),
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(> :is([name="MOF_HeaderLogo"], [name="Picture"])) {
+    align-items: center !important;
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(> :is([name="MOF_HeaderMinistry"], [name="dl_Header"])),
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(> :is([name="MOF_HeaderFormTitle"], [name="Data Label1"])) {
+    align-items: center !important;
+    justify-content: flex-start !important;
+    overflow: visible !important;
+    padding: 0 2px !important;
+    text-align: left !important;
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
+    align-items: center !important;
+    justify-content: flex-end !important;
+}
+
+html .theme-entry .view:has(> .innerpanel > .grid) {
+    margin-top: 16px;
+}
+
+html .theme-entry .grid {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--gob-border) !important;
+    border-radius: var(--gob-radius-md);
+    background: var(--gob-white) !important;
+    box-shadow: var(--gob-shadow);
+}
+
+html .theme-entry .grid > .grid-header {
+    min-height: 52px;
+    border: 0 !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    background: var(--gob-surface-subtle) !important;
+}
+
+html .theme-entry .grid > .grid-header:has(.grid-header-text:empty),
+html .theme-entry .grid > .grid-header:has(
+    .grid-header-text > span[data-sf-title=""]
+) {
+    display: none !important;
+}
+
+html .theme-entry .grid .grid-header-wrapper,
+html .theme-entry .grid .grid-header-text {
+    min-height: 51px;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--gob-navy-900) !important;
+    font-family: var(--gob-font);
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.35;
+}
+
+html .theme-entry .grid .grid-header-text {
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+html .theme-entry .grid-toolbars {
+    min-height: 52px;
+    border: 0 !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry .grid-toolbars .toolbars,
+html .theme-entry .grid-toolbars .toolbar,
+html .theme-entry .grid-toolbars .toolbar-wrapper {
+    width: 100%;
+    min-height: 51px;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+html .theme-entry .grid-toolbars .toolbar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 10px;
+}
+
+html .theme-entry .grid .toolbar-button {
+    display: inline-flex !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    align-items: center;
+    padding: 0 !important;
+    border: 1px solid transparent !important;
+    border-radius: var(--gob-radius-sm) !important;
+    background: transparent !important;
+    color: var(--gob-ink-700) !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+}
+
+html .theme-entry .grid .toolbar-button .button-l,
+html .theme-entry .grid .toolbar-button .button-r {
+    display: none !important;
+}
+
+html .theme-entry .grid .toolbar-button .button-c {
+    display: inline-flex !important;
+    height: 34px !important;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+html .theme-entry .grid .toolbar-button svg {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 auto;
+}
+
+html .theme-entry .grid .toolbar-button .button-text {
+    color: inherit !important;
+    font-family: var(--gob-font);
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    line-height: 1;
+}
+
+html .theme-entry .grid .toolbar-button:hover {
+    border-color: #9fcfd3 !important;
+    background: var(--gob-aqua-050) !important;
+    color: var(--gob-aqua-900) !important;
+}
+
+html .theme-entry .grid .toolbar-button:focus,
+html .theme-entry .grid .toolbar-button:focus-visible {
+    outline: 3px solid var(--gob-gold-500);
+    outline-offset: 2px;
+}
+
+html .theme-entry .grid:has(.edit-row)
+    :is([name="MOF_ListSaveButton"], [name="Save ToolBar Button"]) {
+    border-color: var(--gob-aqua-700) !important;
+    background: var(--gob-aqua-700) !important;
+    color: var(--gob-white) !important;
+}
+
+html .theme-entry .grid:has(.edit-row)
+    :is([name="MOF_ListSaveButton"], [name="Save ToolBar Button"]):hover {
+    border-color: var(--gob-aqua-900) !important;
+    background: var(--gob-aqua-900) !important;
+}
+
+html .theme-entry .grid-body {
+    min-width: 0;
+    border: 0 !important;
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry .grid-column-headers,
+html .theme-entry .grid-column-headers-wrapper,
+html .theme-entry .grid-column-header-table {
+    height: 44px !important;
+    min-height: 44px;
+    border: 0 !important;
+    background: var(--gob-surface-subtle) !important;
+}
+
+html .theme-entry .grid-column-header-table {
+    border-bottom: 1px solid var(--gob-border) !important;
+}
+
+html .theme-entry .grid-column-header-cell,
+html .theme-entry .grid-column-header-cell-wrapper,
+html .theme-entry .grid-column-header-cell-content {
+    height: 43px !important;
+    min-height: 43px;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+html .theme-entry .grid-column-header-cell-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 12px !important;
+}
+
+html .theme-entry .grid-column-header-text {
+    width: 100%;
+    overflow: hidden;
+    color: var(--gob-navy-900) !important;
+    font-family: var(--gob-font);
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html .theme-entry .grid-column-header-divider {
+    width: 1px !important;
+    height: 24px !important;
+    margin-top: 10px;
+    background: var(--gob-border) !important;
+}
+
+html .theme-entry .grid-body-content,
+html .theme-entry .grid-body-content-wrapper,
+html .theme-entry .grid-content-table {
+    border: 0 !important;
+    background: var(--gob-white);
+}
+
+html .theme-entry .grid-content-table {
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+html .theme-entry .grid-content-table > tbody > tr > td {
+    padding: 0 !important;
+    border: 0 !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    background: var(--gob-white) !important;
+    color: var(--gob-ink-700) !important;
+    transition:
+        background-color 120ms ease,
+        box-shadow 120ms ease;
+}
+
+html .theme-entry .grid-content-table.zebra-stripes
+    > tbody > tr:nth-child(even) > td {
+    background: var(--gob-surface-subtle) !important;
+}
+
+html .theme-entry .grid-content-table > tbody > tr:hover > td {
+    background: var(--gob-aqua-050) !important;
+}
+
+html .theme-entry .grid-content-table > tbody
+    > tr.highlighted > td,
+html .theme-entry .grid-content-table > tbody
+    > tr.selected > td {
+    background: #dff3f4 !important;
+}
+
+html .theme-entry .grid-content-table.zebra-stripes > tbody
+    > tr.highlighted > td,
+html .theme-entry .grid-content-table.zebra-stripes > tbody
+    > tr.selected > td {
+    background: #dff3f4 !important;
+}
+
+html .theme-entry .grid-content-table > tbody
+    > tr.selected > td:first-child {
+    box-shadow: inset 4px 0 0 var(--gob-aqua-700);
+}
+
+html .theme-entry .grid-content-cell,
+html .theme-entry .grid-content-cell-wrapper {
+    min-height: 48px !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+html .theme-entry .grid-content-cell-wrapper {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    padding: 10px 12px !important;
+}
+
+html .theme-entry .grid-content-cell .runtime-list-item {
+    display: block !important;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    color: inherit !important;
+    font-family: var(--gob-font);
+    font-size: 14px !important;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+html .theme-entry .grid-content-table > tbody
+    > tr.edit-row > td {
+    background: #fffdf5 !important;
+}
+
+html .theme-entry .grid-content-table > tbody
+    > tr.edit-row .grid-content-cell-wrapper {
+    min-height: 60px !important;
+    padding: 8px !important;
+}
+
+html .theme-entry .grid-content-table > tbody
+    > tr.edit-row input.SFC.SourceCode-Forms-Controls-Web-TextBox {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+html .theme-entry .grid-footer {
+    min-height: 44px;
+    border: 0 !important;
+    border-top: 1px solid var(--gob-border) !important;
+    background: var(--gob-white) !important;
+    color: var(--gob-ink-600) !important;
+    font-family: var(--gob-font);
+    font-size: 13px !important;
+}
+
+@media (max-width: 768px) {
+    html .theme-entry .panel:has(
+        :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+    ) .root-table {
+        grid-template-columns: 52px minmax(0, 1fr) !important;
+    }
+
+    html .theme-entry .panel:has(
+        :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+    ) .editor-cell:has(:is([name="MOF_HeaderUser"], [name="dl_header_userwelcome"])) {
+        grid-column: 1 / -1 !important;
+        grid-row: 3 !important;
+        justify-content: flex-start !important;
+    }
+
+    html .theme-entry .grid-toolbars .toolbar-wrapper {
+        overflow-x: auto;
+    }
+
+    html .theme-entry .grid-body {
+        overflow-x: auto;
+    }
+
+    html .theme-entry .grid-column-headers,
+    html .theme-entry .grid-body-content {
+        min-width: 720px;
+    }
+}
+
+@media print {
+    html .theme-entry {
+        background: var(--gob-white);
+        color: #000000;
+    }
+
+    html .theme-entry .runtime-form {
+        max-width: none;
+        padding: 0;
+    }
+
+    html .theme-entry .panel,
+    html .theme-entry :is(
+        [name="MOF_FormHeader"],
+        [name="MOBNewDevice-NewItem.Form Area Item3"]
+    ) {
+        border-color: #777777;
+        box-shadow: none;
+    }
+
+    html .theme-entry .gob-action-bar,
+    html .theme-entry .panel-toolbars {
+        display: none !important;
+    }
+}
