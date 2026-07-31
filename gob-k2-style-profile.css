@@ -1661,6 +1661,17 @@ html .theme-entry .grid-toolbars {
     background: var(--gob-white) !important;
 }
 
+html
+    .theme-entry
+    .grid-toolbars:has(> .toolbars > .toolbar.hidden):not(
+        :has(> .toolbars > .toolbar:not(.hidden))
+    ) {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    border: 0 !important;
+}
+
 html .theme-entry .grid-toolbars .toolbars,
 html .theme-entry .grid-toolbars .toolbar,
 html .theme-entry .grid-toolbars .toolbar-wrapper {
