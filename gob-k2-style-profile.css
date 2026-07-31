@@ -276,6 +276,7 @@ html .theme-entry .panel-header .panel-header-text {
 }
 
 html .theme-entry .panel-header::before,
+html .theme-entry .grid > .grid-header::before,
 html .theme-entry [name^="MOF_SectionHeading"]::before,
 html .theme-entry [name="FormSectionName2"]::before,
 html .theme-entry [name="lblDeviceDetails"]::before {
@@ -1623,7 +1624,9 @@ html .theme-entry .grid {
 }
 
 html .theme-entry .grid > .grid-header {
+    position: relative;
     min-height: 52px;
+    padding: 0 0 0 4px;
     border: 0 !important;
     border-bottom: 1px solid var(--gob-border) !important;
     background: var(--gob-surface-subtle) !important;
