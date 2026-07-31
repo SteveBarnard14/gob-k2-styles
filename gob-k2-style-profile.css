@@ -1187,6 +1187,25 @@ html .theme-entry .SFC.SourceCode-Forms-Controls-Web-DataLabel {
     white-space: normal !important;
 }
 
+html
+    .theme-entry
+    .editor-cell:has(
+        > .SFC.SourceCode-Forms-Controls-Web-Label
+            + .SFC.SourceCode-Forms-Controls-Web-DataLabel
+    )
+    > :is(
+        .SFC.SourceCode-Forms-Controls-Web-Label,
+        .SFC.SourceCode-Forms-Controls-Web-DataLabel
+    ) {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    font-size: var(--gob-control-font-size) !important;
+    line-height: 1.5 !important;
+}
+
 html .theme-entry :is([name="MOF_FormContent"], [name="MOBNewDevice-NewItem.Form Area Item2"]),
 html .theme-entry :is(
     [name="MOF_FormContent"],
