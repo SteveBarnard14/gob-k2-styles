@@ -5,8 +5,8 @@
  *
  * Keep this file last in Style Profile > Developer > External Files.
  * The rules are scoped beneath .theme-entry and avoid generated K2 IDs.
- * Prefer authored MOF_* control names; legacy MOB selectors are temporary
- * compatibility aliases for forms already in production.
+ * Prefer stable K2 runtime classes and authored MOF_* control names.
+ * Keep Designer responsible for row and column placement.
  */
 
 /* ==========================================================================
@@ -1081,9 +1081,8 @@ html .theme-entry [hidden] {
 
 /* ==========================================================================
    14. Live K2 layout parity
-   K2's generated runtime uses fixed grid cells and legacy composite controls.
-   These overrides preserve the authored row/column placements while matching
-   the local reference dimensions and surfaces.
+   K2's runtime uses legacy composite controls. Keep this section focused on
+   control sizing and shared surfaces; Designer owns row and column placement.
    ========================================================================== */
 
 html,
@@ -1341,117 +1340,53 @@ html .theme-entry
     line-height: 1.45;
 }
 
-html .theme-entry :is(
-    [name="MOF_RoleNameCell"],
-    [name="Cell Cell460"]
-):has(:is([name="MOF_RoleNameLabel"], [name="Role Name Label"]).hidden),
-html .theme-entry :is([name="MOF_RoleHelperCell"], [name="Cell Cell462"]) {
+html
+    .theme-entry
+    [name="MOF_RoleNameCell"]:has([name="MOF_RoleNameLabel"].hidden),
+html .theme-entry [name="MOF_RoleHelperCell"] {
     display: none !important;
 }
 
-html .theme-entry :is(
-    [name="MOF_PolicyPromptCell"],
-    [name="Cell Cell126"]
-),
-html .theme-entry :is(
-    [name="MOF_PolicyChoiceCell"],
-    [name="Cell Cell125"]
-),
-html .theme-entry :is(
-    [name="MOF_PolicySpacerCell"],
-    [name="Cell Cell82"]
-),
-html .theme-entry :is(
-    [name="MOF_PolicyBodyCell"],
-    [name="Cell Cell123"]
-),
-html .theme-entry :is(
-    [name="MOF_PolicyRightCapCell"],
-    [name="Cell Cell83"]
-) {
+html .theme-entry [name="MOF_PolicyPromptCell"],
+html .theme-entry [name="MOF_PolicyChoiceCell"],
+html .theme-entry [name="MOF_PolicyBodyCell"] {
     position: relative;
     z-index: 1;
     background: #fffdf5 !important;
 }
 
-html .theme-entry :is(
-    [name="MOF_PolicyPromptCell"],
-    [name="Cell Cell126"]
-),
-html .theme-entry :is(
-    [name="MOF_PolicyChoiceCell"],
-    [name="Cell Cell125"]
-),
-html .theme-entry :is(
-    [name="MOF_PolicySpacerCell"],
-    [name="Cell Cell82"]
-) {
+html .theme-entry [name="MOF_PolicyPromptCell"],
+html .theme-entry [name="MOF_PolicyChoiceCell"] {
     margin-top: 24px;
     border-top: 1px solid #ead99a !important;
 }
 
-html .theme-entry :is([name="MOF_PolicyPromptCell"], [name="Cell Cell126"]) {
+html .theme-entry [name="MOF_PolicyPromptCell"] {
     padding: 16px 8px 8px 18px !important;
     border-left: 4px solid var(--gob-gold-500) !important;
     border-radius: var(--gob-radius-md) 0 0 0;
 }
 
-html .theme-entry :is([name="MOF_PolicyChoiceCell"], [name="Cell Cell125"]) {
-    padding: 16px 8px 8px !important;
-}
-
-html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) {
+html .theme-entry [name="MOF_PolicyChoiceCell"] {
     padding: 16px 18px 8px 8px !important;
     border-right: 1px solid #ead99a !important;
     border-radius: 0 var(--gob-radius-md) 0 0;
 }
 
-html .theme-entry :is([name="MOF_PolicyBodyCell"], [name="Cell Cell123"]) {
+html .theme-entry [name="MOF_PolicyBodyCell"] {
     position: relative;
-    grid-column: 1 / 4 !important;
     padding: 8px 18px 16px !important;
     border-bottom: 1px solid #ead99a !important;
     border-left: 4px solid var(--gob-gold-500) !important;
-    border-radius: 0 0 0 var(--gob-radius-md);
+    border-right: 1px solid #ead99a !important;
+    border-radius: 0 0 var(--gob-radius-md) var(--gob-radius-md);
 }
 
-html .theme-entry :is([name="MOF_PolicyBodyCell"], [name="Cell Cell123"])
-    :is([name="MOF_PolicyBodyText"], [name="Data Label"]) {
+html .theme-entry [name="MOF_PolicyBodyCell"] [name="MOF_PolicyBodyText"] {
     color: var(--gob-ink-700) !important;
     font-size: 15px !important;
     font-style: normal !important;
     line-height: 1.55;
-}
-
-html .theme-entry :is([name="MOF_PolicyRightCapCell"], [name="Cell Cell83"]) {
-    grid-column: 3 / 4 !important;
-    grid-row: 14 / 15 !important;
-    margin-top: 24px;
-    padding: 16px 18px 8px 8px !important;
-    border-top: 1px solid #ead99a !important;
-    border-right: 1px solid #ead99a !important;
-    border-radius: 0 var(--gob-radius-md) 0 0;
-}
-
-html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) {
-    overflow: hidden;
-    color: transparent !important;
-    pointer-events: none;
-    visibility: visible !important;
-}
-
-html .theme-entry :is([name="MOF_PolicySpacerCell"], [name="Cell Cell82"]) > * {
-    visibility: hidden;
-}
-
-html .theme-entry :is([name="MOF_PolicyBodyCell"], [name="Cell Cell123"])::after {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 1px;
-    height: 100%;
-    background: #ead99a;
-    content: "";
 }
 
 html .theme-entry :is(
@@ -1465,20 +1400,14 @@ html .theme-entry :is([name="MOF_SecondaryAction"], [name="btnCancel"]) {
     min-height: var(--gob-control-height) !important;
 }
 
-html .theme-entry :is([name="MOF_PrimaryActionCell"], [name="Cell Cell108"]),
-html .theme-entry :is([name="MOF_SecondaryActionCell"], [name="Cell Cell109"]) {
-    grid-column: 3 / 4 !important;
-    grid-row: 16 / 17 !important;
+html .theme-entry [name="MOF_PrimaryActionCell"],
+html .theme-entry [name="MOF_SecondaryActionCell"] {
     width: 120px !important;
     padding: 0 !important;
     align-items: center !important;
     justify-content: flex-end !important;
     justify-self: end !important;
     text-align: right !important;
-}
-
-html .theme-entry :is([name="MOF_PrimaryActionCell"], [name="Cell Cell108"]) {
-    margin-right: 132px;
 }
 
 html
