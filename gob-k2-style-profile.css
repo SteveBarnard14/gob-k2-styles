@@ -372,6 +372,61 @@ html .theme-entry [name="lblDeviceDetails"]::before {
     transform: translateY(-50%);
 }
 
+/* Name a full-width cell/control MOD_ViewHeaderRow_* to reuse view header styling. */
+html .theme-entry :is(
+    .editor-cell[name^="MOD_ViewHeaderRow"],
+    .editor-cell.MOD_ViewHeaderRow,
+    .editor-cell:has(> [name^="MOD_ViewHeaderRow"]),
+    .editor-cell:has(> .MOD_ViewHeaderRow)
+) {
+    position: relative;
+    display: flex !important;
+    min-height: 52px;
+    align-items: center !important;
+    width: 100%;
+    padding: 0 20px 0 24px !important;
+    border: 0 !important;
+    border-top: 1px solid var(--gob-border) !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    background: var(--gob-surface-subtle) !important;
+    color: var(--gob-navy-900) !important;
+}
+
+html .theme-entry :is(
+    .editor-cell[name^="MOD_ViewHeaderRow"],
+    .editor-cell.MOD_ViewHeaderRow,
+    .editor-cell:has(> [name^="MOD_ViewHeaderRow"]),
+    .editor-cell:has(> .MOD_ViewHeaderRow)
+)::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 24px;
+    background: var(--gob-gold-500);
+    content: "";
+    transform: translateY(-50%);
+}
+
+html .theme-entry :is(
+    [name^="MOD_ViewHeaderRow"],
+    .MOD_ViewHeaderRow
+) {
+    display: block;
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--gob-navy-900) !important;
+    font-family: var(--gob-font);
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.35;
+    letter-spacing: 0;
+    text-align: left;
+}
+
 html .theme-entry [name^="MOF_SectionHeading"],
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
