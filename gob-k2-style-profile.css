@@ -54,7 +54,7 @@ html .theme-entry {
     --gob-font: Inter, sans-serif;
     --gob-content-max-width: 60vw;
     --gob-control-height: 44px;
-    --gob-control-font-size: 16px;
+    --gob-control-font-size: 12px;
     --gob-label-font-size: var(--gob-control-font-size);
     --gob-radius-sm: 4px;
     --gob-radius-md: 8px;
