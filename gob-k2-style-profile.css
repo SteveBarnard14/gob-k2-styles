@@ -166,6 +166,54 @@ html
     vertical-align: middle !important;
 }
 
+html
+    .theme-entry
+    .root-table
+    > .editor-cell:has(
+        > :is(
+            .SourceCode-Forms-Controls-Web-Label,
+            .field-label,
+            .gob-field-label
+        )
+    ):has(
+        + .editor-cell
+            :is(
+                .ControlPack-Choice,
+                [class*="ControlPack-Choice"],
+                .input-control.radio.style-aware,
+                .input-control.checkbox.style-aware
+            )
+    ) {
+    align-items: center !important;
+    vertical-align: middle !important;
+}
+
+html
+    .theme-entry
+    .root-table
+    > .editor-cell:has(
+        > :is(
+            .SourceCode-Forms-Controls-Web-Label,
+            .field-label,
+            .gob-field-label
+        )
+    ):has(
+        + .editor-cell
+            :is(
+                .ControlPack-Choice,
+                [class*="ControlPack-Choice"],
+                .input-control.radio.style-aware,
+                .input-control.checkbox.style-aware
+            )
+    )
+    > :is(
+        .SourceCode-Forms-Controls-Web-Label,
+        .field-label,
+        .gob-field-label
+    ) {
+    margin-bottom: 0 !important;
+}
+
 html .theme-entry .panel-toolbars {
     min-height: 0;
     border: 0;
