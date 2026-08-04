@@ -350,6 +350,7 @@ html .theme-entry .panel-header .panel-header-wrapper {
 }
 
 html .theme-entry .panel-header .panel-header-text {
+    padding-left: 0 !important;
     color: var(--gob-navy-900) !important;
     font-family: var(--gob-font);
     font-size: 15px !important;
