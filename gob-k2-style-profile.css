@@ -1361,6 +1361,15 @@ html .theme-entry .SFC.SourceCode-Forms-Controls-Web-DataLabel {
     white-space: normal !important;
 }
 
+html .theme-entry [name="MOF_FormHeader"] :is(
+    [name="MOF_HeaderMinistry"],
+    [name="MOF_HeaderFormTitle"]
+) {
+    font-size: 20pt !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+}
+
 html
     .theme-entry
     .editor-cell:has(
