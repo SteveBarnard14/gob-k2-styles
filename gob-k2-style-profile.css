@@ -433,12 +433,11 @@ html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
     position: relative;
-    display: flex !important;
+    display: block !important;
     width: 100%;
     min-height: 52px;
-    align-items: center !important;
     margin: 28px 0 16px;
-    padding: 0 20px 0 24px !important;
+    padding: 12px 20px 12px 24px !important;
     border-top: 1px solid var(--gob-border) !important;
     border-right: 0 !important;
     border-bottom: 1px solid var(--gob-border) !important;
