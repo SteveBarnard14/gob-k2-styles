@@ -445,11 +445,26 @@ html .theme-entry .gob-section-heading {
     border-radius: 0 !important;
     background: var(--gob-surface-subtle) !important;
     color: var(--gob-navy-900) !important;
+    font-family: var(--gob-font) !important;
     font-size: 15px !important;
     font-weight: 700 !important;
-    line-height: 1.35;
+    line-height: 20.25px !important;
     letter-spacing: 0;
     text-align: left;
+    text-transform: uppercase;
+}
+
+html .theme-entry [name^="MOF_SectionHeading"] *,
+html .theme-entry [name="FormSectionName2"] *,
+html .theme-entry [name="lblDeviceDetails"] *,
+html .theme-entry .gob-section-heading * {
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+    letter-spacing: inherit !important;
+    text-transform: inherit !important;
 }
 
 html .theme-entry .editor-cell:has(> [name^="MOF_SectionHeading"]),
