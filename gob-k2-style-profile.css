@@ -31,7 +31,18 @@ html .theme-entry {
     --gob-border-strong: #aebbc4;
     --gob-border: #d5dce2;
     --gob-surface-subtle: #f4f7f8;
-    --gob-canvas: #e9eef1;
+    --gob-canvas: #ffffff;
+    --gob-page-gradient-start: #c9fbff;
+    --gob-page-gradient-middle: #e7fbfc;
+    --gob-page-gradient-end: #ffffff;
+    --gob-page-gradient: linear-gradient(
+        180deg,
+        var(--gob-page-gradient-start) 0%,
+        var(--gob-page-gradient-start) 34%,
+        var(--gob-page-gradient-middle) 58%,
+        var(--gob-page-gradient-end) 78%,
+        var(--gob-page-gradient-end) 100%
+    );
     --gob-white: #ffffff;
     --gob-danger-700: #a62a24;
     --gob-danger-100: #fdebea;
@@ -66,7 +77,7 @@ html .theme-entry {
     --primary-color: var(--gob-aqua-700);
 
     min-width: 0;
-    background: var(--gob-canvas);
+    background: var(--gob-page-gradient) no-repeat top center / 100% 100%;
     color: var(--gob-ink-900);
     font-family: var(--gob-font);
     font-size: 16px;
@@ -78,6 +89,7 @@ html .theme-entry {
 body.theme-entry {
     min-height: 100vh;
     margin: 0;
+    background: var(--gob-page-gradient) no-repeat top center / 100% 100%;
 }
 
 html .theme-entry *,
@@ -1088,7 +1100,17 @@ html .theme-entry [hidden] {
 html,
 body,
 html body.theme-entry {
-    background: #e9eef1 !important;
+    min-height: 100%;
+    background:
+        linear-gradient(
+            180deg,
+            #c9fbff 0%,
+            #c9fbff 34%,
+            #e7fbfc 58%,
+            #ffffff 78%,
+            #ffffff 100%
+        )
+        no-repeat top center / 100% 100% !important;
 }
 
 html .theme-entry :is(
