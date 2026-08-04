@@ -54,7 +54,7 @@ html .theme-entry {
         "Helvetica Neue",
         Arial,
         sans-serif;
-    --gob-content-max-width: 1280px;
+    --gob-content-max-width: 60vw;
     --gob-control-height: 44px;
     --gob-control-font-size: 16px;
     --gob-radius-sm: 4px;
@@ -84,6 +84,12 @@ html .theme-entry {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeSpeed;
+}
+
+@media (max-width: 1199px) {
+    html .theme-entry {
+        --gob-content-max-width: calc(100vw - 32px);
+    }
 }
 
 body.theme-entry {
@@ -918,6 +924,10 @@ html .theme-entry [hidden] {
    ========================================================================== */
 
 @media (max-width: 768px) {
+    html .theme-entry {
+        --gob-content-max-width: 100%;
+    }
+
     html .theme-entry .runtime-form {
         padding: 16px;
     }
