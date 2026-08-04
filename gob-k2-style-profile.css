@@ -1368,6 +1368,14 @@ html .theme-entry [name="MOF_FormHeader"] :is(
     font-size: 20pt !important;
     font-weight: 700 !important;
     line-height: 1.2 !important;
+    text-align: center !important;
+}
+
+html .theme-entry [name="MOF_FormHeader"] .editor-cell:has(
+    > :is([name="MOF_HeaderMinistry"], [name="MOF_HeaderFormTitle"])
+) {
+    justify-content: center !important;
+    text-align: center !important;
 }
 
 html
