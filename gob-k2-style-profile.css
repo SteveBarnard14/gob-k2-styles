@@ -9,6 +9,8 @@
  * Keep Designer responsible for row and column placement.
  */
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
 /* ==========================================================================
    01. Design tokens and K2 profile variables
    ========================================================================== */
@@ -49,14 +51,11 @@ html .theme-entry {
     --gob-success-700: #137347;
     --gob-success-100: #e6f5ed;
     --gob-focus: #007681;
-    --gob-font:
-        "Segoe UI",
-        "Helvetica Neue",
-        Arial,
-        sans-serif;
+    --gob-font: Inter, sans-serif;
     --gob-content-max-width: 60vw;
     --gob-control-height: 44px;
     --gob-control-font-size: 16px;
+    --gob-label-font-size: var(--gob-control-font-size);
     --gob-radius-sm: 4px;
     --gob-radius-md: 8px;
     --gob-shadow:
@@ -369,13 +368,14 @@ html .theme-entry h4 {
     letter-spacing: 0;
 }
 
-html .theme-entry .SourceCode-Forms-Controls-Web-Label:not(.input-label),
+html .theme-entry .SourceCode-Forms-Controls-Web-Label,
+html .theme-entry .input-label,
 html .theme-entry .field-label,
 html .theme-entry .gob-field-label {
     display: block;
     margin: 0 0 6px;
     color: var(--gob-ink-900) !important;
-    font-size: 15px !important;
+    font-size: var(--gob-label-font-size) !important;
     font-style: normal;
     font-weight: 600 !important;
     line-height: 1.35;
