@@ -150,6 +150,23 @@ html .theme-entry .panel-body {
     background: var(--gob-white);
 }
 
+html .theme-entry .root-table > .editor-cell.align-middle,
+html
+    .theme-entry
+    .root-table
+    > .editor-cell:has(
+        > :is(
+            .input-control,
+            .ControlPack-Choice,
+            input.SFC,
+            textarea.SFC,
+            .SourceCode-Forms-Controls-Web-Button
+        )
+    ) {
+    align-items: center !important;
+    vertical-align: middle !important;
+}
+
 html .theme-entry .panel-toolbars {
     min-height: 0;
     border: 0;
