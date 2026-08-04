@@ -220,10 +220,6 @@ html .theme-entry .panel-toolbars {
     background: var(--gob-white);
 }
 
-html .theme-entry .row:has([name="dl_movetabsscript"]) {
-    display: none !important;
-}
-
 /* ==========================================================================
    03. Form identity and instructions
    ========================================================================== */
