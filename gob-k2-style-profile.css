@@ -629,6 +629,10 @@ html .theme-entry .readonly {
     color: var(--gob-ink-700) !important;
 }
 
+html .theme-entry .SFC.SourceCode-Forms-Controls-Web-DataLabel.readonly {
+    background: transparent !important;
+}
+
 html .theme-entry input:disabled,
 html .theme-entry textarea:disabled,
 html .theme-entry select:disabled,
@@ -1279,6 +1283,11 @@ html .theme-entry :is(
 }
 
 html .theme-entry .SFC.SourceCode-Forms-Controls-Web-DataLabel {
+    color: var(--gob-ink-700) !important;
+    font-family: var(--gob-font);
+    font-size: var(--gob-control-font-size) !important;
+    font-weight: 400 !important;
+    line-height: 1.35 !important;
     overflow: visible !important;
     text-overflow: clip !important;
     white-space: normal !important;
