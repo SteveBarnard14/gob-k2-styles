@@ -1784,6 +1784,31 @@ html .theme-entry .panel:has(
     justify-content: flex-end !important;
 }
 
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) .editor-cell:has(
+    > :is([name="MOF_HeaderMinistry"], [name="MOF_HeaderFormTitle"])
+) {
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+html .theme-entry .panel:has(
+    :is([name="MOF_HeaderMinistry"], [name="dl_Header"])
+) :is([name="MOF_HeaderMinistry"], [name="MOF_HeaderFormTitle"]) {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: var(--gob-navy-900) !important;
+    font-family: var(--gob-font) !important;
+    font-size: 20pt !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+}
+
 html .theme-entry .view:has(> .innerpanel > .grid) {
     margin-top: 16px;
 }
@@ -1974,6 +1999,49 @@ html .theme-entry .grid .filterContainer .input-control.select-box .input-contro
 html .theme-entry .grid .filterContainer .input-control.select-box .input-control-buttons > a {
     height: calc(var(--gob-control-height) - 2px) !important;
     min-height: calc(var(--gob-control-height) - 2px) !important;
+}
+
+html
+    .theme-entry
+    .grid
+    .filterContainer
+    .input-control.select-box.dropdown-box
+    .input-control-wrapper
+    > a.input-control {
+    display: flex !important;
+    height: calc(var(--gob-control-height) - 2px) !important;
+    min-height: calc(var(--gob-control-height) - 2px) !important;
+    align-items: center !important;
+}
+
+html
+    .theme-entry
+    .grid
+    .filterContainer
+    .input-control.select-box.dropdown-box
+    .input-control-wrapper
+    > a.input-control
+    > span {
+    display: flex !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    align-items: center !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+html .theme-entry .grid .filterContainer .input-control.select-box .input-control-buttons {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+html .theme-entry .grid .filterContainer .input-control.select-box .input-control-buttons > a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+    vertical-align: middle !important;
 }
 
 html .theme-entry .grid .toolbar-button {
