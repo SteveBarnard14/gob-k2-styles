@@ -1865,6 +1865,117 @@ html .theme-entry .grid-toolbars .toolbar-wrapper {
     padding: 7px 10px;
 }
 
+html .theme-entry .grid .filterContainer {
+    display: flex !important;
+    min-height: 60px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    padding: 7px 10px !important;
+    color: var(--gob-ink-700) !important;
+    font-family: var(--gob-font);
+    font-size: var(--gob-control-font-size) !important;
+    line-height: 1.35 !important;
+}
+
+html .theme-entry .grid .filterContainer :is(.filterChosen.filter, .quickSearch.filter) {
+    display: inline-flex !important;
+    min-height: var(--gob-control-height) !important;
+    height: auto !important;
+    align-items: center;
+    gap: 6px;
+    margin: 0 !important;
+    color: var(--gob-ink-700) !important;
+    font-family: var(--gob-font);
+    font-size: var(--gob-control-font-size) !important;
+    line-height: 1.35 !important;
+    vertical-align: middle !important;
+}
+
+html .theme-entry .grid .filterContainer .filterLabel {
+    color: var(--gob-ink-600) !important;
+    font-family: var(--gob-font);
+    font-size: var(--gob-control-font-size) !important;
+    font-weight: 600;
+    line-height: 1.35 !important;
+    white-space: nowrap;
+}
+
+html .theme-entry .grid .filterContainer :is(.searchDdl, .filterTxt) {
+    display: inline-flex !important;
+    min-height: var(--gob-control-height) !important;
+    height: var(--gob-control-height) !important;
+    align-items: center;
+    vertical-align: middle !important;
+}
+
+html .theme-entry .grid .filterContainer .searchDdl {
+    width: clamp(180px, 18vw, 250px) !important;
+}
+
+html .theme-entry .grid .filterContainer .filterTxt {
+    width: clamp(160px, 16vw, 220px) !important;
+}
+
+html .theme-entry .grid .filterContainer :is(
+    .input-control.select-box,
+    .input-control.dropdown-box,
+    .input-control.lookup-box,
+    .input-control.calendar-control,
+    .filterTxt > .input-control.text-input,
+    .filterTxt .input-control-m,
+    .filterTxt .input-control-m-c,
+    .filterTxt .input-control-wrapper
+) {
+    width: 100% !important;
+    height: var(--gob-control-height) !important;
+    min-height: var(--gob-control-height) !important;
+    border-radius: var(--gob-radius-sm) !important;
+}
+
+html .theme-entry .grid .filterContainer .filterTxt .input-control-m-c {
+    overflow: hidden !important;
+    border: 1px solid var(--gob-border-strong) !important;
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry .grid .filterContainer .filterTxt input.input-control:not(
+    [type="checkbox"]
+):not([type="radio"]) {
+    width: 100% !important;
+    height: calc(var(--gob-control-height) - 2px) !important;
+    min-height: calc(var(--gob-control-height) - 2px) !important;
+    padding: 10px 12px !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--gob-ink-900) !important;
+    font-family: var(--gob-font);
+    font-size: var(--gob-control-font-size) !important;
+    line-height: 1.35 !important;
+}
+
+html .theme-entry .grid .filterContainer .filterTxt > .input-control.text-input:focus-within
+    .input-control-m-c {
+    border-color: var(--gob-focus) !important;
+    box-shadow: 0 0 0 3px rgba(0, 118, 129, 0.2) !important;
+}
+
+html .theme-entry .grid .filterContainer .input-control.select-box > .styling-outer-wrapper,
+html .theme-entry .grid .filterContainer .input-control.select-box .input-control-body,
+html .theme-entry .grid .filterContainer .input-control.select-box .input-control-m,
+html .theme-entry .grid .filterContainer .input-control.select-box .input-control-m-c,
+html .theme-entry .grid .filterContainer .input-control.select-box .input-control-wrapper,
+html .theme-entry .grid .filterContainer .input-control.select-box .input-control-buttons {
+    height: 100% !important;
+    min-height: 0 !important;
+}
+
+html .theme-entry .grid .filterContainer .input-control.select-box .input-control-wrapper > input,
+html .theme-entry .grid .filterContainer .input-control.select-box .input-control-buttons > a {
+    height: calc(var(--gob-control-height) - 2px) !important;
+    min-height: calc(var(--gob-control-height) - 2px) !important;
+}
+
 html .theme-entry .grid .toolbar-button {
     display: inline-flex !important;
     width: auto !important;
@@ -1894,6 +2005,20 @@ html .theme-entry .grid .toolbar-button .button-c {
     padding: 0 10px !important;
     border: 0 !important;
     background: transparent !important;
+}
+
+html .theme-entry .grid .filterContainer .toolbar-button {
+    width: var(--gob-control-height) !important;
+    min-width: var(--gob-control-height) !important;
+    height: var(--gob-control-height) !important;
+    min-height: var(--gob-control-height) !important;
+    justify-content: center;
+}
+
+html .theme-entry .grid .filterContainer .toolbar-button .button-c {
+    width: 100%;
+    height: calc(var(--gob-control-height) - 2px) !important;
+    justify-content: center;
 }
 
 html .theme-entry .grid .toolbar-button svg {
