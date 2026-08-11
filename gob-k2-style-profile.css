@@ -968,6 +968,177 @@ html .theme-entry .popup.dialog
     background: transparent !important;
 }
 
+html .theme-entry #listFilterNamePopupOutside.popup.dialog.id-configure-user-filters {
+    left: 50% !important;
+    right: auto !important;
+    width: min(720px, calc(100vw - 32px)) !important;
+    height: min(520px, calc(100vh - 48px)) !important;
+    max-height: calc(100vh - 48px) !important;
+    overflow: hidden !important;
+    border: 1px solid var(--gob-border) !important;
+    border-radius: var(--gob-radius-md) !important;
+    background: var(--gob-white) !important;
+    box-shadow: 0 18px 56px rgba(24, 35, 45, 0.24) !important;
+    transform: translateX(-50%);
+}
+
+html .theme-entry #listFilterNamePopupOutside .popup-header {
+    right: 0 !important;
+    left: 0 !important;
+    height: 56px !important;
+    padding: 0 16px !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    background: var(--gob-surface-subtle) !important;
+}
+
+html .theme-entry #listFilterNamePopupOutside .popup-header-c {
+    display: flex !important;
+    width: 100% !important;
+    height: 56px !important;
+    align-items: center !important;
+}
+
+html .theme-entry #listFilterNamePopupOutside .popup-header-text {
+    display: block !important;
+    width: auto !important;
+    min-width: 0;
+    flex: 1 1 auto;
+    padding: 0 !important;
+    color: var(--gob-navy-900) !important;
+    font-family: var(--gob-font) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    text-overflow: ellipsis;
+}
+
+html .theme-entry #listFilterNamePopupOutside .popup-header-buttons {
+    display: flex !important;
+    width: 40px !important;
+    height: 40px !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+html .theme-entry #listFilterNamePopupOutside a.close {
+    display: flex !important;
+    width: 32px !important;
+    height: 32px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    border-radius: var(--gob-radius-sm);
+}
+
+html .theme-entry #listFilterNamePopupOutside a.close:hover {
+    background: var(--gob-aqua-050) !important;
+}
+
+html .theme-entry #listFilterNamePopupOutside .popup-body {
+    top: 56px !important;
+    right: 0 !important;
+    bottom: 72px !important;
+    left: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 16px 18px !important;
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry #listFilterNamePopupOutside
+    :is(.popup-body-c, .popup-body-content, .popup-body-content > .scroll-wrapper),
+html .theme-entry #listFilterNamePopup {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+}
+
+html .theme-entry #filterNameList.grid {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    border-radius: var(--gob-radius-md) !important;
+    box-shadow: none !important;
+}
+
+html .theme-entry #filterNameList .grid-toolbars {
+    height: 56px !important;
+    min-height: 56px !important;
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry #filterNameList .grid-toolbars .toolbar-wrapper {
+    min-height: 55px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 9px 10px !important;
+}
+
+html .theme-entry #filterNameList .toolbar-button {
+    height: 36px !important;
+    min-height: 36px !important;
+    flex: 0 0 auto;
+}
+
+html .theme-entry #filterNameList .toolbar-button.disabled {
+    opacity: 0.56;
+}
+
+html .theme-entry #filterNameList .grid-body {
+    top: 56px !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    border-top: 1px solid var(--gob-border) !important;
+    background: var(--gob-white) !important;
+}
+
+html .theme-entry #filterNameList
+    :is(.grid-body-content, .grid-body-content-wrapper, .scroll-wrapper) {
+    width: 100% !important;
+    height: 100% !important;
+    overflow: auto !important;
+}
+
+html .theme-entry #filterNameList .grid-content-table {
+    width: 100% !important;
+}
+
+html .theme-entry #listFilterNamePopupOutside .popup-footer {
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: auto !important;
+    height: 72px !important;
+    margin: 0 !important;
+    padding: 14px 18px !important;
+    border-top: 1px solid var(--gob-border) !important;
+    background: var(--gob-surface-subtle) !important;
+}
+
+html .theme-entry #listFilterNamePopupOutside .popup-footer-c {
+    display: flex !important;
+    width: 100% !important;
+    height: 44px !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px;
+    line-height: 1 !important;
+}
+
+html .theme-entry #listFilterNamePopupOutside .popup-footer .button.help {
+    display: none !important;
+}
+
+html .theme-entry #listFilterNamePopupOutside .popup-footer .SourceCode-Forms-Controls-Web-Button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+}
+
 /* ==========================================================================
    10. Validation and system states
    ========================================================================== */
