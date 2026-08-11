@@ -969,50 +969,60 @@ html .theme-entry .popup.dialog
 }
 
 html .theme-entry #listFilterNamePopupOutside.popup.dialog.id-configure-user-filters {
+    top: 50% !important;
     left: 50% !important;
     right: auto !important;
-    width: min(720px, calc(100vw - 32px)) !important;
-    height: min(520px, calc(100vh - 48px)) !important;
+    width: min(640px, calc(100vw - 32px)) !important;
+    height: min(420px, calc(100vh - 48px)) !important;
     max-height: calc(100vh - 48px) !important;
     overflow: hidden !important;
     border: 1px solid var(--gob-border) !important;
     border-radius: var(--gob-radius-md) !important;
     background: var(--gob-white) !important;
     box-shadow: 0 18px 56px rgba(24, 35, 45, 0.24) !important;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
 }
 
 html .theme-entry #listFilterNamePopupOutside .popup-header {
     right: 0 !important;
     left: 0 !important;
     height: 56px !important;
-    padding: 0 16px !important;
+    padding: 0 14px 0 18px !important;
     border-bottom: 1px solid var(--gob-border) !important;
     background: var(--gob-surface-subtle) !important;
 }
 
 html .theme-entry #listFilterNamePopupOutside .popup-header-c {
-    display: flex !important;
+    position: relative !important;
+    display: block !important;
     width: 100% !important;
     height: 56px !important;
-    align-items: center !important;
 }
 
 html .theme-entry #listFilterNamePopupOutside .popup-header-text {
-    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 48px !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    display: flex !important;
     width: auto !important;
+    height: auto !important;
     min-width: 0;
-    flex: 1 1 auto;
+    align-items: center !important;
     padding: 0 !important;
     color: var(--gob-navy-900) !important;
     font-family: var(--gob-font) !important;
     font-size: 18px !important;
     font-weight: 700 !important;
-    line-height: 1.25 !important;
+    line-height: 1.2 !important;
     text-overflow: ellipsis;
 }
 
 html .theme-entry #listFilterNamePopupOutside .popup-header-buttons {
+    position: absolute !important;
+    top: 8px !important;
+    right: 0 !important;
     display: flex !important;
     width: 40px !important;
     height: 40px !important;
@@ -1028,6 +1038,10 @@ html .theme-entry #listFilterNamePopupOutside a.close {
     justify-content: center !important;
     margin: 0 !important;
     border-radius: var(--gob-radius-sm);
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    font-size: 0 !important;
+    line-height: 1 !important;
 }
 
 html .theme-entry #listFilterNamePopupOutside a.close:hover {
@@ -1037,11 +1051,11 @@ html .theme-entry #listFilterNamePopupOutside a.close:hover {
 html .theme-entry #listFilterNamePopupOutside .popup-body {
     top: 56px !important;
     right: 0 !important;
-    bottom: 72px !important;
+    bottom: 68px !important;
     left: 0 !important;
     width: auto !important;
     height: auto !important;
-    padding: 16px 18px !important;
+    padding: 14px 16px !important;
     background: var(--gob-white) !important;
 }
 
@@ -1062,16 +1076,17 @@ html .theme-entry #filterNameList.grid {
 }
 
 html .theme-entry #filterNameList .grid-toolbars {
-    height: 56px !important;
-    min-height: 56px !important;
-    background: var(--gob-white) !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    background: var(--gob-surface-subtle) !important;
 }
 
 html .theme-entry #filterNameList .grid-toolbars .toolbar-wrapper {
-    min-height: 55px !important;
+    min-height: 47px !important;
     overflow-x: auto !important;
     overflow-y: hidden !important;
-    padding: 9px 10px !important;
+    padding: 6px 10px !important;
 }
 
 html .theme-entry #filterNameList .toolbar-button {
@@ -1085,7 +1100,7 @@ html .theme-entry #filterNameList .toolbar-button.disabled {
 }
 
 html .theme-entry #filterNameList .grid-body {
-    top: 56px !important;
+    top: 48px !important;
     right: 0 !important;
     bottom: 0 !important;
     left: 0 !important;
@@ -1104,6 +1119,35 @@ html .theme-entry #filterNameList
 
 html .theme-entry #filterNameList .grid-content-table {
     width: 100% !important;
+    table-layout: fixed !important;
+}
+
+html .theme-entry #filterNameList .grid-content-table td:first-child {
+    width: auto !important;
+}
+
+html .theme-entry #filterNameList .grid-content-table td.last,
+html .theme-entry #filterNameList .grid-content-table td:last-child {
+    width: 96px !important;
+    text-align: center !important;
+}
+
+html .theme-entry #filterNameList .grid-content-table tr {
+    height: 48px !important;
+}
+
+html .theme-entry #filterNameList .grid-content-table td {
+    height: 48px !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    color: var(--gob-ink-900) !important;
+    font-family: var(--gob-font) !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+    vertical-align: middle !important;
+}
+
+html .theme-entry #filterNameList .grid-content-table td:first-child {
+    padding-left: 14px !important;
 }
 
 html .theme-entry #listFilterNamePopupOutside .popup-footer {
@@ -1111,9 +1155,9 @@ html .theme-entry #listFilterNamePopupOutside .popup-footer {
     bottom: 0 !important;
     left: 0 !important;
     width: auto !important;
-    height: 72px !important;
+    height: 68px !important;
     margin: 0 !important;
-    padding: 14px 18px !important;
+    padding: 12px 16px !important;
     border-top: 1px solid var(--gob-border) !important;
     background: var(--gob-surface-subtle) !important;
 }
