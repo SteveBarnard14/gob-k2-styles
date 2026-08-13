@@ -737,8 +737,14 @@ html .theme-entry .gob-choice-list.is-stacked {
     flex-direction: column;
 }
 
-html .theme-entry :is([name="MOF_StackedChoice"], [name="AssignmentType Choice"]) {
+html .theme-entry [name="MOF_StackedChoice"] {
     max-width: 576px;
+}
+
+html .theme-entry [name="AssignmentType Choice"] {
+    width: auto !important;
+    max-width: none !important;
+    flex: 1 1 auto;
 }
 
 html .theme-entry .input-control.radio.style-aware,
