@@ -959,6 +959,32 @@ html .theme-entry .popup.dialog.runtime-message a.close {
 
 html .theme-entry .popup.dialog.runtime-message .popup-header-text {
     width: 100% !important;
+    color: var(--gob-navy-900) !important;
+    font-family: var(--gob-font) !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+}
+
+html .theme-entry .popup.dialog.runtime-message,
+html .theme-entry .popup.dialog.runtime-message .popup-body,
+html .theme-entry .popup.dialog.runtime-message .popup-body-content,
+html .theme-entry .popup.dialog.runtime-message .message-box-content,
+html .theme-entry .popup.dialog.runtime-message .message-box-content
+    :is(
+        .panel,
+        .panel-body,
+        .panel-body-m,
+        .panel-body-m-c,
+        .scroll-wrapper,
+        .lyt-messagebox-layout,
+        .message
+    ) {
+    color: var(--gob-ink-700) !important;
+    font-family: var(--gob-font) !important;
+    font-size: var(--gob-control-font-size) !important;
+    font-weight: 400 !important;
+    line-height: 1.35 !important;
 }
 
 html .theme-entry .popup.dialog .message-box-content .panel {
