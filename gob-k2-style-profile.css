@@ -2476,14 +2476,15 @@ html .theme-entry .grid-content-cell-wrapper {
     padding: 10px 12px !important;
 }
 
-html .theme-entry .grid-content-cell .runtime-list-item {
+html .theme-entry .grid-content-cell .runtime-list-item,
+html .theme-entry .grid-content-cell .runtime-list-item-wrap {
     display: block !important;
     width: 100%;
     min-width: 0;
     overflow: hidden;
     color: inherit !important;
     font-family: var(--gob-font);
-    font-size: 14px !important;
+    font-size: var(--gob-control-font-size) !important;
     line-height: 1.35;
     text-overflow: ellipsis;
     white-space: nowrap;
