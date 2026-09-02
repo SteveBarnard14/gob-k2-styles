@@ -52,7 +52,7 @@ html .theme-entry {
     --gob-success-100: #e6f5ed;
     --gob-focus: #007681;
     --gob-font: Inter, sans-serif;
-    --gob-content-max-width: 60vw;
+    --gob-content-max-width: min(72vw, 1180px);
     --gob-control-height: 44px;
     --gob-control-font-size: 12px;
     --gob-label-font-size: var(--gob-control-font-size);
