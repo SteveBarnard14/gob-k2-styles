@@ -427,6 +427,134 @@ html .theme-entry :is(
     text-align: left;
 }
 
+/* Name the first cell in an 8-column K2 grid row MOF_TableSeparator_* to create a full-width separator row. */
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"]
+),
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator4"],
+    [name^="MOF_TableSeparator4_"]
+) {
+    position: relative;
+    display: flex !important;
+    grid-column: 1 / -1 !important;
+    min-height: 38px !important;
+    height: auto !important;
+    align-items: center !important;
+    margin: 10px 0 4px !important;
+    padding: 9px 14px 9px 20px !important;
+    border: 0 !important;
+    border-top: 1px solid var(--gob-border) !important;
+    border-bottom: 1px solid var(--gob-border) !important;
+    border-radius: 0 !important;
+    background: var(--gob-surface-subtle) !important;
+    color: var(--gob-navy-900) !important;
+    overflow: visible !important;
+}
+
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"]
+)::before,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator4"],
+    [name^="MOF_TableSeparator4_"]
+)::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 4px;
+    height: 22px;
+    background: var(--gob-gold-500);
+    content: "";
+    transform: translateY(-50%);
+}
+
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"],
+    [name="MOF_TableSeparator4"],
+    [name^="MOF_TableSeparator4_"]
+) > :is(
+    .SourceCode-Forms-Controls-Web-Label,
+    .SourceCode-Forms-Controls-Web-DataLabel,
+    .SFC
+) {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+    color: var(--gob-navy-900) !important;
+    font-family: var(--gob-font) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.25 !important;
+    letter-spacing: 0;
+    text-transform: uppercase !important;
+}
+
+/* Hide the remaining cells in the same 8-column separator row. */
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"]
+) + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"]
+) + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"]
+) + .editor-cell + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"]
+) + .editor-cell + .editor-cell + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"]
+) + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"]
+) + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator"],
+    [name="MOF_TableSeparator1"],
+    [name^="MOF_TableSeparator_"]
+) + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell {
+    display: none !important;
+}
+
+/* Use MOF_TableSeparator4_* when the separator row is inside a 4-column K2 grid. */
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator4"],
+    [name^="MOF_TableSeparator4_"]
+) + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator4"],
+    [name^="MOF_TableSeparator4_"]
+) + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparator4"],
+    [name^="MOF_TableSeparator4_"]
+) + .editor-cell + .editor-cell + .editor-cell {
+    display: none !important;
+}
+
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
