@@ -1113,6 +1113,57 @@ html .theme-entry [name="GOB_Policy_Acknowledgement"] p {
     line-height: 1.55;
 }
 
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_PolicyAcknowledgementInline"],
+    [name^="MOF_PolicyAcknowledgementInline_"],
+    [name="Cell Cell1169"]
+) {
+    display: grid !important;
+    grid-template-columns: max-content minmax(0, 1fr);
+    align-items: center !important;
+    align-content: center;
+    column-gap: 8px;
+    row-gap: 6px;
+}
+
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_PolicyAcknowledgementInline"],
+    [name^="MOF_PolicyAcknowledgementInline_"],
+    [name="Cell Cell1169"]
+) > .SourceCode-Forms-Controls-Web-Label {
+    align-self: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_PolicyAcknowledgementInline"],
+    [name^="MOF_PolicyAcknowledgementInline_"],
+    [name="Cell Cell1169"]
+) > .checkbox-outer-panel {
+    align-self: center !important;
+    margin: 0 !important;
+}
+
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_PolicyAcknowledgementInline"],
+    [name^="MOF_PolicyAcknowledgementInline_"],
+    [name="Cell Cell1169"]
+) > .checkbox-outer-panel > label.input-control.checkbox.style-aware {
+    margin: 0 !important;
+}
+
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_PolicyAcknowledgementInline"],
+    [name^="MOF_PolicyAcknowledgementInline_"],
+    [name="Cell Cell1169"]
+) > .SourceCode-Forms-Controls-Web-DataLabel {
+    grid-column: 1 / -1;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 html .theme-entry .gob-policy-meta {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(192px, 256px);
