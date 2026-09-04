@@ -332,6 +332,35 @@ html .theme-entry :is([name="MOF_NoticeBody"], [name="lblInstructionsBody"]) li 
     margin-top: 4px;
 }
 
+html .theme-entry :is(
+    .SourceCode-Forms-Controls-Web-DataLabel.MOF_HelperText,
+    [name="MOF_HelperText"],
+    [name^="MOF_HelperText_"],
+    [name="dl_AssignmentTypeSelectionHelperText"]
+) {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100%;
+    margin: 0 0 16px;
+    padding: var(--gob-notice-padding) !important;
+    border: 1px solid #b9dce0 !important;
+    border-left: 4px solid var(--gob-aqua-700) !important;
+    border-radius: var(--gob-radius-md) !important;
+    background: var(--gob-aqua-050) !important;
+    color: var(--gob-ink-700) !important;
+    font-family: var(--gob-font) !important;
+    font-size: 15px !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1.55 !important;
+    overflow: visible !important;
+    overflow-wrap: anywhere;
+    text-align: left !important;
+    text-overflow: clip !important;
+    white-space: normal !important;
+    word-break: normal;
+}
+
 /* ==========================================================================
    04. Panels and section headings
    ========================================================================== */
