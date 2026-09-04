@@ -1017,6 +1017,42 @@ html .theme-entry .input-control.checkbox.style-aware .input-control-text {
     white-space: normal !important;
 }
 
+html
+    .theme-entry
+    .checkbox-outer-panel:has([name="chkRequestForManualEntryTextBox"]) {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+}
+
+html
+    .theme-entry
+    .checkbox-outer-panel:has([name="chkRequestForManualEntryTextBox"])
+    > label.input-control.checkbox.style-aware {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    height: auto !important;
+    white-space: normal !important;
+}
+
+html
+    .theme-entry
+    .checkbox-outer-panel:has([name="chkRequestForManualEntryTextBox"])
+    > label.input-control.checkbox.style-aware
+    .input-control-text {
+    width: auto !important;
+    max-width: 100%;
+    height: auto !important;
+    min-width: 0;
+    flex: 1 1 auto !important;
+    overflow: visible !important;
+    overflow-wrap: anywhere;
+    text-overflow: clip !important;
+    white-space: normal !important;
+    word-break: normal;
+}
+
 html .theme-entry .input-control.radio.style-aware:hover,
 html .theme-entry .input-control.checkbox.style-aware:hover,
 html .theme-entry .gob-choice:hover {
@@ -1934,6 +1970,16 @@ html .theme-entry .SourceCode-Forms-Controls-Web-DataLabel {
     text-overflow: clip !important;
     white-space: normal !important;
     word-break: normal;
+}
+
+html .theme-entry .SourceCode-Forms-Controls-Web-DataLabel:is(
+    [style*="font-weight:Bold"],
+    [style*="font-weight:bold"],
+    [style*="font-weight: bold"],
+    [style*="font-weight:700"],
+    [style*="font-weight: 700"]
+) {
+    font-weight: 700 !important;
 }
 
 html .theme-entry [name="MOF_FormHeader"] :is(
