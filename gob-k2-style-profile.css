@@ -910,7 +910,7 @@ html .theme-entry .readonly {
     color: var(--gob-ink-700) !important;
 }
 
-html .theme-entry .SFC.SourceCode-Forms-Controls-Web-DataLabel.readonly {
+html .theme-entry .SourceCode-Forms-Controls-Web-DataLabel.readonly {
     background: transparent !important;
 }
 
@@ -1830,15 +1830,19 @@ html .theme-entry :is(
     text-align: left !important;
 }
 
-html .theme-entry .SFC.SourceCode-Forms-Controls-Web-DataLabel {
+html .theme-entry .SourceCode-Forms-Controls-Web-DataLabel {
+    display: block;
+    max-width: 100%;
     color: var(--gob-ink-700) !important;
     font-family: var(--gob-font);
     font-size: var(--gob-control-font-size) !important;
     font-weight: 400 !important;
     line-height: 1.35 !important;
     overflow: visible !important;
+    overflow-wrap: anywhere;
     text-overflow: clip !important;
     white-space: normal !important;
+    word-break: normal;
 }
 
 html .theme-entry [name="MOF_FormHeader"] :is(
