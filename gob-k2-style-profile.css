@@ -572,6 +572,142 @@ html .theme-entry .Grid-Layout > .editor-cell:is(
     display: none !important;
 }
 
+/* Name the first cell in an 8-column K2 grid row MOF_CollapseWhenEmpty_* to collapse that row when every cell in the row has no visible control content. */
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty"],
+    [name^="MOF_CollapseWhenEmpty_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))),
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty"],
+    [name^="MOF_CollapseWhenEmpty_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty"],
+    [name^="MOF_CollapseWhenEmpty_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty"],
+    [name^="MOF_CollapseWhenEmpty_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty"],
+    [name^="MOF_CollapseWhenEmpty_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell + .editor-cell + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty"],
+    [name^="MOF_CollapseWhenEmpty_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty"],
+    [name^="MOF_CollapseWhenEmpty_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty"],
+    [name^="MOF_CollapseWhenEmpty_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
+/* Use MOF_CollapseWhenEmpty4_* when the empty conditional row is inside a 4-column K2 grid. */
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty4"],
+    [name^="MOF_CollapseWhenEmpty4_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))),
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty4"],
+    [name^="MOF_CollapseWhenEmpty4_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty4"],
+    [name^="MOF_CollapseWhenEmpty4_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell + .editor-cell,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_CollapseWhenEmpty4"],
+    [name^="MOF_CollapseWhenEmpty4_"]
+):not(:has(> :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"])))
+:not(:has(+ .editor-cell + .editor-cell + .editor-cell > :not(.hidden):not(.empty):not([hidden]):not([style*="display: none"]):not([style*="display:none"]))) + .editor-cell + .editor-cell + .editor-cell {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
