@@ -1017,6 +1017,35 @@ html .theme-entry .input-control.checkbox.style-aware .input-control-text {
     white-space: normal !important;
 }
 
+html .theme-entry .input-control.text-input.control-group-container:has(.multi-select-outer-panel),
+html
+    .theme-entry
+    .input-control.text-input.control-group-container:has(.multi-select-outer-panel)
+    > .input-control-m,
+html
+    .theme-entry
+    .input-control.text-input.control-group-container:has(.multi-select-outer-panel)
+    > .input-control-m
+    > .input-control-m-c,
+html .theme-entry .multi-select-outer-panel,
+html .theme-entry .multi-select-outer-panel .stack-container,
+html .theme-entry .multi-select-outer-panel .stack {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+}
+
+html .theme-entry .multi-select-outer-panel .multi-select-box-list-item,
+html
+    .theme-entry
+    .multi-select-outer-panel
+    label.input-control.checkbox.style-aware,
+html .theme-entry .multi-select-outer-panel .input-control-text {
+    overflow: visible !important;
+    text-overflow: clip !important;
+    white-space: nowrap !important;
+}
+
 html
     .theme-entry
     .checkbox-outer-panel:has([name="chkRequestForManualEntryTextBox"]) {
