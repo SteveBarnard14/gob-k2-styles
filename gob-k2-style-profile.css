@@ -1040,7 +1040,11 @@ html
     .theme-entry
     .multi-select-outer-panel
     label.input-control.checkbox.style-aware,
-html .theme-entry .multi-select-outer-panel .input-control-text {
+html
+    .theme-entry
+    .multi-select-outer-panel
+    label.input-control.checkbox.style-aware
+    .input-control-text {
     overflow: visible !important;
     text-overflow: clip !important;
     white-space: nowrap !important;
