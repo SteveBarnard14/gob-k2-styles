@@ -1052,6 +1052,14 @@ html
 
 html
     .theme-entry
+    [name="dbo_MobileDeviceFeatures"].SourceCode-Forms-Controls-Web-ControlPack-Choice.displayTypeCheckbox
+    .stylewrapper {
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+html
+    .theme-entry
     .checkbox-outer-panel:has([name="chkRequestForManualEntryTextBox"]) {
     width: 100% !important;
     max-width: 100%;
