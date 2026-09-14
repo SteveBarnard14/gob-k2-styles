@@ -25,6 +25,8 @@ html .theme-entry {
     --gob-gold-700: #9a7100;
     --gob-gold-500: #f4c430;
     --gob-gold-100: #fff3c4;
+    --gob-cancel-button-bg: #FECE5B;
+    --gob-submit-button-bg: #334D85;
     --gob-navy-900: #022243;
     --gob-ink-900: #18232d;
     --gob-ink-700: #3c4b58;
@@ -669,6 +671,92 @@ html .theme-entry .Grid-Layout > .editor-cell:is(
     overflow: hidden !important;
 }
 
+/* Collapse empty Requested Mobile Device Features and MIFI Type cells so MIFI Device Feature backfills the row. */
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty),
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
@@ -1304,9 +1392,15 @@ html .theme-entry .gob-button:hover {
 
 html .theme-entry :is([name="MOF_PrimaryAction"], [name="CreateListItem Button"]),
 html .theme-entry .gob-button.is-primary {
-    border-color: var(--gob-aqua-700) !important;
-    background: var(--gob-aqua-700) !important;
+    border-color: var(--gob-submit-button-bg) !important;
+    background: var(--gob-submit-button-bg) !important;
     color: var(--gob-white) !important;
+}
+
+html .theme-entry :is([name="MOF_SecondaryAction"], [name="btnCancel"]) {
+    border-color: var(--gob-cancel-button-bg) !important;
+    background: var(--gob-cancel-button-bg) !important;
+    color: var(--gob-ink-900) !important;
 }
 
 html .theme-entry :is(
@@ -1314,9 +1408,15 @@ html .theme-entry :is(
     [name="CreateListItem Button"]
 ):hover,
 html .theme-entry .gob-button.is-primary:hover {
-    border-color: var(--gob-aqua-900) !important;
-    background: var(--gob-aqua-900) !important;
+    border-color: var(--gob-submit-button-bg) !important;
+    background: var(--gob-submit-button-bg) !important;
     color: var(--gob-white) !important;
+}
+
+html .theme-entry :is([name="MOF_SecondaryAction"], [name="btnCancel"]):hover {
+    border-color: var(--gob-cancel-button-bg) !important;
+    background: var(--gob-cancel-button-bg) !important;
+    color: var(--gob-ink-900) !important;
 }
 
 html .theme-entry .SourceCode-Forms-Controls-Web-Button:focus-visible,
