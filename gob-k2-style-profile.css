@@ -803,6 +803,28 @@ html
     -ms-grid-row-span: 1 !important;
 }
 
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(> [name="Mobile Device Type Label1"]):has(
+        + .editor-cell > [name="Mobile Device Type Data Label1"].empty
+    ),
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(> [name="Mobile Device Type Label1"]):has(
+        + .editor-cell > [name="Mobile Device Type Data Label1"].empty
+    )
+    + .editor-cell {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
