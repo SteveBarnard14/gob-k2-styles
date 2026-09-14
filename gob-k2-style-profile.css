@@ -1159,6 +1159,31 @@ html
     overflow: hidden !important;
 }
 
+/* Use MOF_CollapsePairWhenEmpty_* on a label cell to collapse that cell and its following empty value cell. */
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapsePairWhenEmpty"],
+        [name^="MOF_CollapsePairWhenEmpty_"]
+    ):has(+ .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty),
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapsePairWhenEmpty"],
+        [name^="MOF_CollapsePairWhenEmpty_"]
+    ):has(+ .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty)
+    + .editor-cell {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
