@@ -768,6 +768,41 @@ html
     overflow: hidden !important;
 }
 
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(
+        > [name="Requested Mobile Device Features Label1"]
+    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell {
+    grid-row-start: 10 !important;
+    grid-row-end: 11 !important;
+    -ms-grid-row: 10 !important;
+    -ms-grid-row-span: 1 !important;
+}
+
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
