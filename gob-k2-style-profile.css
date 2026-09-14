@@ -825,6 +825,340 @@ html
     overflow: hidden !important;
 }
 
+/* Use MOF_CollapseWhenEmpty_* on the first cell of an 8-column label/value row to collapse the row when all three values are empty. */
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapseWhenEmpty"],
+        [name^="MOF_CollapseWhenEmpty_"]
+    ):has(> .SourceCode-Forms-Controls-Web-Label):has(
+        + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ),
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapseWhenEmpty"],
+        [name^="MOF_CollapseWhenEmpty_"]
+    ):has(> .SourceCode-Forms-Controls-Web-Label):has(
+        + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    )
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapseWhenEmpty"],
+        [name^="MOF_CollapseWhenEmpty_"]
+    ):has(> .SourceCode-Forms-Controls-Web-Label):has(
+        + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    )
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapseWhenEmpty"],
+        [name^="MOF_CollapseWhenEmpty_"]
+    ):has(> .SourceCode-Forms-Controls-Web-Label):has(
+        + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    )
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapseWhenEmpty"],
+        [name^="MOF_CollapseWhenEmpty_"]
+    ):has(> .SourceCode-Forms-Controls-Web-Label):has(
+        + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    )
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapseWhenEmpty"],
+        [name^="MOF_CollapseWhenEmpty_"]
+    ):has(> .SourceCode-Forms-Controls-Web-Label):has(
+        + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    )
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapseWhenEmpty"],
+        [name^="MOF_CollapseWhenEmpty_"]
+    ):has(> .SourceCode-Forms-Controls-Web-Label):has(
+        + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    )
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell,
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:is(
+        [name="MOF_CollapseWhenEmpty"],
+        [name^="MOF_CollapseWhenEmpty_"]
+    ):has(> .SourceCode-Forms-Controls-Web-Label):has(
+        + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-Label
+    ):has(
+        + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            + .editor-cell
+            > .SourceCode-Forms-Controls-Web-DataLabel.empty
+    )
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell
+    + .editor-cell {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
