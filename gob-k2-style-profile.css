@@ -476,6 +476,7 @@ html .theme-entry :is(
 }
 
 /* Name the first cell in an 8-column K2 grid row MOF_TableSeparator_* to create a full-width separator row. */
+/* Use MOF_TableSeparatorFullRow_* when K2 already makes the cell a full row. */
 html .theme-entry .Grid-Layout > .editor-cell:is(
     [name="MOF_TableSeparator"],
     [name="MOF_TableSeparator1"],
@@ -484,6 +485,10 @@ html .theme-entry .Grid-Layout > .editor-cell:is(
 html .theme-entry .Grid-Layout > .editor-cell:is(
     [name="MOF_TableSeparator4"],
     [name^="MOF_TableSeparator4_"]
+),
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparatorFullRow"],
+    [name^="MOF_TableSeparatorFullRow_"]
 ) {
     position: relative;
     display: flex !important;
@@ -510,6 +515,10 @@ html .theme-entry .Grid-Layout > .editor-cell:is(
 html .theme-entry .Grid-Layout > .editor-cell:is(
     [name="MOF_TableSeparator4"],
     [name^="MOF_TableSeparator4_"]
+)::before,
+html .theme-entry .Grid-Layout > .editor-cell:is(
+    [name="MOF_TableSeparatorFullRow"],
+    [name^="MOF_TableSeparatorFullRow_"]
 )::before {
     position: absolute;
     top: 50%;
@@ -526,7 +535,9 @@ html .theme-entry .Grid-Layout > .editor-cell:is(
     [name="MOF_TableSeparator1"],
     [name^="MOF_TableSeparator_"],
     [name="MOF_TableSeparator4"],
-    [name^="MOF_TableSeparator4_"]
+    [name^="MOF_TableSeparator4_"],
+    [name="MOF_TableSeparatorFullRow"],
+    [name^="MOF_TableSeparatorFullRow_"]
 ) > :is(
     .SourceCode-Forms-Controls-Web-Label,
     .SourceCode-Forms-Controls-Web-DataLabel,
