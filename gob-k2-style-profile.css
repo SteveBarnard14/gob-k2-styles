@@ -760,13 +760,14 @@ html
     overflow: hidden !important;
 }
 
-/* Use MOF_CollapseWhenEmpty_* on the first cell of an 8-column label/value row to collapse the row when all three values are empty. */
+/* Use MOF_CollapseWhenEmpty_* on the first cell of an 8-column label/value row to collapse the row when all three values are empty. Also recognise the existing MIFI Reason row without a Designer rename. */
 html
     .theme-entry
     .Grid-Layout
     > .editor-cell:is(
         [name="MOF_CollapseWhenEmpty"],
-        [name^="MOF_CollapseWhenEmpty_"]
+        [name^="MOF_CollapseWhenEmpty_"],
+        :has(> [name="MIFI Reason Label"])
     ):has(> .SourceCode-Forms-Controls-Web-Label):has(
         + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
     ):has(
@@ -803,7 +804,8 @@ html
     .Grid-Layout
     > .editor-cell:is(
         [name="MOF_CollapseWhenEmpty"],
-        [name^="MOF_CollapseWhenEmpty_"]
+        [name^="MOF_CollapseWhenEmpty_"],
+        :has(> [name="MIFI Reason Label"])
     ):has(> .SourceCode-Forms-Controls-Web-Label):has(
         + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
     ):has(
@@ -841,7 +843,8 @@ html
     .Grid-Layout
     > .editor-cell:is(
         [name="MOF_CollapseWhenEmpty"],
-        [name^="MOF_CollapseWhenEmpty_"]
+        [name^="MOF_CollapseWhenEmpty_"],
+        :has(> [name="MIFI Reason Label"])
     ):has(> .SourceCode-Forms-Controls-Web-Label):has(
         + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
     ):has(
@@ -880,7 +883,8 @@ html
     .Grid-Layout
     > .editor-cell:is(
         [name="MOF_CollapseWhenEmpty"],
-        [name^="MOF_CollapseWhenEmpty_"]
+        [name^="MOF_CollapseWhenEmpty_"],
+        :has(> [name="MIFI Reason Label"])
     ):has(> .SourceCode-Forms-Controls-Web-Label):has(
         + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
     ):has(
@@ -920,7 +924,8 @@ html
     .Grid-Layout
     > .editor-cell:is(
         [name="MOF_CollapseWhenEmpty"],
-        [name^="MOF_CollapseWhenEmpty_"]
+        [name^="MOF_CollapseWhenEmpty_"],
+        :has(> [name="MIFI Reason Label"])
     ):has(> .SourceCode-Forms-Controls-Web-Label):has(
         + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
     ):has(
@@ -961,7 +966,8 @@ html
     .Grid-Layout
     > .editor-cell:is(
         [name="MOF_CollapseWhenEmpty"],
-        [name^="MOF_CollapseWhenEmpty_"]
+        [name^="MOF_CollapseWhenEmpty_"],
+        :has(> [name="MIFI Reason Label"])
     ):has(> .SourceCode-Forms-Controls-Web-Label):has(
         + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
     ):has(
@@ -1003,7 +1009,8 @@ html
     .Grid-Layout
     > .editor-cell:is(
         [name="MOF_CollapseWhenEmpty"],
-        [name^="MOF_CollapseWhenEmpty_"]
+        [name^="MOF_CollapseWhenEmpty_"],
+        :has(> [name="MIFI Reason Label"])
     ):has(> .SourceCode-Forms-Controls-Web-Label):has(
         + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
     ):has(
@@ -1046,7 +1053,8 @@ html
     .Grid-Layout
     > .editor-cell:is(
         [name="MOF_CollapseWhenEmpty"],
-        [name^="MOF_CollapseWhenEmpty_"]
+        [name^="MOF_CollapseWhenEmpty_"],
+        :has(> [name="MIFI Reason Label"])
     ):has(> .SourceCode-Forms-Controls-Web-Label):has(
         + .editor-cell > .SourceCode-Forms-Controls-Web-DataLabel.empty
     ):has(
