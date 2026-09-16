@@ -702,7 +702,17 @@ html
 html
     .theme-entry
     .Grid-Layout
-    > .editor-cell:has(> [name="MIFI Device Type Data Label"].empty) {
+    > .editor-cell:has(> [name="MIFI Device Type Data Label"].empty),
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(> [name="MIFI Reason Label"]):has(
+        + .editor-cell > [name="MIFI Reason Data Label"].empty
+    ),
+html
+    .theme-entry
+    .Grid-Layout
+    > .editor-cell:has(> [name="MIFI Reason Data Label"].empty) {
     display: none !important;
     min-height: 0 !important;
     height: 0 !important;
