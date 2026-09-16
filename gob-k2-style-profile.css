@@ -682,83 +682,27 @@ html .theme-entry .Grid-Layout > .editor-cell:is(
     overflow: hidden !important;
 }
 
-/* Collapse empty Requested Mobile Device Features and MIFI Type cells so MIFI Device Feature backfills the row. */
+/* Collapse only the named empty pairs; sibling offsets can cross into populated MIFI Reason cells. */
 html
     .theme-entry
     .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty),
+    > .editor-cell:has(> [name="Requested Mobile Device Features Label1"]):has(
+        + .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty
+    ),
 html
     .theme-entry
     .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
-    + .editor-cell,
+    > .editor-cell:has(> [name="RequestedMobileDeviceFeatures Data Label"].empty),
 html
     .theme-entry
     .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
-    + .editor-cell
-    + .editor-cell,
+    > .editor-cell:has(> [name="MIFI Device Type Label"]):has(
+        + .editor-cell > [name="MIFI Device Type Data Label"].empty
+    ),
 html
     .theme-entry
     .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell,
-html
-    .theme-entry
-    .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell,
-html
-    .theme-entry
-    .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell,
-html
-    .theme-entry
-    .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell,
-html
-    .theme-entry
-    .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell {
+    > .editor-cell:has(> [name="MIFI Device Type Data Label"].empty) {
     display: none !important;
     min-height: 0 !important;
     height: 0 !important;
@@ -768,35 +712,16 @@ html
     overflow: hidden !important;
 }
 
+/* Backfill the empty requested-features slot without relying on sibling counts. */
 html
     .theme-entry
     .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell,
-html
-    .theme-entry
-    .Grid-Layout
-    > .editor-cell:has(
-        > [name="Requested Mobile Device Features Label1"]
-    ):has(+ .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty)
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell
-    + .editor-cell {
+    > .editor-cell:has(> [name="Requested Mobile Device Features Label1"]):has(
+        + .editor-cell > [name="RequestedMobileDeviceFeatures Data Label"].empty
+    )
+    ~ .editor-cell:has(
+        > :is([name="MIFI Device Feature Label"], [name="MIFI Device Feature Data Label"])
+    ) {
     grid-row-start: 10 !important;
     grid-row-end: 11 !important;
     -ms-grid-row: 10 !important;
