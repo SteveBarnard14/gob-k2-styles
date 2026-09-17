@@ -1627,6 +1627,28 @@ html .theme-entry .gob-check-grid {
    08. Policy acknowledgement and actions
    ========================================================================== */
 
+/* Keep K2's disabled behavior, but display the recorded policy agreement at
+   full contrast. Designer/rules must keep this control disabled on approvals. */
+html .theme-entry label.input-control.checkbox.style-aware.disabled:has(
+    > input[name="chk_PolicyAgreedTo"]:disabled
+) {
+    opacity: 1 !important;
+    cursor: default;
+}
+
+html .theme-entry label.input-control.checkbox.style-aware.disabled:has(
+    > input[name="chk_PolicyAgreedTo"]:disabled
+) .svg-checkbox-box {
+    stroke: var(--checkbox-border-color) !important;
+    fill: var(--checkbox-background-color) !important;
+}
+
+html .theme-entry label.input-control.checkbox.style-aware.disabled.checked:has(
+    > input[name="chk_PolicyAgreedTo"]:disabled
+) .svg-checkbox-checked {
+    fill: var(--checkbox-checked-color) !important;
+}
+
 html .theme-entry .gob-policy,
 html .theme-entry [name="MOF_PolicyAcknowledgement"],
 html .theme-entry [name="GOB_Policy_Acknowledgement"] {
