@@ -1127,6 +1127,37 @@ html
     overflow: hidden !important;
 }
 
+/* Collapse the eight-cell Head Number / Additional Email row only when both
+   values are empty. Pair collapse alone leaves the four &nbsp; spacer cells
+   holding the row open. Keep the existing Designer names and stop at cell 8. */
+html .theme-entry .Grid-Layout:has(
+    > .editor-cell[name="MOF_CollapsePairWhenEmpty_HeadNumber"][col="1"]
+        + .editor-cell > [name="Head Number Data Label"].SourceCode-Forms-Controls-Web-DataLabel.empty
+):has(
+    > .editor-cell[name="MOF_CollapsePairWhenEmpty_HeadNumber"][col="1"]
+        + .editor-cell
+        + .editor-cell
+        + .editor-cell[name="MOF_CollapsePairWhenEmpty_AdditionalEmail"][col="4"]
+        + .editor-cell > [name="Additional Email Address Data Label"].SourceCode-Forms-Controls-Web-DataLabel.empty
+) > .editor-cell:is(
+    [name="MOF_CollapsePairWhenEmpty_HeadNumber"],
+    [name="MOF_CollapsePairWhenEmpty_HeadNumber"] + .editor-cell,
+    [name="MOF_CollapsePairWhenEmpty_HeadNumber"] + .editor-cell + .editor-cell,
+    [name="MOF_CollapsePairWhenEmpty_HeadNumber"] + .editor-cell + .editor-cell + .editor-cell,
+    [name="MOF_CollapsePairWhenEmpty_HeadNumber"] + .editor-cell + .editor-cell + .editor-cell + .editor-cell,
+    [name="MOF_CollapsePairWhenEmpty_HeadNumber"] + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell,
+    [name="MOF_CollapsePairWhenEmpty_HeadNumber"] + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell,
+    [name="MOF_CollapsePairWhenEmpty_HeadNumber"] + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell + .editor-cell
+) {
+    display: none !important;
+    min-height: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+}
+
 html .theme-entry [name="FormSectionName2"],
 html .theme-entry [name="lblDeviceDetails"],
 html .theme-entry .gob-section-heading {
