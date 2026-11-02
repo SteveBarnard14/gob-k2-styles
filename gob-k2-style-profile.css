@@ -1634,13 +1634,12 @@ html .theme-entry label.input-control.checkbox.style-aware.checked {
     color: var(--gob-aqua-900) !important;
 }
 
-/* Read-only device features: dim the options and hide their tile borders.
+/* Read-only device features: hide their tile borders.
    Keep the border space so switching state does not shift the layout. */
 html
     .theme-entry
     [name="dbo_MobileDeviceFeatures"].displayTypeCheckbox:is(.readonly, .read-only)
     label.input-control.checkbox.style-aware {
-    opacity: 0.6 !important;
     border-color: transparent !important;
     box-shadow: none !important;
     outline: none !important;
